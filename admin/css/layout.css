@@ -1,0 +1,104 @@
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
+.fr{
+	float: right;
+ }
+ .fl{
+	float: left;
+ }
+.clear{
+		clear: both;
+}
+.centered{
+	text-align: center;
+}
+.righted{
+	text-align: right;
+}
+.lefted{
+	text-align: left;
+}
+.small{
+	font-size: small;
+}
+body{
+	background: #FFFFFF;
+}
+.wrapper{
+	padding-top: 90px;
+	position: relative;
+	min-height: 100%;
+}
+header{	
+	background: rgba(255,255,255,0.85);
+	height: 90px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 9;
+}
+header .header-content{
+	padding: 10px 0;	
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#8c8c8c+0,000000+100&amp;0.65+0,0+10 */
+	background: -moz-linear-gradient(top,  rgba(140,140,140,0.65) 0%, rgba(126,126,126,0) 10%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(140,140,140,0.65) 0%,rgba(126,126,126,0) 10%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(140,140,140,0.65) 0%,rgba(126,126,126,0) 10%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a68c8c8c', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */	
+}
+footer{
+	background-color: #000000;
+}
+.container{
+	padding: 20px;
+	max-width: 960px;
+	margin: auto;
+}
+.logo{
+	
+}
+.logo h1{
+	background: url(../images/logo.png) no-repeat center;
+}
+.menu{
+	background-color: #000000;
+	text-align: center;
+}
+.menu ul{
+	list-style: none;
+}
+.menu ul li{
+	padding: 10px 15px;
+	list-style: none;
+	display: inline-block;
+	margin: 0;
+	position: relative;
+}
+.menu ul li a{
+	display: block;
+	color: #fff;
+	font-size: 14px;
+	line-height: 20px;
+}
+.menu ul li:hover{
+	background: #4a4a4a;
+}
+.sub-menu{
+	background: #000000;
+	position: absolute;
+	top: 40px;
+	left: -50px;
+	min-width: 200px;
+	text-align: center;
+	z-index: 2;
+	display: none;
+}
+ul.sub-menu li{
+	display: block;
+	margin: 0;
+	padding: 5px 20px;
+}
+ul.sub-menu li a{
+	display: inline-block;
+}

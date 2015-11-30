@@ -1,0 +1,223 @@
+/*===== TYPOGRAPHY =====*/
+
+body {
+	font-family: 'Raleway', sans-serif;
+	font-size: 10px;
+	line-height: 20px;
+	color: #44494d;
+}
+h1, h2, h3, h4, h5, h6{
+	font-weight: bold;
+}
+h1{
+	font-size: 28px;
+	line-height: 30px;
+}
+h2{
+	font-size: 26px;
+	line-height: 30px;
+}
+h3{
+	font-size: 24px;
+	line-height: 30px;
+}
+h4{
+	font-size: 20px;
+	line-height: 30px;
+}
+h5{
+	font-size: 18px;
+	line-height: 20px;
+}
+h6{
+	font-size: 16px;
+	line-height: 20px;	
+}
+a{
+	text-decoration: none;
+}
+a, a:visited{
+	line-height: 20px;
+	font-size: 10px;
+}
+a:hover{
+}
+a.active{
+}
+p{
+	font-size: 14px;
+	line-height: 20px;
+}
+.editor{
+	text-align: justify;
+}
+sup{
+	font-size: 11px;
+	line-height: 16px;
+	display: inline-block;
+}
+ul li{
+	list-style-type: disc;
+	margin-left: 20px;
+}
+form>div{
+	margin-bottom: 10px;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+	outline: 0;
+	padding: 6px 10px;
+	color: #000000;
+	font-size: 12px;
+	line-height: 18px;
+	border: 1px solid #80A6AD;
+	width: 380px;
+	height: 30px;
+	background: #ffffff;
+}
+textarea {
+	height: auto;
+	resize: none;
+}
+input[type="checkbox"], 
+input[type="checkbox"],
+input[type="radio"], 
+input[type="radio"]{
+	display: none;
+} 
+.radiobtn,
+.checkbox{
+	position: relative;
+	display: inline-block;
+}
+.checkbox label{
+	width: 15px;
+	height: 15px;
+	border: 1px solid #bbbbbb;
+	background-color: #ffffff;
+	display: inline-block;
+	margin-right: 5px;
+	cursor: pointer;
+	vertical-align: middle;
+	position: relative;	
+}
+.checkbox label:after {
+	opacity: 0;
+	content: '';
+	position: absolute;
+	width: 11px;
+	height: 7px;
+	background: transparent;
+	top: 2;
+	left: 1;
+	border: 3px solid #333;
+	border-top: none;
+	border-right: none;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.checkbox input[type="checkbox"]:checked + label:after {
+	opacity: 1;
+}
+.radiobtn label{
+	color: #444444;
+	font-family: Raleway-regular, Helvetica, Arial, Sans-Serif;
+	font-size: 12px;
+	line-height: 20px;
+	vertical-align: middle;
+}
+.radiobtn span{
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	margin-right: 5px;
+	cursor: pointer;
+	background: url("../images/radio.png") no-repeat center center;
+	vertical-align: middle;
+}
+input[type="checkbox"]:checked + label{}
+input[type="radio"]:checked + span{
+	background: url("../images/radio-checked.png") no-repeat center center;
+}
+.radiobtn span:after{}
+
+/*===== BUTTONS =====*/
+
+input[type="submit"],
+button,
+.btn{
+	padding: 10px 30px;
+	display: inline-block;
+	color: #ffffff;
+	border: 1px solid #80A6AD;
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 18px;
+	text-transform: uppercase;
+	text-align: center;
+	background: #80A6AD;
+	letter-spacing: 0.05em;
+}
+input[type="submit"]:hover,
+button:hover,
+.btn:hover {
+	opacity: 0.8;
+}
+
+
+/*===== DATEPICKER =====*/
+
+.ui-widget {
+	font-family: Raleway-regular, Helvetica, Arial, Sans-Serif;
+	font-size: 12px;
+}
+.ui-widget-header {
+	border: 1px solid #aaaaaa;
+	background: #44494d;
+	color: #fff;
+	font-family: Raleway-bold, Helvetica, Arial, Sans-Serif;
+}
+.ui-widget-content{
+	border: 1px solid #44494d;
+}
+.ui-datepicker .ui-datepicker-header .ui-icon {
+	background: url('../images/icon-datepicker.png') no repeat center center;
+	cursor: pointer;
+	display: block;
+}
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+	border: 1px solid transparent;
+	background: transparent;
+	opacity: 0.8;
+}
+.ui-datepicker .ui-datepicker-header .ui-datepicker-prev .ui-icon {
+	background: transparent url('../images/icon-datepicker.png') no-repeat 0 0;
+	margin-top: 0px;
+}
+.ui-datepicker .ui-datepicker-header .ui-datepicker-next .ui-icon {
+	background: transparent url('../images/icon-datepicker.png') no-repeat -12px 0;
+	margin-top: 0px;
+}
+.ui-datepicker .ui-datepicker-header .ui-datepicker-next .ui-icon {
+	background: transparent url('../images/icon-datepicker.png') no-repeat -12px 0;
+	margin-top: 0px;
+}
+.ui-datepicker .ui-datepicker-header .ui-icon {
+	background: url('../images/icon-datepicker.png') no repeat center center;
+	cursor: pointer;
+	display: block;
+}
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+	display: block;
+	position: relative;
+	margin: auto;
+	width: 11px;
+	top: 4;
+	left: 0;
+}

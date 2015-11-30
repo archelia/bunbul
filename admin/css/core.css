@@ -1,0 +1,92 @@
+i[class*="icon-"]{
+display: inline-block;
+width: 16px;
+height: 16px;
+background-repeat: no-repeat;
+background-image: url('../images/dropdown-icon.png');
+}
+.icon-chevron-down, .icon-dropdown {
+	background-position: 0px 0px;
+}
+.select-layout{
+	position:relative;
+	float:left;
+	cursor:pointer;
+	background:#fff;
+}
+.select-layout p, .select-layout ul li{
+	font-family: Raleway-bold, Helvetica, Arial, Sans-Serif;
+	font-size: 12px;
+	line-height: 16px;
+	color: #1057a5;
+	text-transform: uppercase;
+	letter-spacing: 0.4px;
+}
+.select-layout .select-content{
+	float:left;
+	border:1px solid #e9e6e6;
+	width: auto;
+	background: #f5f3f3;
+}
+.select-layout .select-content .select-title{
+	margin:0;
+	margin-right:30px;
+	padding:6px 9px;
+	border-right:1px solid #f5f3f3;
+}
+.select-layout .select-content .select-icon{
+	float:right;
+	padding:7px;
+	background:transparent;
+	width:auto;
+	text-align:center;
+	height: 28px;
+	display:-moz-box;
+	-moz-box-pack:center;
+	-moz-box-align:center;
+	display:-webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
+	display:box;box-pack:
+	center;box-align:center;
+}
+.select-layout .select-content ul{
+	display:none;
+	position:absolute;
+	top:35px;
+	left:0;
+	background:#fff;
+	min-width:100%;
+	border:1px solid #e9e6e6;
+	z-index:100;
+	max-height:200px;
+	overflow-y:auto;
+	-webkit-box-sizing:	border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.select-layout .select-content ul li{
+	list-style:none;
+	margin:0;
+	padding:6px 9px;
+	cursor:pointer;
+	background:#fff;
+}
+.select-layout .select-content ul li:not(.new-category):hover,.select-layout .select-content ul li.active{
+	background:#f5f3f3;
+}
+.select-layout .select-content ul li.new-category{
+	padding:0;
+	border-top:1px solid #e9e6e6;
+	min-width:223px;
+}
+.select-layout .select-content ul li.new-category input[type="text"]{
+	border:0;
+	float:left;
+}
+.select-layout .select-content ul li.new-category input[type="submit"]{
+	border:0;
+}
+.select-icon{
+	border-left-color: white;
+}
