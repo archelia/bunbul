@@ -106,6 +106,7 @@ textarea {
 }
 
 /*=================== LIST ======================*/
+
 .list{
 	margin: 20px 0 50px;
 }
@@ -114,12 +115,78 @@ textarea {
 	padding-bottom: 10px;
 	border-bottom: 2px solid #000;
 }
-.addnew{
-	text-align: right;
+.form-tools{
+	padding-bottom: 20px;
 	margin-bottom: 20px;
+	border-bottom: 1px solid #999999;
 }
+.filter-box{
+	float: left;
+	width: 30%;
+	padding-right: 20px;
+}
+.filter-box.add-new{
+	padding: 0;
+	float: right;
+	width: 20%;
+	text-align: right;
+}
+.filter-box.search{
+	position: relative;
+}
+.filter-box.search input[type="text"]{
+	padding-right: 50px;
+}
+.filter-box.search input[type="submit"]{
+	position: absolute;
+	right: 20px;
+	top: 0;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	background: #000000 url("../images/zoom-icon.png") no-repeat 3px center;
+}
+.add-button{
+	padding-left: 40px;
+	padding-right: 20px;
+	background: #000000 url("../images/icon-plus.png") no-repeat 10px center;
+	font-size: 12px;
+}
+.data-table{
+	margin-bottom: 10px;
+}
+.data-show{
+	margin-bottom: 15px;	
+	text-align: center;
+}
+.data-show p{
+	font-size: 12px;
+	line-height: 20px;
+	color: #000000;
+	font-style: italic;
+}
+.pagination{
+	text-align: center;
+}
+.pagination nav ul{ 
 
-
+}
+.pagination nav ul li{ 
+	display: inline-table;
+	margin: 0;
+}
+.pagination nav ul li a{ 
+	display: block;
+	padding: 5px 10px;	
+	background: #000000;
+	color: #fff;
+}
+.pagination nav ul li a:hover{
+	opacity: 0.8;
+}
+a.link-opt{
+	display: inline-block;
+}
 /*================== LOGIN ======================*/
 
 /*================== LOGIN ======================*/
