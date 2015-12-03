@@ -1,12 +1,12 @@
 <?php	
 	include "../../global/global.php";
 	include "header.php";	
-	$pagecall = "listuser";
+	$pagecall = "listsize";
 	include "controller.php";
 ?>
 <div class="container">
 	<div class="content list listuser">	
-		<h3>List User</h3>
+		<h3>List Size</h3>
 		<?php								   
 			// pagination
 			include ("../pages/filter-box.php");
@@ -22,8 +22,8 @@
 				<thead>
 					<tr>
 						<th>&nbsp;</th>
-						<th>Username</th>
-						<th>User Type</th>
+						<th>Size Type</th>
+						<th>Size</th>
 						<th>&nbsp;</th>
 					</tr>
 				</thead>
@@ -46,12 +46,12 @@
 					$no=$posisi+1;					
 					
 					// QUERY LISTING
-					$sql = "SELECT * FROM user ";
+					$sql = "SELECT * FROM size ";
 					
 					// if there's a search
 					if (isset($_POST['tekscari']))
 					{
-						$sql .= "WHERE username LIKE '%$_POST[tekscari]%' ";						
+						$sql .= "WHERE size_name LIKE '%$_POST[tekscari]%' OR size_type LIKE '%$_POST[tekscari]%' ";						
 					}	
 					
 					// if there's a sorting
@@ -72,25 +72,14 @@
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="'.$addnewpage.'?action=ubah&kode='.$row["id_user"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$addnewpage.'?action=ubah&kode='.$row["id_size"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
-						echo '
-								<td align="left">'.$row['username'].'</td>';
-						$user_type = $row['user_type'];
-						switch($user_type){
-							case "1" :
-							echo '<td>Super Admin</td>';
-							break;
-							case "2" :
-							echo '<td>Administrator</td>';
-							break;
-							case "1" :
-							echo '<td>Sales</td>';
-							break;							
-						}									
+						echo '	<td align="left">'.$row['size_type'].'</td>';
+						echo '	<td align="left">'.$row['size_name'].'</td>';
+															
 						echo '	<td align="center">
-									<a href="deletion.php?kode='.$row["id_user"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deletion.php?kode='.$row["id_size"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';

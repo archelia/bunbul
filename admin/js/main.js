@@ -1,6 +1,7 @@
-$(document).ready(function($){
-
-
+$( document ).ready(function() {
+	$( "#sortingchoice" ).change(function() {
+	  $( "#sorting" ).submit();
+	});
 });
 /*
 function showsearch(){

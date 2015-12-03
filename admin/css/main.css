@@ -175,11 +175,19 @@ textarea {
 	display: inline-table;
 	margin: 0;
 }
-.pagination nav ul li a{ 
+.pagination nav ul li a,
+.pagination nav ul li b{ 
 	display: block;
 	padding: 5px 10px;	
 	background: #000000;
 	color: #fff;
+}
+.pagination nav ul li b{ 
+	font-weight: normal;
+	font-size: 12px;
+}
+.pagination nav ul li b.active{ 
+	opacity: 0.8;
 }
 .pagination nav ul li a:hover{
 	opacity: 0.8;

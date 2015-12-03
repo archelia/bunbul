@@ -24,7 +24,7 @@
 	<link rel="icon" type="image/png" href="../../source/images/favicon.png" />
 	<script type="text/javascript" src="../../source/js/jquery-1.8.3.min.js"></script>
 	<script type='text/javascript' src="../../source/js/jquery.validate.js"></script>
-	<script type='text/javascript' src='../../source/js/main.js'></script>
+	<script type='text/javascript' src='../js/main.js'></script>
 	
 </head>
 <body>
@@ -39,52 +39,52 @@
 					<li><a href="">Master</a>
 						<ul class="sub-menu">
 							<li><a href="listbrand.php">Manage Brand</a></li>
-							<li><a href="listcustomer">Manage Customer</a></li>
-							<li><a href="listsize">Manage Size</a></li>
-							<li><a href="listcolor">Manage Color</a></li>
-							<li><a href="listcategory">Manage Category</a></li>
+							<li><a href="listcustomer.php">Manage Customer</a></li>
+							<li><a href="listsize.php">Manage Size</a></li>
+							<li><a href="listcolor.php">Manage Color</a></li>
+							<li><a href="listcategory.php">Manage Category</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="">Product</a>
 						<ul class="sub-menu">
-							<li><a href="addproduct">Add Product</a></li>
-							<li><a href="listproduct">List Product</a></li>
+							<li><a href="addproduct.php">Add Product</a></li>
+							<li><a href="listproduct.php">List Product</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="">Page</a>
 						<ul class="sub-menu">
-							<li><a href="addpage">Add New Page</a></li>
-							<li><a href="listpage">Manage Page</a></li>
-							<li><a href="addblock">Add New Block</a></li>
-							<li><a href="listblock">Manage Block</a></li>
-							<li><a href="addgallery">Add New Gallery</a></li>
-							<li><a href="listgallery">Manage Gallery</a></li>
-							<li><a href="listetstimony">Manage Testimony</a></li>
+							<li><a href="addpage.php">Add New Page</a></li>
+							<li><a href="listpage.php">Manage Page</a></li>
+							<li><a href="addblock.php">Add New Block</a></li>
+							<li><a href="listblock.php">Manage Block</a></li>
+							<li><a href="addgallery.php">Add New Gallery</a></li>
+							<li><a href="listgallery.php">Manage Gallery</a></li>
+							<li><a href="listetstimony.php">Manage Testimony</a></li>
 							
 						</ul>
 					</li>
 					<li>
 						<a href="">Order</a>
 						<ul class="sub-menu">
-							<li><a href="listorder">Manage Order</a></li>
+							<li><a href="listorder.php">Manage Order</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="">Settings</a>
 						<ul class="sub-menu">
-							<li><a href="shopsetting">Shop Settings</a></li>
-							<li><a href="listadd">Ads</a></li>
-							<li><a href="listbanner">Banner</a></li>
-							<li><a href="listuser">User</a></li>
+							<li><a href="shopsetting.php">Shop Settings</a></li>
+							<li><a href="listadd.php">Ads</a></li>
+							<li><a href="listbanner.php">Banner</a></li>
+							<li><a href="listuser.php">User</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="">Account</a>
 						<ul class="sub-menu">
-							<li><a href="myaccount">My Account</a></li>
-							<li><a href="logout">Log Out</a></li>
+							<li><a href="myaccount.php">My Account</a></li>
+							<li><a href="logout.php">Log Out</a></li>
 						</ul>
 					</li>
 				</ul>
