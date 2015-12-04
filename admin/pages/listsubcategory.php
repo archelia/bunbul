@@ -1,12 +1,15 @@
 <?php	
 	include "../../global/global.php";
 	include "header.php";	
-	$pagecall = "listsize";
+	$pagecall = "listsubcategory";
 	include "controller.php";
+	
+	if(isset($_GET['kode'])){$kode=$_GET['kode'];}
+	else if(isset($_POST['kode'])){$kode=$_POST['kode'];}
 ?>
 <div class="container">
-	<div class="content list listsize">	
-		<h3>List Size</h3>
+	<div class="content list listsubcategory">	
+		<h3>List Subcategory</h3>
 		<?php								   
 			// pagination
 			include ("../pages/filter-box.php");
@@ -23,7 +26,7 @@
 					<tr>
 						<th>&nbsp;</th>
 						<th>Category</th>
-						<th>Size</th>
+						<th>Subcategory</th>
 						<th>&nbsp;</th>
 					</tr>
 				</thead>
@@ -46,13 +49,15 @@
 					$no=$posisi+1;					
 					
 					// QUERY LISTING
-					$sql = "SELECT s.*, c.category_name FROM size s, category c ";
-					$sql .= "WHERE s.id_category = c.id_category ";
-					
+					$sql = "SELECT s.*, c.category_name FROM subcategory s, category c ";
+					$sql .= "WHERE s.id_category=c.id_category ";
+					$sql .= "AND c.id_category='$kode' ";
+									
 					// if there's a search
 					if (isset($_POST['tekscari']))
-					{						
-						$sql .= "AND (size_name LIKE '%$_POST[tekscari]%' OR category_name LIKE '%$_POST[tekscari]%') ";						
+					{
+						$sql .= "AND s.id_category= c.id_category ";
+						$sql .= "AND (subcategory_name LIKE '%$_POST[tekscari]%' OR category_name LIKE '%$_POST[tekscari]%') ";						
 					}	
 					
 					// if there's a sorting
@@ -66,21 +71,20 @@
 					}
 					
 					// the pagination
-					echo $sqlp = $sql."LIMIT $posisi,$batas";					
+					$sqlp = $sql."LIMIT $posisi,$batas";					
 												
 					$result = mysql_query($sqlp);
 					while ($row=mysql_fetch_array($result))
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="'.$addnewpage.'?action=ubah&kode='.$row["id_size"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$addnewpage.'?action=ubah&kode='.$row["id_subcategory"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
 						echo '	<td align="left">'.$row['category_name'].'</td>';
-						echo '	<td align="left">'.$row['size_name'].'</td>';
-															
+						echo '	<td align="left">'.$row['subcategory_name'].'</td>';														
 						echo '	<td align="center">
-									<a href="deletion.php?kode='.$row["id_size"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deletion.php?kode='.$row["id_subcategory"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';
@@ -89,7 +93,7 @@
 						$no++;
 					}
 					if(mysql_num_rows($result)<1){echo"<tr>
-						<td colspan='10'>
+						<td colspan='10' align='center'>
 							<p>There's no data to display.</p>
 						</td>
 					</tr>";}

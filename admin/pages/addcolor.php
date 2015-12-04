@@ -19,6 +19,10 @@
 							<input type="text" name="colorname" id="colorname" class="required" maxlength="20" placeholder="Color">
 							<label for="colorname" class="error">This is a required field.</label>
 						</li>
+						<li>
+							<label for="color_code">HTML Code #</label>
+							<input type="text" name="color_code" id="color_code" maxlength="6">
+						</li>
 						<li><p class="righted small"><em>*</em>Required fields.</p>					
 						</li><li class="centered"><input type="submit" name="submit" id="submit" value="CREATE"></li>
 					</ul>

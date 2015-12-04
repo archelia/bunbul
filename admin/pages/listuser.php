@@ -98,6 +98,11 @@
 						// $no for pagination
 						$no++;
 					}
+					if(mysql_num_rows($result)<1){echo"<tr>
+						<td colspan='10' align='center'>
+							<p>There's no data to display.</p>
+						</td>
+					</tr>";}
 					?>
 				</tbody>
 			</table>			

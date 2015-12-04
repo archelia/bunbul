@@ -69,7 +69,7 @@ footer .copy{
 input[type="text"].error,
 input[type="email"].error,
 input[type="password"].error,
-textarea {
+textarea.error {
 	border-color: green;
 }
 
@@ -103,6 +103,26 @@ textarea {
 
 .adduser{
 	margin: 20px 0 30px;
+}
+.file-wrapper{
+	border: 1px solid #777;
+	width: 100px;
+	height: 100px;
+	
+	margin-right: 20px;
+}
+.file-wrapper input[type="file"]{
+	display: none;
+}
+.file-wrapper img{
+	height:100%;
+	width: auto;
+	max-width: 100%;
+	background: #ffffff;	
+}
+.form-container ul li label.file-wrapper{
+	display: inline-block;
+	background: url("../images/icon-camera.png") no-repeat center;
 }
 
 /*=================== LIST ======================*/
@@ -169,7 +189,7 @@ textarea {
 	text-align: center;
 }
 .pagination nav ul{ 
-
+	list-style-type: none;
 }
 .pagination nav ul li{ 
 	display: inline-table;

@@ -20,6 +20,15 @@ switch($pagecall){
 		array("Brand Name Z-A","brand_name:DESC")
 	);
 	break;	
+	case "listcategory" :
+	// variables needed :
+	$addnewpage = "addcategory.php";
+	$filteropt = array
+	(
+		array("Category Name A-Z","category_name:ASC"),
+		array("Category Name Z-A","category_name:DESC")	
+	);
+	break;	
 	case "listsize" :
 	// variables needed :
 	$addnewpage = "addsize.php";
@@ -27,11 +36,31 @@ switch($pagecall){
 	(
 		array("Size A-Z","size_name:ASC"),
 		array("Size Z-A","size_name:DESC"),
-		array("Size Type A-Z","size_type:ASC"),
-		array("Size Type Z-A","size_type:DESC")
-		
+		array("Category A-Z","category_name:ASC"),		
+		array("Category Z-A","category_name:DESC")		
 	);
 	break;	
+	case "listsubcategory" :
+	// variables needed :
+	$addnewpage = "addsubcategory.php";
+	$filteropt = array
+	(
+		array("Subcategory A-Z","subcategory_name:ASC"),
+		array("Subcategory Z-A","subcategory_name:DESC")	
+	);
+	break;	
+	case "listcolor" :
+	// variables needed :
+	$addnewpage = "addcolor.php";
+	$filteropt = array
+	(
+		array("Color A-Z","color_name:ASC"),
+		array("Color Z-A","color_name:DESC"),	
+		array("Color Code A-Z","color_code:DESC"),	
+		array("Color Code Z-A","color_code:DESC")	
+	);
+	break;	
+	
 }	
 ?>
 <div class="form-tools">
@@ -54,6 +83,11 @@ switch($pagecall){
 		<div class="filter-box search">
 			<input type='text' name='tekscari' id='tekscari' value='<?php if(isset($_POST['tekscari'])){ echo $_POST["tekscari"];}?>'>
 			<input type='submit' name='search' id='search' value=''>	
+			<?php
+			if(isset($kode)){
+				echo '<input type="hidden" name="kode" id="'.$kode.'" value="'.$kode.'">';
+			}
+			?>
 		</div>
 		<div class="clear"></div>
 	</form>

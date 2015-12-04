@@ -5,7 +5,7 @@
 	include "controller.php";
 ?>
 <div class="container">
-	<div class="content list listuser">	
+	<div class="content list listbrand">	
 		<h3>List Brand</h3>
 		<?php								   
 			// pagination
@@ -87,6 +87,11 @@
 						// $no for pagination
 						$no++;
 					}
+					if(mysql_num_rows($result)<1){echo"<tr>
+						<td colspan='10' align='center'>
+							<p>There's no data to display.</p>
+						</td>
+					</tr>";}
 					?>
 				</tbody>
 			</table>			

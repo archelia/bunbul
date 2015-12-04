@@ -13,7 +13,7 @@ if(isset($_POST['submit']))
 	{
 		// posting results
 		$sql = "INSERT INTO color ";
-		$sql .= "VALUES ('', '$_POST[colorname]', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
+		$sql .= "VALUES ('', '$_POST[colorname]', '$_POST[color_code]', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
 		$qr = mysql_query($sql);
 	
 		if($qr)

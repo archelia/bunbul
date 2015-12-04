@@ -17,8 +17,12 @@
 						<li>
 							<label for="sizetype">Product Type<em>*</em></label>
 							<select name="sizetype" id="sizetype">
-								<option value="1">Shoes</option>
-								<option value="2" selected>T-Shirt</option>
+								<?php
+									$rescat = mysql_query ("SELECT * FROM category WHERE active=1 ORDER BY category_name ASC");
+									while($rowcat=mysql_fetch_array($rescat)){
+										echo '<option value='.$rowcat["id_category"].'>'.$rowcat["category_name"].'</option>';
+									}
+								?>
 							</select>
 							<label for="sizetype" class="error">This is a required field.</label>
 						</li>

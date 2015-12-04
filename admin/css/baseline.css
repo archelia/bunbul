@@ -99,7 +99,7 @@ input[type="radio"]{
 	position: relative;
 	display: inline-block;
 }
-.checkbox label{
+.checkbox span{
 	width: 15px;
 	height: 15px;
 	border: 1px solid #bbbbbb;
@@ -110,7 +110,7 @@ input[type="radio"]{
 	vertical-align: middle;
 	position: relative;	
 }
-.checkbox label:after {
+.checkbox span:after {
 	opacity: 0;
 	content: '';
 	position: absolute;
@@ -130,10 +130,10 @@ input[type="radio"]{
 	transform: rotate(-45deg);
 }
 
-.checkbox input[type="checkbox"]:checked + label:after {
+.checkbox input[type="checkbox"]:checked + span:after {
 	opacity: 1;
 }
-.radiobtn label{
+.radiobtn span{
 	color: #444444;
 	font-family: Raleway-regular, Helvetica, Arial, Sans-Serif;
 	font-size: 12px;

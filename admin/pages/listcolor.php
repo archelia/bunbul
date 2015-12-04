@@ -1,12 +1,12 @@
 <?php	
 	include "../../global/global.php";
 	include "header.php";	
-	$pagecall = "listsize";
+	$pagecall = "listcolor";
 	include "controller.php";
 ?>
 <div class="container">
-	<div class="content list listsize">	
-		<h3>List Size</h3>
+	<div class="content list listcolor">	
+		<h3>List color</h3>
 		<?php								   
 			// pagination
 			include ("../pages/filter-box.php");
@@ -15,15 +15,15 @@
 			<table border="1" cellpadding="0" cellspacing="0" width="100%">
 				<colgroup>
 					<col width="5%">
-					<col width="40%">
 					<col width="">
+					<col width="10%">
 					<col width="5%">
 				</colgroup>
 				<thead>
 					<tr>
 						<th>&nbsp;</th>
-						<th>Category</th>
-						<th>Size</th>
+						<th>Color</th>
+						<th>Code</th>
 						<th>&nbsp;</th>
 					</tr>
 				</thead>
@@ -46,13 +46,12 @@
 					$no=$posisi+1;					
 					
 					// QUERY LISTING
-					$sql = "SELECT s.*, c.category_name FROM size s, category c ";
-					$sql .= "WHERE s.id_category = c.id_category ";
+					$sql = "SELECT * FROM color ";
 					
 					// if there's a search
 					if (isset($_POST['tekscari']))
-					{						
-						$sql .= "AND (size_name LIKE '%$_POST[tekscari]%' OR category_name LIKE '%$_POST[tekscari]%') ";						
+					{
+						$sql .= "WHERE color_name LIKE '%$_POST[tekscari]%' ";						
 					}	
 					
 					// if there's a sorting
@@ -66,21 +65,21 @@
 					}
 					
 					// the pagination
-					echo $sqlp = $sql."LIMIT $posisi,$batas";					
+					$sqlp = $sql."LIMIT $posisi,$batas";					
 												
 					$result = mysql_query($sqlp);
 					while ($row=mysql_fetch_array($result))
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="'.$addnewpage.'?action=ubah&kode='.$row["id_size"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$addnewpage.'?action=ubah&kode='.$row["id_color"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
-						echo '	<td align="left">'.$row['category_name'].'</td>';
-						echo '	<td align="left">'.$row['size_name'].'</td>';
+						echo '	<td align="left">'.$row['color_name'].'</td>';
+						echo '	<td align="left">#'.$row['html_code'].'</td>';
 															
 						echo '	<td align="center">
-									<a href="deletion.php?kode='.$row["id_size"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deletion.php?kode='.$row["id_color"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';
@@ -89,7 +88,7 @@
 						$no++;
 					}
 					if(mysql_num_rows($result)<1){echo"<tr>
-						<td colspan='10'>
+						<td colspan='10' align='center'>
 							<p>There's no data to display.</p>
 						</td>
 					</tr>";}
