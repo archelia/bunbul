@@ -1,18 +1,18 @@
 <?php	
 	include "../../global/global.php";
 	include "header.php";	
-	$pagecall = "addsubcategory";
+	$pagecall = "addproduct";
 	include "controller.php";
 ?>
 <div class="container">
-	<div class="content addsubcategory">		
-		<div class="box white-box addsubcategory-box">			
+	<div class="content addproduct">		
+		<div class="box white-box addproduct-box">			
 			<h3>Add Product</h3>
 			<div class="message">
 				<p><?php if($pesan!=""){ echo $pesan; }?></p>
 			</div>
 			<div class="form-container">
-				<form action="addsubcategory.php" name="addsubcategory" id="addsubcategory" method="POST">
+				<form action="addproduct.php" name="addproduct" id="addproduct" method="POST">
 					<ul>
 						<li>
 							<label for="productname">Product Name<em>*</em></label>
@@ -39,14 +39,14 @@
 						</li>					
 						<li>
 							<label for="productprice">Product Price<em>*</em></label>
-							<input type="text" name="productprice" id="productprice" class="required" maxlength="10" placeholder="ex : 5000000">
+							<input type="number" name="productprice" id="productprice" class="required" maxlength="10" placeholder="ex : 5000000">
 							<label for="productprice" class="error">This is a required field.</label>
 						</li>					
 						<li>
 							<label for="discount">Discount</label>
-							<input type="text" name="discount" id="discount" class="" maxlength="2" placeholder="ex : 20">
+							<input type="number" name="discount" id="discount" class="" maxlength="2" placeholder="ex : 20">
 							<label for="discount" class="error">This is a required field.</label>
-							
+							<div class="clear"></div>
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" name="discactive" id="discactive" class="" maxlength="2" value="1">
@@ -54,12 +54,7 @@
 								</label>
 							</div>
 							
-						</li>	
-						<li>
-							<label for="subcategorydesc">Product Description</label>
-							<textarea name="subcategorydesc" id="subcategorydesc" cols="30" rows="5" placeholder="Product Description"></textarea>
-							<label for="subcategorydesc" class="error">This is a required field.</label>
-						</li>						
+						</li>					
 						<li>
 							<label for="producttype">Category<em>*</em></label>
 							<select name="idcategory" id="idcategory">
@@ -105,7 +100,12 @@
 								<img id="imgpreview4"/>
 								<input type="file" id="file4" name="file4" class="" accept="image/*" onchange="PreviewImage(file4,imgpreview4);">
 							</label>
-						</li>													
+						</li>	
+						<li>
+							<label for="subcategorydesc">Product Description</label>
+							<textarea name="subcategorydesc" id="subcategorydesc" cols="30" rows="5" placeholder="Product Description" class="ckeditor"></textarea>
+							<label for="subcategorydesc" class="error">This is a required field.</label>
+						</li>								
 						<li><p class="righted small"><em>*</em>Required fields.</p>					
 						</li><li class="centered"><input type="submit" name="submit" id="submit" value="CREATE"></li>
 					</ul>
@@ -154,8 +154,8 @@ $(function() {
 	elements.blur(function() {
 		$(this).parents('li').removeClass('highlight');
 	});
-	$("#addsubcategory").validate();
-	$("#addsubcategory").submit(function(){
+	$("#addproduct").validate();
+	$("#addproduct").submit(function(){
 		if($("#password").val() != $("#password1").val()){
 			$("#password1").removeClass("valid");
 			$("#password1").addClass("error");

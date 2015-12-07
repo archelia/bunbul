@@ -104,6 +104,9 @@ textarea.error {
 .adduser{
 	margin: 20px 0 30px;
 }
+.addproduct-box{
+	min-width: 640px;
+}
 .file-wrapper{
 	border: 1px solid #777;
 	width: 100px;

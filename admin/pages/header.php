@@ -20,10 +20,12 @@
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
 	<link rel="stylesheet" type="text/css" href="../css/tablet.css" media="only screen and (max-width: 768px)" charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../css/mobile540.css" media="only screen and (max-width: 540px)" charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="../css/mobile.css" media="only screen and (max-width: 320px)" charset="utf-8">		
+	<link rel="stylesheet" type="text/css" href="../css/mobile.css" media="only screen and (max-width: 320px)" charset="utf-8">
+	
 	<link rel="icon" type="image/png" href="../../source/images/favicon.png" />
 	<script type="text/javascript" src="../../source/js/jquery-1.8.3.min.js"></script>
 	<script type='text/javascript' src="../../source/js/jquery.validate.js"></script>
+	<script type='text/javascript' src='../js/ckeditor/ckeditor.js'></script>
 	<script type='text/javascript' src='../js/main.js'></script>
 	
 </head>
