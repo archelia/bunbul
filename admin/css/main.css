@@ -127,6 +127,34 @@ textarea.error {
 	display: inline-block;
 	background: url("../images/icon-camera.png") no-repeat center;
 }
+.tabproduct-box{
+	margin-top: 10px ;
+	margin-bottom: 30px;
+	min-width: 660px;
+}
+.tabproduct-box ul{
+	border-bottom: 5px solid #999999;	
+}
+.tabproduct-box ul li{
+	display: inline-block;
+	margin: 0;	
+}
+.tabproduct-box ul li a{
+	display: block;
+	padding: 10px 20px;	
+	color: #999999;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: bold;
+	font-family: Serif;
+	border-right: 1px solid #ededed;
+}
+.tabproduct-box ul li a:hover,
+.tabproduct-box ul li a.active{
+	border-bottom: 5px solid #FFB020;
+	color: #44494d;
+	margin-bottom: -5px;
+}
 
 /*=================== LIST ======================*/
 

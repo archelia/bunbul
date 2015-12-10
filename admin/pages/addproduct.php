@@ -6,6 +6,15 @@
 ?>
 <div class="container">
 	<div class="content addproduct">		
+		<div class="box white-box tabproduct-box">		
+			<nav>
+				<ul>
+					<li><a href="#addproduct" class="active">Add Product</a></li>
+					<li><a href="#addvarient">Add Variant</a></li>
+					<li><a href="#addpicture">Add Picture</a></li>
+				</ul>
+			</nav>
+		</div>
 		<div class="box white-box addproduct-box">			
 			<h3>Add Product</h3>
 			<div class="message">
@@ -18,14 +27,6 @@
 							<label for="productname">Product Name<em>*</em></label>
 							<input type="text" name="productname" id="productname" maxlength="256" class="required" placeholder="Product Name">
 							<label for="productname" class="error">This is a required field.</label>
-						</li>
-						<li>
-							<label for="producttype">Product Type<em>*</em></label>
-							<select name="producttype" id="producttype">
-								<option value="">Parent Product</option>
-								<option value="">Child Product</option>				
-							</select>
-							<label for="producttype" class="error">This is a required field.</label>
 						</li>
 						<li>
 							<label for="productsku">Product SKU<em>*</em></label>
@@ -106,12 +107,85 @@
 							<textarea name="subcategorydesc" id="subcategorydesc" cols="30" rows="5" placeholder="Product Description" class="ckeditor"></textarea>
 							<label for="subcategorydesc" class="error">This is a required field.</label>
 						</li>								
-						<li><p class="righted small"><em>*</em>Required fields.</p>					
-						</li><li class="centered"><input type="submit" name="submit" id="submit" value="CREATE"></li>
+						<li>
+							<p class="righted small"><em>*</em>Required fields.</p>		
+						</li>
+						<li class="centered">
+							<input type="submit" name="submit" id="submit" value="CREATE">
+						</li>
 					</ul>
 				</form>
-			</div>			
-		</div>		
+			</div>					
+		</div>	
+		<div class="box white-box addvariant-box">
+			<h3>Add Varient</h3>			
+			<div class="form-container">
+				<form action="../module/addvarient.php" name="addvarient" id="addvarient" method="POST">
+				<ul>
+					<li>
+						<label for="productsku">Product SKU<em>*</em></label>
+						<input type="text" name="productsku" id="productsku" maxlength="256" class="required" placeholder="Stock Keepoing Unit">
+						<label for="productsku" class="error">This is a required field.</label>
+					</li>
+					<li>
+						<label for="productcolor">Color<em>*</em></label>
+						<select name="productcolor" id="productcolor">
+						<?php
+							$query = "SELECT * FROM color WHERE active='1'";
+							$result=mysql_query($query);
+							while($row=mysql_fetch_array($result)){
+								echo '<option value="'.$row['id_color'].'">'.$row['color'].'</option>';
+							}
+						?>		
+							<option value="">Color 1t</option>
+							<option value="">Color 2</option>				
+						</select>
+						<label for="productcolor" class="error">This is a required field.</label>
+					</li>
+					<li>
+						<label for="productsize">Size<em>*</em></label>
+						<select name="productsize" id="productsize">
+						<?php
+							$query = "SELECT * FROM size WHERE active='1'";
+							$result=mysql_query($query);
+							while($row=mysql_fetch_array($result)){
+								echo '<option value="'.$row['id_size'].'">'.$row['size'].'</option>';
+							}
+						?>	
+							<option value="">Size 1</option>
+							<option value="">Size 2</option>				
+						</select>
+						<label for="producttype" class="error">This is a required field.</label>
+					</li>
+					<li>
+						<label for="producttype">Product Type<em>*</em></label>
+						<select name="producttype" id="producttype">
+							<option value="">Parent Product</option>
+							<option value="">Child Product</option>				
+						</select>
+						<label for="producttype" class="error">This is a required field.</label>
+					</li>
+					<li class="centered">
+						<input type="submit" name="submit" id="submit" value="CREATE">
+					</li>
+				</ul>
+				</form>
+			</div>
+		<div>
+		<div class="box white-box addpicture-box">
+			<h3>Add Picture</h3>
+			<div class="form-container">
+			<ul>
+				<li>
+					<label for="productname">Product Name<em>*</em></label>
+					<input type="text" name="productname" id="productname" maxlength="256" class="required" placeholder="Product Name">
+					<label for="productname" class="error">This is a required field.</label>
+				</li>
+				<li class="centered">
+					<input type="submit" name="submit" id="submit" value="CREATE">
+				</li>
+			</div>
+		</div>
 	</div>
 	<div class="clear"></div>
 </div>
@@ -135,14 +209,14 @@ if($pesan!=""){
 	include "/footer.php";
 ?>
 <script type="text/javascript">
-	 function PreviewImage(somefile,imgprev) {
-			var oFReader = new FileReader();
-			oFReader.readAsDataURL(somefile.files[0]);
+ function PreviewImage(somefile,imgprev) {
+		var oFReader = new FileReader();
+		oFReader.readAsDataURL(somefile.files[0]);
 
-			oFReader.onload = function (oFREvent) {
-				imgprev.src = oFREvent.target.result;
-			};
+		oFReader.onload = function (oFREvent) {
+			imgprev.src = oFREvent.target.result;
 		};
+	};
 </script>
 <script>
 $(function() {
@@ -163,6 +237,16 @@ $(function() {
 			$("#password1").next("label").show();
 			return false;
 		}
+	});
+	$("#addvariant").submit(function(){
+		$.ajax({
+		  method: "POST",
+		  url: "some.php",
+		  data: { name: "John", location: "Boston" }
+		})
+		  .done(function( msg ) {
+			alert( "Data Saved: " + msg );
+		  });
 	});
 });
 </script>
