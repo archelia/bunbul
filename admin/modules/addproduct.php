@@ -1,76 +1,31 @@
 <?php
-$pesan="";
-$success=0;
-if(isset($_POST['submit']))
-{
-	$query = "SELECT * FROM subcategory WHERE subcategory_name='$_POST[subcategoryname]' AND id_category='$_POST[idcategory]'";
-	$result=mysql_query($query);
-	if(mysql_num_rows($result) > 0)
+	include "../../global/global.php";
+	if(isset($_POST['submit']))
 	{
-		$pesan = 'Sorry, Subcategory name exists.';
-	}
-	else
-	{
-		// posting results
-		$sql = "INSERT INTO subcategory ";
-		$sql .= "VALUES ('', '$_POST[idcategory]', '$_POST[subcategoryname]','$_POST[subcategorydesc]', now(), now(), '$_SESSION[viouser]', '$_SESSION[viouser]', 1)";
-		$qr = mysql_query($sql);
-			
-		if($qr)
+		$query = "SELECT * FROM product WHERE product_name='$_POST[productname]' AND id_category='$_POST[idcategory]'";
+		$result=mysql_query($query);
+		if(mysql_num_rows($result) > 0)
 		{
-			$pesan = 'Subcategory saved succesfully.';
-			$success=1;
+			$success[0]=0;
+			$success[1]="Product Name is already exists, please choose another name.";
 		}
 		else
-		{		
-			$pesan = 'Failed to save Subcategory';
+		{
+			// posting results
+			$sql = "INSERT INTO product ";
+			$sql .= "VALUES ('', '$_POST[idcategory]', '$_POST[idsubcategory]', '$_POST[productname]','$_POST[productdesc]', '$_POST[productdimension]','$_POST[productprice]','$_POST[discount]','$_POST[discactive]', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
+			$qr = mysql_query($sql);
+				
+			if($qr)
+			{
+				$success[0] = 1;
+				$success[1] = 'product saved succesfully.';
+			}
+			else
+			{	$success[0]=0;	
+				$success[1]='Failed to save product';
+			}
 		}
 	}
-}
-?>
-<?php
-/*
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
-}
-// Check if file already exists
-if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-}
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
-}
-// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    $uploadOk = 0;
-}
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
-} else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-    } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
-}
-*/
+	return $success;
 ?>

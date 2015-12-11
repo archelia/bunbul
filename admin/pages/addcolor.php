@@ -63,14 +63,5 @@ $(function() {
 		$(this).parents('li').removeClass('highlight');
 	});
 	$("#addcolor").validate();
-	$("#addcolor").submit(function(){
-		if($("#password").val() != $("#password1").val()){
-			$("#password1").removeClass("valid");
-			$("#password1").addClass("error");
-			$("#password1").next("label").html("Please enter the same password as above");
-			$("#password1").next("label").show();
-			return false;
-		}
-	});
 });
 </script>
