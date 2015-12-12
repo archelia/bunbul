@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2015 at 11:26 AM
+-- Generation Time: Dec 12, 2015 at 07:51 AM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -255,7 +255,6 @@ CREATE TABLE `page_type` (
 
 CREATE TABLE `product` (
   `id_product` int(20) NOT NULL,
-  `product_type` int(1) NOT NULL,
   `id_category` int(5) NOT NULL,
   `id_subcategory` int(5) NOT NULL,
   `product_name` varchar(256) NOT NULL,
@@ -415,7 +414,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `user_type`, `date_created`, `date_edited`, `last_login`, `user_create`, `user_edit`, `active`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, '2015-11-28 09:29:55', '2015-11-28 09:29:55', '2015-12-07 13:22:48', 1, 1, 1),
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, '2015-11-28 09:29:55', '2015-11-28 09:29:55', '2015-12-12 11:38:12', 1, 1, 1),
 (2, 'archelia', '9289f7eaaf869e4a025f408993566b4f', 2, '2015-11-28 09:30:49', '2015-11-28 09:30:49', '2015-11-28 09:30:49', 1, 1, 1);
 
 --

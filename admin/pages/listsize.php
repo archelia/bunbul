@@ -66,7 +66,7 @@
 					}
 					
 					// the pagination
-					echo $sqlp = $sql."LIMIT $posisi,$batas";					
+					$sqlp = $sql."LIMIT $posisi,$batas";					
 												
 					$result = mysql_query($sqlp);
 					while ($row=mysql_fetch_array($result))

@@ -1,7 +1,11 @@
 <?php
 	include "../../global/global.php";
+	
+	echo $_POST["submit"];
 	if(isset($_POST['submit']))
-	{
+	{	
+		$success= array();
+		
 		$query = "SELECT * FROM product WHERE product_name='$_POST[productname]' AND id_category='$_POST[idcategory]'";
 		$result=mysql_query($query);
 		if(mysql_num_rows($result) > 0)
@@ -27,5 +31,5 @@
 			}
 		}
 	}
-	return $success;
+	//return $success;
 ?>

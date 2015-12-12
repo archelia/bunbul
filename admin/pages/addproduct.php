@@ -41,6 +41,9 @@
 							</select>
 							<label for="producttype" class="error">This is a required field.</label>
 						</li>
+						<?php
+							//$query = "SELECT * FROM subcategory WHERE id_category='$row[]'";
+						?>
 						
 						<li class="subcategory">
 							<label for="producttype">Subcategory<em>*</em></label>
@@ -55,12 +58,12 @@
 						</li>					
 						<li>
 							<label for="productprice">Product Price<em>*</em></label>
-							<input type="number" name="productprice" id="productprice" class="required" maxlength="10" placeholder="ex : 5000000">
+							<input type="number" name="productprice" id="productprice" class="required" maxlength="10" placeholder="ex : 5000000" min="1" max="9999999">
 							<label for="productprice" class="error">This is a required field.</label>
 						</li>					
 						<li>
 							<label for="discount">Discount</label>
-							<input type="number" name="discount" id="discount" class="" maxlength="2" placeholder="ex : 20">
+							<input type="number" name="discount" id="discount" class="" maxlength="2" placeholder="ex : 20" min="1" max="99">
 							<label for="discount" class="error">This is a required field.</label>
 							<div class="clear"></div>
 							<div class="checkbox">
@@ -211,7 +214,22 @@ $(function(){
 	elements.blur(function() {
 		$(this).parents('li').removeClass('highlight');
 	});
-	$("#addproduct").validate();
+	$("#addproduct").validate({
+		submitHandler: function(){
+			var values = $(this).serialize();
+			$.ajax({
+				url: "../modules/addproduct.php",
+				type: "post",
+				data: values,
+				success: function (response) {             
+					alert(response);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				   console.log(textStatus, errorThrown);
+				}
+			});		
+		}
+	});
 });
 </script>
 <script>
@@ -221,15 +239,17 @@ function closealltabs(){
 	$(".addvariant-box").hide();
 	$(".addpicture-box").hide();
 }
-function opentab2(){
+function gototab2(){
 	closealltabs();
 	$(".addvariant-box").show();
-	$(".addproduct-box").hide();
+}
+function gototab3(){
+	closealltabs();
+	$(".addpicture-box").show();
 }
 $(function(){
 	//closealltabs();
 	$(".subcategory").hide();
-	$('#idcategory').val().trigger('change');
 	$("#idcategory").change(function(){
 		$(".subcategory").hide();
 		var idcat = $(this).val();
@@ -251,23 +271,6 @@ $(function(){
 			   console.log(textStatus, errorThrown);
 			}
 		});	
-	});
-	$("#addproduct").submit(function(e){
-		e.preventDefault();
-		var values = $(this).serialize();
-		$.ajax({
-			url: "../modules/addproduct.php",
-			type: "post",
-			data: values,
-			success: function (response) {             
-				alert(response);
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-			   console.log(textStatus, errorThrown);
-			}
-		});
-	});
-	$("#addvarient").submit(function(e){
 	});
 });	
 </script>
