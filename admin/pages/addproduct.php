@@ -9,9 +9,9 @@
 		<div class="box white-box tabproduct-box">		
 			<nav>
 				<ul>
-					<li><a href="#addproduct" class="active">Add Product</a></li>
-					<li><a href="#addvarient">Add Variant</a></li>
-					<li><a href="#addpicture">Add Picture</a></li>
+					<li><a href="#addproduct" class="link-addproduct active">Add Product</a></li>
+					<li><a href="#addvarient" class="link-addvarient">Add Variant</a></li>
+					<li><a href="#addpicture" class="link-addpicture">Add Picture</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -33,21 +33,33 @@
 							<select name="idcategory" id="idcategory">
 								<?php
 								$query = "SELECT * FROM category WHERE active='1'";
-								$result=mysql_query($query);
+								$result = mysql_query($query);
+								$i=0;
 								while($row=mysql_fetch_array($result)){
-									echo '<option value="'.$row['id_category'].'">'.$row['category_name'].'</option>';
+									echo '<option value="'.$row['id_category'].'" '.(($i==0)?'selected="selected"':"").'>'.$row['category_name'].'</option>';
+									if($i==0){$idcat=$row['id_category'];}
+									$i++;
 								}
 								?>							
 							</select>
 							<label for="producttype" class="error">This is a required field.</label>
 						</li>
 						<?php
-							//$query = "SELECT * FROM subcategory WHERE id_category='$row[]'";
-						?>
-						
-						<li class="subcategory">
+							$tampilsub = 0;
+							$query = "SELECT * FROM subcategory WHERE id_category='$idcat'";
+							$result = mysql_query($query);
+							if(mysql_num_rows($result)>0){
+								$tampilsub = 1;
+							}
+						?>						
+						<li class="subcategory <?php if($tampilsub==0) echo 'hidden';?>">
 							<label for="producttype">Subcategory<em>*</em></label>
 							<select name="idsubcategory" id="idsubcategory">
+							<?php 
+							while($row=mysql_fetch_array($result)){
+									echo '<option value="'.$row['id_subcategory'].'">'.$row['subcategory_name'].'</option>';
+								}
+							?>
 							</select>
 							<label for="producttype" class="error">This is a required field.</label>
 						</li>	
@@ -63,7 +75,7 @@
 						</li>					
 						<li>
 							<label for="discount">Discount</label>
-							<input type="number" name="discount" id="discount" class="" maxlength="2" placeholder="ex : 20" min="1" max="99">
+							<input type="number" name="discount" id="discount" class="" placeholder="ex : 20" min="1" max="99" maxlength=2>
 							<label for="discount" class="error">This is a required field.</label>
 							<div class="clear"></div>
 							<div class="checkbox">
@@ -142,7 +154,95 @@
 				</ul>
 				</form>
 			</div>
-		<div>
+			<div class="data-table">
+			<table border="1" cellpadding="0" cellspacing="0" width="100%">
+				<colgroup>
+					<col width="5%">
+					<col width="">
+					<col width="20%">
+					<col width="5%">
+					<col width="5%">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>&nbsp;</th>
+						<th>Color</th>
+						<th>Size</th>
+						<th>Sub</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					// step 1 pagination
+					$batas=20;
+					if (isset($_GET['halaman']))
+						{$halaman=$_GET['halaman'];}
+					if (empty($halaman))
+					{
+						$posisi=0;
+						$halaman=1;
+					}
+					else
+					{
+						$posisi=($halaman-1)*$batas;
+					}			
+					// step 2 pagination
+					$no=$posisi+1;					
+					
+					// QUERY LISTING
+					$sql = "SELECT * FROM category ";
+					
+					// if there's a search
+					if (isset($_POST['tekscari']))
+					{
+						$sql .= "WHERE category_name LIKE '%$_POST[tekscari]%' ";						
+					}	
+					
+					// if there's a sorting
+					if ((isset($_POST['sortingchoice'])) AND ($_POST['sortingchoice']!="all"))
+					{
+						$sorting_opt = explode(":", $_POST['sortingchoice']);
+						$sql .= "ORDER BY ".$sorting_opt[0]." ".$sorting_opt[1]." ";
+					}
+					else{
+						$sql .= "ORDER BY date_created DESC ";
+					}
+					
+					// the pagination
+					$sqlp = $sql."LIMIT $posisi,$batas";					
+												
+					$result = mysql_query($sqlp);
+					while ($row=mysql_fetch_array($result))
+					{
+						echo '<tr>';
+						echo '	<td align="center">
+									<a href="'.$addnewpage.'?action=ubah&kode='.$row["id_category"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+								</td>						
+						';
+						echo '	<td align="left">'.$row['category_name'].'</td>';
+						echo '	<td align="left">'.$row['category_description'].'</td>';
+						echo '<td><a href="listsubcategory.php?kode='.$row["id_category"].'"><img src="../images/icon-sub.png" alt="Subcategory" title="Subcategory"></a></td>';									
+						echo '	<td align="center">
+									<a href="deletion.php?kode='.$row["id_category"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+								</td>						
+						';
+						echo '</tr>';
+						
+						// $no for pagination
+						$no++;
+					}
+					if(mysql_num_rows($result)<1){echo"<tr>
+						<td colspan='10' align='center'>
+							<p>There's no data to display.</p>
+						</td>
+					</tr>";}
+					?>
+				</tbody>
+			</table>			
+		</div>		
+		
+		</div>
 		<div class="box white-box addpicture-box">
 			<h3>Add Picture</h3>
 			<div class="form-container">
@@ -176,22 +276,6 @@
 	<div class="clear"></div>
 </div>
 <?php
-if($pesan!=""){
-	if($success!=1){
-		echo '<script>
-		$(".message").addClass("error");
-		</script>
-		';
-	}
-	else{
-		echo '<script>
-		$(".message").addClass("valid");
-		</script>
-		';
-	}
-}
-?>
-<?php
 	include "/footer.php";
 ?>
 <script type="text/javascript">
@@ -205,53 +289,33 @@ if($pesan!=""){
 	};
 </script>
 <script>
-$(function(){
-	// highlight
-	var elements = $("input[type!='submit'], textarea, select");
-	elements.focus(function() {
-		$(this).parents('li').addClass('highlight');
-	});
-	elements.blur(function() {
-		$(this).parents('li').removeClass('highlight');
-	});
-	$("#addproduct").validate({
-		submitHandler: function(){
-			var values = $(this).serialize();
-			$.ajax({
-				url: "../modules/addproduct.php",
-				type: "post",
-				data: values,
-				success: function (response) {             
-					alert(response);
-				},
-				error: function(jqXHR, textStatus, errorThrown) {
-				   console.log(textStatus, errorThrown);
-				}
-			});		
-		}
-	});
-});
-</script>
-<script>
 function closealltabs(){
 	$(".tabproduct-box ul li a").removeClass("active");
 	$(".addproduct-box").hide();
 	$(".addvariant-box").hide();
 	$(".addpicture-box").hide();
+	$(".message").removeClass("error");
+	$("html, body").animate({ scrollTop: 0 }, "fast");
+}
+function gototab1(){
+	closealltabs();	
+	$(".link-addproduct").addClass("active");
+	$(".addproduct-box").show();
 }
 function gototab2(){
 	closealltabs();
-	$(".addvariant-box").show();
+	$(".link-addproduct").addClass("active");
+	$(".addvariant-box").show();	
 }
 function gototab3(){
 	closealltabs();
+	$(".link-addproduct").addClass("active");
 	$(".addpicture-box").show();
 }
 $(function(){
-	//closealltabs();
-	$(".subcategory").hide();
+	// category change function
 	$("#idcategory").change(function(){
-		$(".subcategory").hide();
+		$(".subcategory").addClass('hidden');
 		var idcat = $(this).val();
 		$.ajax({
 			url: "../modules/ajaxsubcategory.php",
@@ -264,6 +328,7 @@ $(function(){
 					.end()
 				    .append(response);
 					if(response!=0){
+						$(".subcategory").removeClass('hidden');
 						$(".subcategory").slideDown();	
 					}						
 			},
@@ -273,4 +338,50 @@ $(function(){
 		});	
 	});
 });	
+</script>
+<script>
+$(function(){
+	// closing all tabs and open tab 1
+	gototab1();
+	// ckeditor handle
+	CKEDITOR.replace('productdesc');
+	// highlight validation
+	var elements = $("input[type!='submit'], textarea, select");
+	elements.focus(function() {
+		$(this).parents('li').addClass('highlight');
+	});
+	elements.blur(function() {
+		$(this).parents('li').removeClass('highlight');
+	});	
+	// validation
+	$("#addproduct").validate({
+		submitHandler: function(){	
+			var datackeditor = CKEDITOR.instances.productdesc.getData();
+			$("#productdesc").text(datackeditor);
+			var values = $("#addproduct").serialize();
+			$.ajax({
+				url: "../modules/addproduct.php",
+				type: "post",
+				data: values,
+				dataType: "json",
+				success: function (response){  			
+					if(response[0]==0){
+						$(".message").addClass("error");
+						$(".message p").text(response[1]);
+						$('html, body').animate({
+							scrollTop: ($(".addproduct").offset()).top
+						}, 500);
+					}
+					else{
+						gototab2();
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				   console.log(textStatus, errorThrown);
+				}
+			});		
+		}
+	});
+	$("#addvarient").validate();
+});
 </script>
