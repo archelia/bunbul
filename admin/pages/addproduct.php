@@ -316,6 +316,10 @@ $(function(){
 	// category change function
 	$("#idcategory").change(function(){
 		$(".subcategory").addClass('hidden');
+		$("#idsubcategory")
+			.find('option')
+			.remove()
+			.end();
 		var idcat = $(this).val();
 		$.ajax({
 			url: "../modules/ajaxsubcategory.php",
@@ -323,9 +327,6 @@ $(function(){
 			data: {idcat: idcat },
 			success: function (response) { 				
 				$("#idsubcategory")
-					.find('option')
-					.remove()
-					.end()
 				    .append(response);
 					if(response!=0){
 						$(".subcategory").removeClass('hidden');
@@ -382,6 +383,64 @@ $(function(){
 			});		
 		}
 	});
-	$("#addvarient").validate();
+});
+</script>
+<script>
+function adddatavarient(){
+	var values = $("#addproduct").serialize();
+			$.ajax({
+				url: "../modules/addproduct.php",
+				type: "post",
+				data: values,
+				dataType: "json",
+				success: function (response){  			
+					if(response[0]==0){
+						$(".message").addClass("error");
+						$(".message p").text(response[1]);
+						$('html, body').animate({
+							scrollTop: ($(".addproduct").offset()).top
+						}, 500);
+					}
+					else{
+						gototab2();
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				   console.log(textStatus, errorThrown);
+				}
+			});	
+}
+function loaddatavarient(){
+	var values = $("#addproduct").serialize();
+			$.ajax({
+				url: "../modules/addproduct.php",
+				type: "post",
+				data: values,
+				dataType: "json",
+				success: function (response){  			
+					if(response[0]==0){
+						$(".message").addClass("error");
+						$(".message p").text(response[1]);
+						$('html, body').animate({
+							scrollTop: ($(".addproduct").offset()).top
+						}, 500);
+					}
+					else{
+						gototab2();
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				   console.log(textStatus, errorThrown);
+				}
+			});	
+}
+$(function(){
+	// temporary
+	gototab2();
+	$("#addvarient").submit(function(){
+		alert("asdfsdgf");
+		// our own validation because can't validate 2 forms at once
+		
+	});
 });
 </script>
