@@ -17,7 +17,6 @@
 		$sql = "INSERT INTO product ";
 		$sql .= "VALUES ('', '$_POST[idcategory]', '$_POST[idsubcategory]', '$_POST[productname]','$description', '$_POST[productdimension]','$_POST[productprice]','$_POST[discount]','$diskon', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
 		$qr = mysql_query($sql);
-		$ids = mysql_insert_id();
 			
 		if($qr)
 		{

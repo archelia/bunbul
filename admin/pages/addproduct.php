@@ -10,7 +10,7 @@
 			<nav>
 				<ul>
 					<li><a href="#addproduct" class="link-addproduct active">Add Product</a></li>
-					<li><a href="#addvarient" class="link-addvarient">Add Variant</a></li>
+					<li><a href="#addvariant" class="link-addvariant">Add Variant</a></li>
 					<li><a href="#addpicture" class="link-addpicture">Add Picture</a></li>
 				</ul>
 			</nav>
@@ -101,9 +101,9 @@
 			</div>					
 		</div>	
 		<div class="box white-box addvariant-box">
-			<h3>Add Varient</h3>			
+			<h3>Add variant</h3>			
 			<div class="form-container">
-				<form action="../module/addvarient.php" name="addvarient" id="addvarient" method="POST">
+				<form action="../module/addvariant.php" name="addvariant" id="addvariant" method="POST">
 				<ul>
 					<li>
 						<label for="productsku">Product SKU<em>*</em></label>
@@ -119,9 +119,7 @@
 							while($row=mysql_fetch_array($result)){
 								echo '<option value="'.$row['id_color'].'">'.$row['color'].'</option>';
 							}
-						?>		
-							<option value="">Color 1t</option>
-							<option value="">Color 2</option>				
+						?>				
 						</select>
 						<label for="productcolor" class="error">This is a required field.</label>
 					</li>
@@ -134,19 +132,19 @@
 							while($row=mysql_fetch_array($result)){
 								echo '<option value="'.$row['id_size'].'">'.$row['size'].'</option>';
 							}
-						?>	
-							<option value="">Size 1</option>
-							<option value="">Size 2</option>				
+						?>				
 						</select>
 						<label for="producttype" class="error">This is a required field.</label>
 					</li>
 					<li>
-						<label for="producttype">Product Type<em>*</em></label>
-						<select name="producttype" id="producttype">
-							<option value="">Parent Product</option>
-							<option value="">Child Product</option>				
-						</select>
-						<label for="producttype" class="error">This is a required field.</label>
+						<label for="producttype">Stock</label>
+						<input type="number" name="productsku" id="productsku" maxlength="2" class="" placeholder="Stock Keeping Unit">
+						<label for="productsku" class="error">This is a required field.</label>					
+					</li>
+					<li>
+						<label for="location">Location</label>
+						<input type="text" name="location" id="location" maxlength="256" class="" placeholder="Stock Keepoing Unit">
+						<label for="location" class="error">This is a required field.</label>
 					</li>
 					<li class="centered">
 						<input type="submit" name="submit" id="submit" value="CREATE">
@@ -386,31 +384,30 @@ $(function(){
 });
 </script>
 <script>
-function adddatavarient(){
-	var values = $("#addproduct").serialize();
-			$.ajax({
-				url: "../modules/addproduct.php",
-				type: "post",
-				data: values,
-				dataType: "json",
-				success: function (response){  			
-					if(response[0]==0){
-						$(".message").addClass("error");
-						$(".message p").text(response[1]);
-						$('html, body').animate({
-							scrollTop: ($(".addproduct").offset()).top
-						}, 500);
-					}
-					else{
-						gototab2();
-					}
-				},
-				error: function(jqXHR, textStatus, errorThrown) {
-				   console.log(textStatus, errorThrown);
-				}
-			});	
+function adddatavariant(){
+	$.ajax({
+		url: "../modules/addvariant.php",
+		type: "post",
+		data: values,
+		dataType: "json",
+		success: function (response){  			
+			if(response[0]==0){
+				$(".message").addClass("error");
+				$(".message p").text(response[1]);
+				$('html, body').animate({
+					scrollTop: ($(".addproduct").offset()).top
+				}, 500);
+			}
+			else{
+				gototab3();
+			}
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+		   console.log(textStatus, errorThrown);
+		}
+	});	
 }
-function loaddatavarient(){
+function loaddatavariant(){
 	var values = $("#addproduct").serialize();
 			$.ajax({
 				url: "../modules/addproduct.php",
@@ -437,7 +434,7 @@ function loaddatavarient(){
 $(function(){
 	// temporary
 	gototab2();
-	$("#addvarient").submit(function(){
+	$("#addvariant").submit(function(){
 		alert("asdfsdgf");
 		// our own validation because can't validate 2 forms at once
 		

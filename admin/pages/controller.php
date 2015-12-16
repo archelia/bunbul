@@ -25,9 +25,9 @@ switch($pagecall){
 	case "addsubcategory" :
 		include ($dest."addsubcategory.php");
 		break;
-	/*case "addproduct" :
-		include ($dest."addproduct.php");
+	case "addproduct" :
+		$editvariantpage = $dest."editvarient.php";
 		break;
-	*/	
+		
 }
 ?>
