@@ -20,10 +20,14 @@
 			
 		if($qr)
 		{
-			// save the id for future editting
-			$_SESSION["idproductinputed"]=mysql_fetch_array(mysql_query("SELECT id_product FROM product WHERE product_name='$_POST[productname]'"));		
 			$success[0] = 1;
 			$success[1] = 'Product saved succesfully.';
+			
+			// save the id for future editting
+			$saved = mysql_fetch_array(mysql_query("SELECT id_product, product_name, id_category FROM product WHERE product_name='$_POST[productname]'"))
+			$_SESSION["id_inputed"]= $rows["id_product"];
+			$_SESSION["name_inputed"]= $rows["product_name"];
+			$_SESSION["cat_inputed"]= $rows["id_category"];				
 		}
 		else
 		{	$success[0] = 0;	

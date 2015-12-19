@@ -101,49 +101,60 @@
 			</div>					
 		</div>	
 		<div class="box white-box addvariant-box">
-			<h3>Add variant</h3>			
+			<?php
+				// temp
+				$_SESSION['id_inputed']=1;
+				$_SESSION['cat_inputed']=1;
+				
+				$sqlprod = "SELECT product_name FROM product WHERE id_product = '$_SESSION[id_inputed]'";
+				$resprod = mysql_query($sqlprod);
+				$rowprod = mysql_fetch_array($resprod);
+			?>
+			<h3>Add Variant for <?php echo $rowprod[0]; ?></h3>		
+			<div class="message message2">
+				<p><?php if($pesan!=""){ echo $pesan; }?></p>
+			</div>			
 			<div class="form-container">
 				<form action="../module/addvariant.php" name="addvariant" id="addvariant" method="POST">
 				<ul>
 					<li>
 						<label for="productsku">Product SKU<em>*</em></label>
-						<input type="text" name="productsku" id="productsku" maxlength="256" class="required" placeholder="Stock Keepoing Unit">
+						<input type="text" name="productsku" id="productsku" maxlength="256" class="required" placeholder="Stock Keeping Unit">
 						<label for="productsku" class="error">This is a required field.</label>
 					</li>
 					<li>
 						<label for="productcolor">Color<em>*</em></label>
 						<select name="productcolor" id="productcolor">
+						
 						<?php
-							$query = "SELECT * FROM color WHERE active='1'";
-							$result=mysql_query($query);
-							while($row=mysql_fetch_array($result)){
-								echo '<option value="'.$row['id_color'].'">'.$row['color'].'</option>';
-							}
-						?>				
+						$result=mysql_query("SELECT * FROM color WHERE active='1' ORDER BY color_name DESC");
+						while($row=mysql_fetch_array($result)){
+								echo '<option value="'.$row['id_color'].'">'.$row['color_name'].'</option>';
+							}						
+						?>								
 						</select>
 						<label for="productcolor" class="error">This is a required field.</label>
 					</li>
 					<li>
 						<label for="productsize">Size<em>*</em></label>
 						<select name="productsize" id="productsize">
-						<?php
-							$query = "SELECT * FROM size WHERE active='1'";
-							$result=mysql_query($query);
+						<?php						
+							$result=mysql_query("SELECT * FROM size WHERE active='1' AND id_category='$_SESSION[cat_inputed]' ORDER BY size_name DESC");
 							while($row=mysql_fetch_array($result)){
-								echo '<option value="'.$row['id_size'].'">'.$row['size'].'</option>';
+								echo '<option value="'.$row['id_size'].'">'.$row['size_name'].'</option>';
 							}
 						?>				
 						</select>
 						<label for="producttype" class="error">This is a required field.</label>
 					</li>
 					<li>
-						<label for="producttype">Stock</label>
-						<input type="number" name="productsku" id="productsku" maxlength="2" class="" placeholder="Stock Keeping Unit">
-						<label for="productsku" class="error">This is a required field.</label>					
+						<label for="productstok">Stock</label>
+						<input type="number" name="productstok" id="productstok" maxlength="2" class="" placeholder="Number of stock" maxlength="5" min="0">
+						<label for="productstok" class="error">This is a required field.</label>					
 					</li>
 					<li>
 						<label for="location">Location</label>
-						<input type="text" name="location" id="location" maxlength="256" class="" placeholder="Stock Keepoing Unit">
+						<input type="text" name="location" id="location" maxlength="256" class="" placeholder="Location/Rack No">
 						<label for="location" class="error">This is a required field.</label>
 					</li>
 					<li class="centered">
@@ -153,93 +164,52 @@
 				</form>
 			</div>
 			<div class="data-table">
-			<table border="1" cellpadding="0" cellspacing="0" width="100%">
-				<colgroup>
-					<col width="5%">
-					<col width="">
-					<col width="20%">
-					<col width="5%">
-					<col width="5%">
-				</colgroup>
-				<thead>
-					<tr>
-						<th>&nbsp;</th>
-						<th>Color</th>
-						<th>Size</th>
-						<th>Sub</th>
-						<th>&nbsp;</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-					// step 1 pagination
-					$batas=20;
-					if (isset($_GET['halaman']))
-						{$halaman=$_GET['halaman'];}
-					if (empty($halaman))
-					{
-						$posisi=0;
-						$halaman=1;
-					}
-					else
-					{
-						$posisi=($halaman-1)*$batas;
-					}			
-					// step 2 pagination
-					$no=$posisi+1;					
-					
-					// QUERY LISTING
-					$sql = "SELECT * FROM category ";
-					
-					// if there's a search
-					if (isset($_POST['tekscari']))
-					{
-						$sql .= "WHERE category_name LIKE '%$_POST[tekscari]%' ";						
-					}	
-					
-					// if there's a sorting
-					if ((isset($_POST['sortingchoice'])) AND ($_POST['sortingchoice']!="all"))
-					{
-						$sorting_opt = explode(":", $_POST['sortingchoice']);
-						$sql .= "ORDER BY ".$sorting_opt[0]." ".$sorting_opt[1]." ";
-					}
-					else{
-						$sql .= "ORDER BY date_created DESC ";
-					}
-					
-					// the pagination
-					$sqlp = $sql."LIMIT $posisi,$batas";					
-												
-					$result = mysql_query($sqlp);
-					while ($row=mysql_fetch_array($result))
-					{
-						echo '<tr>';
-						echo '	<td align="center">
-									<a href="'.$addnewpage.'?action=ubah&kode='.$row["id_category"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
-								</td>						
-						';
-						echo '	<td align="left">'.$row['category_name'].'</td>';
-						echo '	<td align="left">'.$row['category_description'].'</td>';
-						echo '<td><a href="listsubcategory.php?kode='.$row["id_category"].'"><img src="../images/icon-sub.png" alt="Subcategory" title="Subcategory"></a></td>';									
-						echo '	<td align="center">
-									<a href="deletion.php?kode='.$row["id_category"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
-								</td>						
-						';
-						echo '</tr>';
-						
-						// $no for pagination
-						$no++;
-					}
-					if(mysql_num_rows($result)<1){echo"<tr>
-						<td colspan='10' align='center'>
-							<p>There's no data to display.</p>
-						</td>
-					</tr>";}
-					?>
-				</tbody>
-			</table>			
-		</div>		
-		
+				<h3>Variant List</h3>		
+				<table border="1" cellpadding="0" cellspacing="0" width="100%" id="variant-table">
+					<colgroup>
+						<col width="">
+						<col width="20%">
+						<col width="20%">
+						<col width="10%">
+						<col width="10%">
+						<col width="5%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>Sku</th>
+							<th>Color</th>
+							<th>Size</th>
+							<th>Stock</th>
+							<th>Location</th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody id="ajax-load-variant">			
+						<?php
+						$resload = mysql_query("
+							SELECT i.*, c.color_name, s.size_name 
+							FROM item i, color c, size s 
+							WHERE i.id_color = c.id_color 
+							AND i.id_size = s.id_size 
+							AND id_product='$_SESSION[id_inputed]' 
+							ORDER BY color_name ASC ");
+						while($rowload = mysql_fetch_array($resload)){
+							echo "<tr>";
+							echo "<td>$rowload[sku]</td>";
+							echo "<td class='centered'>$rowload[color_name]</td>";
+							echo "<td class='centered'>$rowload[size_name]</td>";
+							echo "<td class='righted'>$rowload[stock]</td>";
+							echo "<td class='centered'>$rowload[location]</td>";
+							echo '<td align="center">
+										<a href="deletion.php?kode='.$rowload["id_item"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									</td>						
+							';
+							echo "</tr>";
+						}
+						?>				
+					</tbody>
+				</table>			
+			</div>				
 		</div>
 		<div class="box white-box addpicture-box">
 			<h3>Add Picture</h3>
@@ -303,11 +273,14 @@ function gototab1(){
 function gototab2(){
 	closealltabs();
 	$(".link-addproduct").addClass("active");
+	$(".link-addvariant").addClass("active");
 	$(".addvariant-box").show();	
 }
 function gototab3(){
 	closealltabs();
 	$(".link-addproduct").addClass("active");
+	$(".link-addvariant").addClass("active");
+	$(".link-addpicture").addClass("active");
 	$(".addpicture-box").show();
 }
 $(function(){
@@ -385,22 +358,24 @@ $(function(){
 </script>
 <script>
 function adddatavariant(){
+	var values = $("#addvariant").serialize();
 	$.ajax({
 		url: "../modules/addvariant.php",
 		type: "post",
 		data: values,
 		dataType: "json",
-		success: function (response){  			
-			if(response[0]==0){
-				$(".message").addClass("error");
-				$(".message p").text(response[1]);
+		success: function (response){  
+alert("success");		
+			if(response[0]==0){				
+				$(".message2").addClass("error");
+				$(".message2 p").text(response[1]);
 				$('html, body').animate({
 					scrollTop: ($(".addproduct").offset()).top
 				}, 500);
-			}
-			else{
-				gototab3();
-			}
+				return false();
+			}		
+			loaddatavariant();
+			
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
 		   console.log(textStatus, errorThrown);
@@ -408,6 +383,7 @@ function adddatavariant(){
 	});	
 }
 function loaddatavariant(){
+	alert("masuk load data");
 	var values = $("#addproduct").serialize();
 			$.ajax({
 				url: "../modules/addproduct.php",
@@ -415,16 +391,11 @@ function loaddatavariant(){
 				data: values,
 				dataType: "json",
 				success: function (response){  			
-					if(response[0]==0){
-						$(".message").addClass("error");
-						$(".message p").text(response[1]);
-						$('html, body').animate({
-							scrollTop: ($(".addproduct").offset()).top
-						}, 500);
-					}
-					else{
-						gototab2();
-					}
+					$("#variant-table")
+					.find('tbody')
+					.remove()
+					.end()
+					.append(response);
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
 				   console.log(textStatus, errorThrown);
@@ -432,12 +403,16 @@ function loaddatavariant(){
 			});	
 }
 $(function(){
-	// temporary
 	gototab2();
-	$("#addvariant").submit(function(){
-		alert("asdfsdgf");
-		// our own validation because can't validate 2 forms at once
-		
+	$("#addvariant").submit(function(e){
+		e.preventDefault();
+		if($("#productsku").val() == ""){
+			$("#productsku").removeClass("valid");
+			$("#productsku").addClass("error");
+			$("#productsku").next("label").show();
+			return false;
+		}
+		adddatavariant();		
 	});
 });
 </script>
