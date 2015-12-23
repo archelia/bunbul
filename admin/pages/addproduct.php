@@ -3,6 +3,11 @@
 	include "header.php";	
 	$pagecall = "addproduct";
 	include "controller.php";
+	
+	echo "session id : ".$_SESSION['id_inputed'];
+	echo "session user : ".$_SESSION['viouser'];
+	unset($_SESSION['name_inputed']);
+	unset($_SESSION['cat_inputed']);
 ?>
 <div class="container">
 	<div class="content addproduct">		
@@ -17,11 +22,11 @@
 		</div>
 		<div class="box white-box addproduct-box">			
 			<h3>Add Product</h3>
-			<div class="message">
+			<div class="message" id="message1">
 				<p><?php if($pesan!=""){ echo $pesan; }?></p>
 			</div>
 			<div class="form-container">
-				<form action="addproduct.php" name="addproduct" id="addproduct" method="POST">
+				<form action="../modules/addproduct.php" name="addproduct" id="addproduct" method="POST">
 					<ul>
 						<li>
 							<label for="productname">Product Name<em>*</em></label>
@@ -101,17 +106,13 @@
 			</div>					
 		</div>	
 		<div class="box white-box addvariant-box">
-			<?php
-				// temp
-				$_SESSION['id_inputed']=1;
-				$_SESSION['cat_inputed']=1;
-				
+			<?php			
 				$sqlprod = "SELECT product_name FROM product WHERE id_product = '$_SESSION[id_inputed]'";
 				$resprod = mysql_query($sqlprod);
 				$rowprod = mysql_fetch_array($resprod);
 			?>
 			<h3>Add Variant for <?php echo $rowprod[0]; ?></h3>		
-			<div class="message message2">
+			<div class="message" id="message2">
 				<p><?php if($pesan!=""){ echo $pesan; }?></p>
 			</div>			
 			<div class="form-container">
@@ -159,6 +160,7 @@
 					</li>
 					<li class="centered">
 						<input type="submit" name="submit" id="submit" value="CREATE">
+						<button name="button-next" id="button-next" class="button button-next" >NEXT</button>
 					</li>
 				</ul>
 				</form>
@@ -213,31 +215,38 @@
 		</div>
 		<div class="box white-box addpicture-box">
 			<h3>Add Picture</h3>
+			<div class="message" id="message3">
+				<p><?php if($pesan!=""){ echo $pesan; }?></p>
+			</div>	
 			<div class="form-container">
+			<form action="../modules/ajaxuploadpic.php" name="addpicture" id="addpicture" method="POST" enctype="multipart/form-data">
 			<ul>
-				<li>
-					<label for="file1">Product Pictures</label>
+				<li class="centered">
+					<label for="file1" class="instruction">Click on the picture to add files.</label>
 					<label class="file-wrapper">
-						<img id="imgpreview1"/>
+						<img id="imgpreview1" name="imgpreview1"/>
 						<input type="file" id="file1" name="file1" class="" accept="image/*" onchange="PreviewImage(file1,imgpreview1);">
 					</label>						
 					<label for="file1" class="error">This is a required field.</label>
 					<label class="file-wrapper">
-						<img id="imgpreview2"/>
+						<img id="imgpreview2" name="imgpreview2"/>
 						<input type="file" id="file2" name="file2" class="" accept="image/*" onchange="PreviewImage(file2,imgpreview2);">
 					</label>						
 					<label class="file-wrapper">
-						<img id="imgpreview3"/>
+						<img id="imgpreview3" name="imgpreview3"/>
 						<input type="file" id="file3" name="file3" class="" accept="image/*" onchange="PreviewImage(file3,imgpreview3);">
 					</label>
 					<label class="file-wrapper">
-						<img id="imgpreview4"/>
+						<img id="imgpreview4" name="imgpreview4"/>
 						<input type="file" id="file4" name="file4" class="" accept="image/*" onchange="PreviewImage(file4,imgpreview4);">
 					</label>
 				</li>	
 				<li class="centered">
-					<input type="submit" name="submit" id="submit" value="SAVE">
+					<input type="submit" name="upload-pic" id="upload-pic" value="Upload">
+					<a href="<?php echo $_SERVER['PHP_SELF'];?>" class="button add-button button-new">Add New Product</a>
 				</li>
+			</ul>
+			</form>
 			</div>
 		</div>
 	</div>
@@ -246,16 +255,6 @@
 <?php
 	include "/footer.php";
 ?>
-<script type="text/javascript">
- function PreviewImage(somefile,imgprev) {
-		var oFReader = new FileReader();
-		oFReader.readAsDataURL(somefile.files[0]);
-
-		oFReader.onload = function (oFREvent) {
-			imgprev.src = oFREvent.target.result;
-		};
-	};
-</script>
 <script>
 function closealltabs(){
 	$(".tabproduct-box ul li a").removeClass("active");
@@ -338,8 +337,8 @@ $(function(){
 				dataType: "json",
 				success: function (response){  			
 					if(response[0]==0){
-						$(".message").addClass("error");
-						$(".message p").text(response[1]);
+						$("#message1").addClass("error");
+						$("#message1 p").text(response[1]);
 						$('html, body').animate({
 							scrollTop: ($(".addproduct").offset()).top
 						}, 500);
@@ -358,24 +357,21 @@ $(function(){
 </script>
 <script>
 function adddatavariant(){
-	var values = $("#addvariant").serialize();
+	var values = $("#addvariant").serialize();	
 	$.ajax({
 		url: "../modules/addvariant.php",
 		type: "post",
 		data: values,
 		dataType: "json",
-		success: function (response){  
-alert("success");		
+		success: function (response){  		
 			if(response[0]==0){				
-				$(".message2").addClass("error");
-				$(".message2 p").text(response[1]);
+				$("#message2").addClass("error");
+				$("#message2 p").text(response[1]);
 				$('html, body').animate({
 					scrollTop: ($(".addproduct").offset()).top
 				}, 500);
-				return false();
-			}		
-			loaddatavariant();
-			
+			}	
+			loaddatavariant();			
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
 		   console.log(textStatus, errorThrown);
@@ -383,27 +379,23 @@ alert("success");
 	});	
 }
 function loaddatavariant(){
-	alert("masuk load data");
-	var values = $("#addproduct").serialize();
-			$.ajax({
-				url: "../modules/addproduct.php",
-				type: "post",
-				data: values,
-				dataType: "json",
-				success: function (response){  			
-					$("#variant-table")
-					.find('tbody')
-					.remove()
-					.end()
-					.append(response);
-				},
-				error: function(jqXHR, textStatus, errorThrown) {
-				   console.log(textStatus, errorThrown);
-				}
-			});	
+	$.ajax({
+		url: "../modules/ajaxloadvariant.php",
+		type: "post",
+		success: function (response){  	
+			$("#variant-table")
+			.find('tbody')
+			.remove()
+			.end()
+			.append(response);
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+		   console.log(textStatus, errorThrown);
+		}
+	});	
 }
 $(function(){
-	gototab2();
+	gototab1();
 	$("#addvariant").submit(function(e){
 		e.preventDefault();
 		if($("#productsku").val() == ""){
@@ -414,5 +406,37 @@ $(function(){
 		}
 		adddatavariant();		
 	});
+	$("#button-next").click(function(e){
+		e.preventDefault();
+		gototab3();
+	});
+	$("#upload-pic").click(function(e){
+		e.preventDefault();
+		var values = $("#addpicture").serialize();	
+		$.ajax({
+			url: "../modules/ajaxuploadpic.php",
+			type: "post",
+			data: values,
+			success: function (response){  		
+				$("#message3 p").text(response);
+				$('html, body').animate({
+					scrollTop: ($(".addproduct").offset()).top
+				}, 500);						
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+			   console.log(textStatus, errorThrown);
+			}	
+		});
+	});
 });
+</script>
+<script type="text/javascript">
+ function PreviewImage(somefile,imgprev) {
+		var oFReader = new FileReader();
+		oFReader.readAsDataURL(somefile.files[0]);
+
+		oFReader.onload = function (oFREvent) {
+			imgprev.src = oFREvent.target.result;
+		};
+	};
 </script>

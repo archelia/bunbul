@@ -251,8 +251,21 @@ textarea.error {
 a.link-opt{
 	display: inline-block;
 }
-/*================== LOGIN ======================*/
-
+/*================== ADD PRODUCT ======================*/
+.addproduct .box{
+	max-width: 640px;
+}
+.addproduct .button-next,
+.addproduct .button-new{
+	margin-left: 30px;
+}
+.addpicture-box .form-container .instruction{
+	display: block;
+	margin-bottom: 20px;
+}
+.addpicture-box .form-container ul li{
+	margin-bottom: 30px;
+}
 /*================== LOGIN ======================*/
 
 /*================== LOGIN ======================*/

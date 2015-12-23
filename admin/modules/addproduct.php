@@ -3,6 +3,8 @@
 	$success= array();
 	$query = "SELECT * FROM product WHERE product_name='$_POST[productname]' AND id_category='$_POST[idcategory]'";
 	$result=mysql_query($query);
+	
+	
 	if(mysql_num_rows($result) > 0)
 	{
 		$success[0] = 0;
@@ -11,7 +13,7 @@
 	else
 	{
 		$diskon=0;
-		if($_POST['discactive']=='1'){$diskon=1;}
+		if(isset($_POST['discactive'])&&($_POST['discactive']=='1')){$diskon=1;}
 		$description = htmlspecialchars($_POST['productdesc']);
 		// posting results
 		$sql = "INSERT INTO product ";
@@ -24,16 +26,15 @@
 			$success[1] = 'Product saved succesfully.';
 			
 			// save the id for future editting
-			$saved = mysql_fetch_array(mysql_query("SELECT id_product, product_name, id_category FROM product WHERE product_name='$_POST[productname]'"))
-			$_SESSION["id_inputed"]= $rows["id_product"];
-			$_SESSION["name_inputed"]= $rows["product_name"];
-			$_SESSION["cat_inputed"]= $rows["id_category"];				
+			$saved = mysql_fetch_array(mysql_query("SELECT id_product FROM product WHERE product_name='$_POST[productname]'"));
+			$_SESSION["id_inputed"]= $saved["id_product"];			
 		}
 		else
 		{	$success[0] = 0;	
 			$success[1] = 'Failed to save product';
 		}
 	}	
+		
 	echo json_encode($success);
 	exit();
 ?>

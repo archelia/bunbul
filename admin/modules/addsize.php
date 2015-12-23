@@ -3,7 +3,7 @@ $pesan="";
 $success=0;
 if(isset($_POST['submit']))
 {
-	$query = "SELECT * FROM size WHERE size_name='$_POST[sizename]' and size_type='$_POST[sizetype]'";
+	$query = "SELECT id_size FROM size WHERE size_name='$_POST[sizename]' and id_category='$_POST[sizetype]'";
 	$result=mysql_query($query);
 	if(mysql_num_rows($result) > 0)
 	{

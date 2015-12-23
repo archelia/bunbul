@@ -28,6 +28,9 @@ switch($pagecall){
 	case "addproduct" :
 		$editvariantpage = $dest."editvarient.php";
 		break;
+	case "addpage" :
+		$editvariantpage = $dest."addpage.php";
+		break;
 		
 }
 ?>

@@ -3,6 +3,7 @@
 	include "header.php";	
 	$pagecall = "listsize";
 	include "controller.php";
+	$editpage = "editsize.php";
 ?>
 <div class="container">
 	<div class="content list listsize">	
