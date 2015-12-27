@@ -31,6 +31,13 @@ switch($pagecall){
 	case "addpage" :
 		$editvariantpage = $dest."addpage.php";
 		break;
+	case "addcustomer" :
+		$editvariantpage = $dest."addcustomer.php";
+		break;
+	case "addblock" :
+		$editvariantpage = $dest."addblock.php";
+		break;
+		
 		
 }
 ?>

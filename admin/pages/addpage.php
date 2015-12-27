@@ -20,6 +20,11 @@
 							<label for="pagename" class="error">This is a required field.</label>
 						</li>
 						<li>
+							<label for="pagename">Page Url</label>
+							<input type="text" name="pagename" id="pagename" class="required" maxlength="20" placeholder="" disabled>
+							<label for="pagename" class="error">This is a required field.</label>
+						</li>
+						<li>
 							<label for="pagetitle">Page Title<em>*</em></label>
 							<input type="text" name="pagetitle" id="pagetitle" class="required" maxlength="20" placeholder="Page Title">
 							<label for="pagetitle" class="error">This is a required field.</label>

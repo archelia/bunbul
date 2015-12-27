@@ -41,7 +41,7 @@
 					<li><a href="">Master</a>
 						<ul class="sub-menu">
 							<li><a href="listbrand.php">Manage Brand</a></li>
-							<li><a href="listcustomer.php">Manage Customer</a></li>
+							<!-- <li><a href="listcustomer.php">Manage Customer</a></li> -->
 							<li><a href="listsize.php">Manage Size</a></li>
 							<li><a href="listcolor.php">Manage Color</a></li>
 							<li><a href="listcategory.php">Manage Category</a></li>
@@ -59,33 +59,37 @@
 						<ul class="sub-menu">
 							<li><a href="addpage.php">Add New Page</a></li>
 							<li><a href="listpage.php">Manage Page</a></li>
+							<!--
 							<li><a href="addblock.php">Add New Block</a></li>
 							<li><a href="listblock.php">Manage Block</a></li>
+							-->
 							<li><a href="addgallery.php">Add New Gallery</a></li>
 							<li><a href="listgallery.php">Manage Gallery</a></li>
 							<li><a href="listetstimony.php">Manage Testimony</a></li>
 							
 						</ul>
 					</li>
+					<!--
 					<li>
 						<a href="">Order</a>
 						<ul class="sub-menu">
 							<li><a href="listorder.php">Manage Order</a></li>
 						</ul>
 					</li>
+					-->
 					<li>
 						<a href="">Settings</a>
 						<ul class="sub-menu">
-							<li><a href="shopsetting.php">Shop Settings</a></li>
+							<!--<li><a href="shopsetting.php">Shop Settings</a></li>
 							<li><a href="listadd.php">Ads</a></li>
-							<li><a href="listbanner.php">Banner</a></li>
+							<li><a href="listbanner.php">Banner</a></li>-->
 							<li><a href="listuser.php">User</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="">Account</a>
 						<ul class="sub-menu">
-							<li><a href="myaccount.php">My Account</a></li>
+							<!-- <li><a href="myaccount.php">My Account</a></li> -->
 							<li><a href="logout.php">Log Out</a></li>
 						</ul>
 					</li>
