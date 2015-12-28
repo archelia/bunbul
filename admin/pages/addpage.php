@@ -9,10 +9,11 @@
 		<div class="box white-box addpage-box">			
 			<h3>Add Page</h3>
 			<div class="message">
-				<p><?php if($pesan!=""){ echo $pesan; }?></p>
+				<p><?php if($message!=""){ echo $message; }?></p>
+				<p><?php if($messageUpload!=""){ echo $messageUpload; }?></p>
 			</div>
 			<div class="form-container">
-				<form action="addpage.php" name="addpage" id="addpage" method="POST">
+				<form action="addpage.php" name="addpage" id="addpage" method="POST" enctype="multipart/form-data">
 					<ul>
 						<li>
 							<label for="pagename">Page Name<em>*</em></label>
@@ -20,9 +21,9 @@
 							<label for="pagename" class="error">This is a required field.</label>
 						</li>
 						<li>
-							<label for="pagename">Page Url</label>
-							<input type="text" name="pagename" id="pagename" class="required" maxlength="20" placeholder="" disabled>
-							<label for="pagename" class="error">This is a required field.</label>
+							<label for="pageurl">Page Url</label>
+							<input type="text" name="pageurl" id="pageurl" class="required disabled" maxlength="20" placeholder="" disabled>
+							<label for="pageurl" class="error">This is a required field.</label>
 						</li>
 						<li>
 							<label for="pagetitle">Page Title<em>*</em></label>
@@ -33,8 +34,8 @@
 							<label for="pagetype">Page Type<em>*</em></label>
 							<select name="pagetype" id="pagetype">
 								<option value="1col" selected>1 Column</option>
-								<option value="2col" selected>2 Columns</option>
-								<option value="3col" selected>3 Columns</option>				
+								<option value="2col">2 Columns</option>
+								<option value="3col">3 Columns</option>				
 							</select>
 							<label for="pagetype" class="error">This is a required field.</label>
 						</li>					
@@ -44,7 +45,9 @@
 							<label for="pagecontent" class="error">This is a required field.</label>
 						</li>	
 						<li class="centered">
-							<label for="file1" class="instruction">Click on the picture to add files.</label>
+							<label for="file1" class="instruction">
+								Click on the picture to add files.								
+							</label>
 							<label class="file-wrapper">
 								<img id="imgpreview1" name="imgpreview1"/>
 								<input type="file" id="file1" name="file1" class="" accept="image/*" onchange="PreviewImage(file1,imgpreview1);">
@@ -64,6 +67,12 @@
 							</label>
 						</li>	
 						<li>
+							<label class="instruction centered">
+								Picture which is succesfully uploaded can be used inside the content with format url :
+								source/content/page_name-1.jpg
+							</label>
+						</li>
+						<li>
 							<p class="righted small"><em>*</em>Required fields.</p>
 						</li>
 						<li class="centered">
@@ -78,7 +87,7 @@
 	<div class="clear"></div>
 </div>
 <?php
-if($pesan!=""){
+if(isset($message)&&($message!="")){
 	if($success!=1){
 		echo '<script>
 		$(".message").addClass("error");
@@ -107,5 +116,18 @@ $(function() {
 		$(this).parents('li').removeClass('highlight');
 	});
 	$("#addpage").validate();
+	$("#pagename").keyup(function(){
+		$("#pageurl").val($("#pagename").val());
+	});
 });
+</script>
+<script type="text/javascript">
+ function PreviewImage(somefile,imgprev) {
+		var oFReader = new FileReader();
+		oFReader.readAsDataURL(somefile.files[0]);
+
+		oFReader.onload = function (oFREvent) {
+			imgprev.src = oFREvent.target.result;
+		};
+	};
 </script>

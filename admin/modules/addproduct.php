@@ -4,7 +4,6 @@
 	$query = "SELECT * FROM product WHERE product_name='$_POST[productname]' AND id_category='$_POST[idcategory]'";
 	$result=mysql_query($query);
 	
-	
 	if(mysql_num_rows($result) > 0)
 	{
 		$success[0] = 0;
@@ -26,8 +25,10 @@
 			$success[1] = 'Product saved succesfully.';
 			
 			// save the id for future editting
-			$saved = mysql_fetch_array(mysql_query("SELECT id_product FROM product WHERE product_name='$_POST[productname]'"));
-			$_SESSION["id_inputed"]= $saved["id_product"];			
+			$rowsaved = mysql_fetch_array(mysql_query("SELECT id_product, product_name, id_category FROM product WHERE product_name='$_POST[productname]'"));
+			$success[2]= $rowsaved["id_product"];			
+			$success[3]= $rowsaved["product_name"];			
+			$success[4]= $rowsaved["id_category"];			
 		}
 		else
 		{	$success[0] = 0;	

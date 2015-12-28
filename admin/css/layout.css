@@ -26,10 +26,11 @@
 	display: none;
 }
 body{
-	background: #FFFFFF;
+	background: #FFFFFF;	
 }
 .wrapper{
 	padding-top: 90px;
+	padding-bottom: 30px;	
 	position: relative;
 	min-height: 100%;
 }
@@ -52,6 +53,9 @@ header .header-content{
 }
 footer{
 	background-color: #000000;
+	position: absolute;
+    width: 100%;
+    bottom: 0;
 }
 .container{
 	padding: 20px;

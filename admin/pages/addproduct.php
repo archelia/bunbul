@@ -3,11 +3,6 @@
 	include "header.php";	
 	$pagecall = "addproduct";
 	include "controller.php";
-	
-	echo "session id : ".$_SESSION['id_inputed'];
-	echo "session user : ".$_SESSION['viouser'];
-	unset($_SESSION['name_inputed']);
-	unset($_SESSION['cat_inputed']);
 ?>
 <div class="container">
 	<div class="content addproduct">		
@@ -106,14 +101,9 @@
 			</div>					
 		</div>	
 		<div class="box white-box addvariant-box">
-			<?php			
-				$sqlprod = "SELECT product_name FROM product WHERE id_product = '$_SESSION[id_inputed]'";
-				$resprod = mysql_query($sqlprod);
-				$rowprod = mysql_fetch_array($resprod);
-			?>
-			<h3>Add Variant for <?php echo $rowprod[0]; ?></h3>		
+			<h3>Add Variant for <span id="name_prod_saved"></span></h3>		
 			<div class="message" id="message2">
-				<p><?php if($pesan!=""){ echo $pesan; }?></p>
+				<p>&nbsp;</p>
 			</div>			
 			<div class="form-container">
 				<form action="../module/addvariant.php" name="addvariant" id="addvariant" method="POST">
@@ -138,14 +128,7 @@
 					</li>
 					<li>
 						<label for="productsize">Size<em>*</em></label>
-						<select name="productsize" id="productsize">
-						<?php						
-							$result=mysql_query("SELECT * FROM size WHERE active='1' AND id_category='$_SESSION[cat_inputed]' ORDER BY size_name DESC");
-							while($row=mysql_fetch_array($result)){
-								echo '<option value="'.$row['id_size'].'">'.$row['size_name'].'</option>';
-							}
-						?>				
-						</select>
+						<select name="productsize" id="productsize"></select>
 						<label for="producttype" class="error">This is a required field.</label>
 					</li>
 					<li>
@@ -159,6 +142,7 @@
 						<label for="location" class="error">This is a required field.</label>
 					</li>
 					<li class="centered">
+						<input type="hidden" name="id_product_saved" id="id_product_saved" class="id_product_saved">
 						<input type="submit" name="submit" id="submit" value="CREATE">
 						<button name="button-next" id="button-next" class="button button-next" >NEXT</button>
 					</li>
@@ -186,40 +170,17 @@
 							<th>&nbsp;</th>
 						</tr>
 					</thead>
-					<tbody id="ajax-load-variant">			
-						<?php
-						$resload = mysql_query("
-							SELECT i.*, c.color_name, s.size_name 
-							FROM item i, color c, size s 
-							WHERE i.id_color = c.id_color 
-							AND i.id_size = s.id_size 
-							AND id_product='$_SESSION[id_inputed]' 
-							ORDER BY color_name ASC ");
-						while($rowload = mysql_fetch_array($resload)){
-							echo "<tr>";
-							echo "<td>$rowload[sku]</td>";
-							echo "<td class='centered'>$rowload[color_name]</td>";
-							echo "<td class='centered'>$rowload[size_name]</td>";
-							echo "<td class='righted'>$rowload[stock]</td>";
-							echo "<td class='centered'>$rowload[location]</td>";
-							echo '<td align="center">
-										<a href="deletion.php?kode='.$rowload["id_item"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
-									</td>						
-							';
-							echo "</tr>";
-						}
-						?>				
-					</tbody>
+					<tbody id="ajax-load-variant"></tbody>
 				</table>			
 			</div>				
 		</div>
 		<div class="box white-box addpicture-box">
 			<h3>Add Picture</h3>
 			<div class="message" id="message3">
-				<p><?php if($pesan!=""){ echo $pesan; }?></p>
+				<p>&nbsp;</p>
 			</div>	
 			<div class="form-container">
-			<form action="../modules/ajaxuploadpic.php" name="addpicture" id="addpicture" method="POST" enctype="multipart/form-data">
+			<form action="../modules/uploadpic.php" name="addpictureform" id="addpictureform" method="POST" enctype="multipart/form-data">
 			<ul>
 				<li class="centered">
 					<label for="file1" class="instruction">Click on the picture to add files.</label>
@@ -242,8 +203,8 @@
 					</label>
 				</li>	
 				<li class="centered">
+					<input type="hidden" name="id_product_saved" id="id_product_saved" class="id_product_saved" value="">
 					<input type="submit" name="upload-pic" id="upload-pic" value="Upload">
-					<a href="<?php echo $_SERVER['PHP_SELF'];?>" class="button add-button button-new">Add New Product</a>
 				</li>
 			</ul>
 			</form>
@@ -344,6 +305,9 @@ $(function(){
 						}, 500);
 					}
 					else{
+						$(".id_product_saved").val(response[2]);
+						$("#name_prod_saved").html(response[3]);
+						loadproductsize(response[4]);
 						gototab2();
 					}
 				},
@@ -379,14 +343,31 @@ function adddatavariant(){
 	});	
 }
 function loaddatavariant(){
+	idprod = $("#id_product_saved").val();
 	$.ajax({
 		url: "../modules/ajaxloadvariant.php",
 		type: "post",
+		data: {idprod: idprod },
 		success: function (response){  	
 			$("#variant-table")
 			.find('tbody')
 			.remove()
 			.end()
+			.append(response);
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+		   console.log(textStatus, errorThrown);
+		}
+	});	
+}
+function loadproductsize(idcat){
+	$.ajax({
+		url: "../modules/ajaxloadproductsize.php",
+		type: "post",
+		data: {idcat: idcat},
+		success: function (response){  	
+			$("#productsize")
+			.empty()
 			.append(response);
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
@@ -410,24 +391,7 @@ $(function(){
 		e.preventDefault();
 		gototab3();
 	});
-	$("#upload-pic").click(function(e){
-		e.preventDefault();
-		var values = $("#addpicture").serialize();	
-		$.ajax({
-			url: "../modules/ajaxuploadpic.php",
-			type: "post",
-			data: values,
-			success: function (response){  		
-				$("#message3 p").text(response);
-				$('html, body').animate({
-					scrollTop: ($(".addproduct").offset()).top
-				}, 500);						
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-			   console.log(textStatus, errorThrown);
-			}	
-		});
-	});
+		
 });
 </script>
 <script type="text/javascript">

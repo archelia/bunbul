@@ -1,4 +1,7 @@
 <?php
+if($pagecall != "login"){
+	if(!isset($_SESSION['viouser'])){header("location: login.php");}
+}				
 $dest="../modules/";
 switch($pagecall){
 	case "login" :
@@ -25,19 +28,14 @@ switch($pagecall){
 	case "addsubcategory" :
 		include ($dest."addsubcategory.php");
 		break;
-	case "addproduct" :
-		$editvariantpage = $dest."editvarient.php";
-		break;
 	case "addpage" :
-		$editvariantpage = $dest."addpage.php";
+		include ($dest."addpage.php");
 		break;
 	case "addcustomer" :
-		$editvariantpage = $dest."addcustomer.php";
+		include ($dest."addcustomer.php");
 		break;
 	case "addblock" :
-		$editvariantpage = $dest."addblock.php";
-		break;
-		
-		
+		include ($dest."addblock.php");
+		break;		
 }
 ?>

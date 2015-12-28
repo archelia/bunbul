@@ -89,6 +89,12 @@ textarea {
 	height: auto;
 	resize: none;
 }
+input[type="text"].disabled,
+input[type="email"].disabled,
+input[type="password"].disabled,
+input[type="number"].disabled{
+	color : #999;
+}
 input[type="checkbox"], 
 input[type="checkbox"],
 input[type="radio"], 

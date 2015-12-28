@@ -1,8 +1,9 @@
 <?php	
 	include "../../global/global.php";
+	if(isset($_SESSION['viouser'])){header("location: homepage.php");}
 	include "header.php";	
 	$pagecall = "login";
-	include "controller.php";
+	include "controller.php";	
 ?>
 <div class="container">
 	<div class="content login">		

@@ -5,7 +5,7 @@ $success = array();
 // cek if there's already a product variant
 $query = "
 	SELECT id_item FROM item 
-	WHERE id_product='$_SESSION[id_inputed]' 
+	WHERE id_product='$_POST[id_product_saved]' 
 	AND id_size='$_POST[productsize]' 
 	AND id_color='$_POST[productcolor]'";
 $result=mysql_query($query);
@@ -27,7 +27,7 @@ else
 	// posting results
 	$sql = "
 		INSERT INTO item 
-		VALUES ('', '$_SESSION[id_inputed]', '$_POST[productsize]', 
+		VALUES ('', '$_POST[id_product_saved]', '$_POST[productsize]', 
 		'$_POST[productcolor]', '$_POST[productsku]', '$_POST[productstok]', 
 		'$_POST[location]', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
 	

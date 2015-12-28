@@ -1,14 +1,14 @@
 <?php
 include "../../global/global.php";
+$pagecall = "variant";
 $resload = mysql_query("
 	SELECT i.*, c.color_name, s.size_name 
 	FROM item i, color c, size s 
 	WHERE i.id_color = c.id_color 
 	AND i.id_size = s.id_size 
-	AND id_product='$_SESSION[id_inputed]' 
+	AND id_product='$_POST[idprod]' 
 	ORDER BY color_name ASC ");
 if($resload){
-	echo "<tbody>";
 	while($rowload = mysql_fetch_array($resload)){
 		echo "<tr>";
 		echo "<td>$rowload[sku]</td>";
@@ -21,7 +21,6 @@ if($resload){
 				</td>						
 		';
 		echo "</tr>";
-		echo "</tbody>";
 	}
 }
 ?>				

@@ -3,8 +3,6 @@
   session_start();
   session_unset();
   session_destroy();
-  echo "<script>";
-  echo "window.location='../index.php'";
-  echo "</script>";
   ob_flush();
+  header("location: login.php");
 ?>

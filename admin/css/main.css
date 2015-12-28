@@ -18,6 +18,12 @@ footer .copy{
 .menu li:hover ul.sub-menu {
     display:block;
 }
+.menu b.instruction{
+	display: block;
+	line-height: 40px;
+	color: #ffffff;
+	font-size: 14px;
+}
 .box{
 	margin: auto;
 	margin-bottom: 20px;
