@@ -60,6 +60,48 @@ switch($pagecall){
 		array("Color Code Z-A","color_code:DESC")	
 	);
 	break;	
+	case "listpage" :
+	// variables needed :
+	$addnewpage = "addpage.php";
+	$filteropt = array
+	(
+		array("Page Name A-Z","page_name:ASC"),
+		array("Page Name Z-A","page_name:DESC"),	
+		array("Page Title A-Z","page_title:DESC"),	
+		array("Page Title Z-A","page_title:DESC")
+	);
+	break;	
+	case "listproduct" :
+	// variables needed :
+	$addnewpage = "addproduct.php";
+	$filteropt = array
+	(
+		array("Product Name A-Z","product_name:ASC"),
+		array("Product Name Z-A","product_name:DESC"),	
+		array("Category A-Z","category_name:ASC"),	
+		array("Category Z-A","category_name:DESC"),			
+		array("Price Low-High","product_price:ASC"),
+		array("Price High-Low","product_price:DESC")
+	);
+	break;	
+	case "listgallery" :
+	// variables needed :
+	$addnewpage = "addgallery.php";
+	$filteropt = array
+	(
+		array("Gallery Title A-Z","gallery_title:ASC"),
+		array("Gallery Title Z-A","gallery_title:DESC")
+	);
+	break;	
+	case "listcustomer" :
+	// variables needed :
+	$addnewpage = "addcustomer.php";
+	$filteropt = array
+	(
+		array("Customer Name A-Z","customer_name:ASC"),
+		array("Customer Name Z-A","customer_name:DESC")
+	);
+	break;	
 	
 }	
 ?>

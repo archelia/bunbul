@@ -11,9 +11,12 @@ if(isset($_POST["submit"])){
 	else
 	{
 		$description = htmlspecialchars($_POST['pagecontent']);
+		$pagename = strtolower($_POST['pagename']);
+		$pagename = str_replace(' ', '', $pagename);
+		
 		// posting results
 		$sql = "INSERT INTO page ";
-		$sql .= "VALUES ('', '$_POST[pagetype]', '$_POST[pagename]', '$_POST[pagetitle]',
+		$sql .= "VALUES ('', '$_POST[pagetype]', '$pagename', '$_POST[pagetitle]',
 		'$_POST[pageurl]', '$description', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
 		$qr = mysql_query($sql);
 			

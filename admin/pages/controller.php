@@ -36,6 +36,10 @@ switch($pagecall){
 		break;
 	case "addblock" :
 		include ($dest."addblock.php");
-		break;		
+		break;	
+	case "addgallery" :
+		include ($dest."addgallery.php");
+		break;	
+		
 }
 ?>

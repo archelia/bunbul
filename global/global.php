@@ -5,4 +5,7 @@
 include "conn.php"; 
 // session start
 include "session.php"; 
+
+// navigations
+$backserver = "../../";
 ?>

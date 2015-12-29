@@ -59,22 +59,22 @@
 					<a href="">Product</a>
 					<ul class="sub-menu">
 						<li><a href="addproduct.php">Add Product</a></li>
-						<li><a href="listproduct.php">List Product</a></li>
+						<li><a href="listproduct.php">Manage Product</a></li>
 					</ul>
 				</li>
 				<li>
 					<a href="">Page</a>
 					<ul class="sub-menu">
-						<li><a href="addpage.php">Add New Page</a></li>
+						
 						<li><a href="listpage.php">Manage Page</a></li>
 						<!--
+						<li><a href="addpage.php">Add New Page</a></li>
 						<li><a href="addblock.php">Add New Block</a></li>
 						<li><a href="listblock.php">Manage Block</a></li>
-						-->
 						<li><a href="addgallery.php">Add New Gallery</a></li>
-						<li><a href="listgallery.php">Manage Gallery</a></li>
 						<li><a href="listetstimony.php">Manage Testimony</a></li>
-						
+						-->					
+						<li><a href="listgallery.php">Manage Gallery</a></li>				
 					</ul>
 				</li>
 				<!--

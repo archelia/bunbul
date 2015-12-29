@@ -12,8 +12,6 @@ if(isset($_POST['submit']))
 	else
 	{
 		$row= mysql_fetch_assoc($result);
-		echo $row['password']."<br>";
-		echo md5($_POST['password']);
 		if($row['password'] == md5($_POST['password']))
 		{
 			$_SESSION['viouser'] = $row['id_user'];

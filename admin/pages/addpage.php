@@ -22,7 +22,7 @@
 						</li>
 						<li>
 							<label for="pageurl">Page Url</label>
-							<input type="text" name="pageurl" id="pageurl" class="required disabled" maxlength="20" placeholder="" disabled>
+							<input type="text" name="pageurl" id="pageurl" class="required disabled" maxlength="20" placeholder="" readonly>
 							<label for="pageurl" class="error">This is a required field.</label>
 						</li>
 						<li>
