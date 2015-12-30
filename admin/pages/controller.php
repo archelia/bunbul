@@ -3,6 +3,7 @@ if($pagecall != "login"){
 	if(!isset($_SESSION['viouser'])){header("location: login.php");}
 }				
 $dest="../modules/";
+
 switch($pagecall){
 	case "login" :
 		include ($dest."login.php");
@@ -41,5 +42,6 @@ switch($pagecall){
 		include ($dest."addgallery.php");
 		break;	
 		
+			
 }
 ?>

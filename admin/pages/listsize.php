@@ -48,7 +48,8 @@
 					
 					// QUERY LISTING
 					$sql = "SELECT s.*, c.category_name FROM size s, category c ";
-					$sql .= "WHERE s.id_category = c.id_category ";
+					$sql .= "WHERE s.active = 1 ";
+					$sql .= "AND s.id_category = c.id_category ";
 					
 					// if there's a search
 					if (isset($_POST['tekscari']))
@@ -78,8 +79,7 @@
 								</td>						
 						';
 						echo '	<td align="left">'.$row['category_name'].'</td>';
-						echo '	<td align="left">'.$row['size_name'].'</td>';
-															
+						echo '	<td align="left">'.$row['size_name'].'</td>';															
 						echo '	<td align="center">
 									<a href="deletion.php?kode='.$row["id_size"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						

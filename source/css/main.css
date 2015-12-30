@@ -1,3 +1,5 @@
+/*=================== HEADER & FOOTER =======================*/
+
 header h1{
 	font-family: 'Slabo 27px', serif;
 	text-align: center;
@@ -10,7 +12,8 @@ header h1{
 	text-align: center;
 }
 .container.main{
-	padding-top: 0;
+	padding-top: 30px;
+	min-height: 68%;
 }
 footer{
 	color: #fff;
@@ -52,28 +55,42 @@ footer .socmed ul li a span.twitter{
 	background-position: -46px -9px;	
 }
 footer .socmed ul li a span.insta{
-	background-position: -237px -9px;
+	background-position: -236px -9px;
 }
 .footer-block{
 	float: left;
 	width: 50%;
 }
+
+/*=================== FRONT PAGE =======================*/
+
 .page-block{
 	background: rgba(255,255,255,0.8);
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 }
 .page-block h3{
-	background: rgba(128, 166, 173, 1);
-	padding: 5px 0;
-	color: #fff;
-	font-size: 16px;
-	line-height: 30px;
-	text-align: center;
+	text-align: left;
+	font: normal normal bold 48px/1.4em raleway,sans-serif;
+    color: #445F64;
 }
 .page-block .content{
+	width: 50%;
+	float: left;	
+	height: 250px;
+}
+.page-block .content.wording{
+	background: rgba(137, 192, 201, 1);
 	padding: 20px;	
 }
-.image-example{}
+.page-block .content.picture img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.image-example{
+	display: inline-block;
+	min-width: 50%;
+}
 
 .image-example ul{
 	list-style: none;
@@ -91,4 +108,30 @@ footer .socmed ul li a span.insta{
 	display: block;
 	width: 100%;
 	height: 100%;
+}
+.header-content{
+	text-align: center;
+}
+.header-content ul{
+	list-style: none;
+	
+}
+.header-content li{
+	display: inline-block;
+	margin: 0 20px;
+}
+.header-content li a{
+	display: block;
+	padding: 10px 10px 8px;
+	font-family: 'Raleway', sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	border-bottom: 2px solid rgba(255, 255, 255, 1);
+	color: #9C9C9C;
+    transition: color 0.4s ease 0s;
+}
+.header-content li a.active,
+.header-content li a:hover{
+	border-bottom: 2px solid rgba(102, 143, 150, 1);
+	color: #668F96;
 }
