@@ -9,6 +9,7 @@ else {
 $fieldname = "id_" . $tabel;
 $pageorigin = "list".$tabel;
 $pageedit = "add".$tabel;
+
 if(isset($_GET['id'])){
 	$id = $_GET['id'];
 }

@@ -4,10 +4,11 @@
 	$pagecall = "listsize";
 	include "controller.php";
 	$editpage = "editsize.php";
+	include "getfieldname.php"; // return $tabel, $fieldname, $id
 ?>
 <div class="container">
 	<div class="content list listsize">	
-		<h3>List Size</h3>
+		<h3><?php echo ucwords("List ".$tabel); ?></h3>
 		<?php								   
 			// pagination
 			include ("../pages/filter-box.php");
@@ -75,13 +76,13 @@
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="'.$editpage.'?action=ubah&kode='.$row["id_size"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$pageedit.'.php?act=chg&id='.$row["id_size"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
 						echo '	<td align="left">'.$row['category_name'].'</td>';
 						echo '	<td align="left">'.$row['size_name'].'</td>';															
 						echo '	<td align="center">
-									<a href="deletion.php?kode='.$row["id_size"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?kode='.$row["id_size"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';

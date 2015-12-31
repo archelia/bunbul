@@ -3,10 +3,11 @@
 	include "header.php";	
 	$pagecall = "listcolor";
 	include "controller.php";
+	include "getfieldname.php"; // return $tabel, $fieldname, $id
 ?>
 <div class="container">
 	<div class="content list listcolor">	
-		<h3>List color</h3>
+		<h3><?php echo ucwords("List ".$tabel); ?></h3>
 		<?php								   
 			// pagination
 			include ("../pages/filter-box.php");
@@ -72,14 +73,14 @@
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="'.$addnewpage.'?action=ubah&kode='.$row["id_color"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$pageedit.'.php?act=chg&id='.$row["id_color"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
 						echo '	<td align="left">'.$row['color_name'].'</td>';
-						echo '	<td align="left">#'.$row['html_code'].'</td>';
+						echo '	<td align="center">#'.$row['html_code'].'</td>';
 															
 						echo '	<td align="center">
-									<a href="deletion.php?kode='.$row["id_color"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?id='.$row["id_color"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';

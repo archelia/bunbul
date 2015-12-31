@@ -3,10 +3,11 @@
 	include "header.php";	
 	$pagecall = "listuser";
 	include "controller.php";
+	include "getfieldname.php"; // return $tabel, $fieldname, $id
 ?>
 <div class="container">
 	<div class="content list listuser">	
-		<h3>List User</h3>
+		<h3><?php echo ucwords("List ".$tabel); ?></h3>
 		<?php								   
 			// pagination
 			include ("../pages/filter-box.php");
@@ -72,7 +73,7 @@
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="'.$addnewpage.'?action=ubah&kode='.$row["id_user"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$pageedit.'.php?act=chg&id='.$row["id_user"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
 						echo '
@@ -90,7 +91,7 @@
 							break;							
 						}									
 						echo '	<td align="center">
-									<a href="deletion.php?kode='.$row["id_user"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?kode='.$row["id_user"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';

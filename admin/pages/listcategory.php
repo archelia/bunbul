@@ -3,10 +3,11 @@
 	include "header.php";	
 	$pagecall = "listcategory";
 	include "controller.php";
+	include "getfieldname.php"; // return $tabel, $fieldname, $id
 ?>
 <div class="container">
 	<div class="content list listcategory">	
-		<h3>List Category</h3>
+		<h3><?php echo ucwords("List ".$tabel); ?></h3>
 		<?php								   
 			// pagination
 			include ("../pages/filter-box.php");
@@ -74,14 +75,14 @@
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="'.$addnewpage.'?action=ubah&kode='.$row["id_category"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$pageedit.'.php?act=chg&id='.$row["id_category"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
 						echo '	<td align="left">'.$row['category_name'].'</td>';
 						echo '	<td align="left">'.$row['category_description'].'</td>';
 						echo '<td><a href="listsubcategory.php?kode='.$row["id_category"].'"><img src="../images/icon-sub.png" alt="Subcategory" title="Subcategory"></a></td>';									
 						echo '	<td align="center">
-									<a href="deletion.php?kode='.$row["id_category"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?kode='.$row["id_category"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';

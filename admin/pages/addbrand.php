@@ -6,6 +6,7 @@
 	include "getfieldname.php"; // return $tabel, $fieldname, $id
 ?>
 <?php
+	// define variables for editing
 	if(isset($_GET['act'])){
 		if($_GET['act']=="chg"){
 			if($id != ""){
@@ -33,7 +34,7 @@
 				<p><?php if($pesan!=""){ echo $pesan; }?></p>
 			</div>
 			<div class="form-container">
-				<form action="addbrand.php" name="addbrand" id="addbrand" method="POST">
+				<form action="addbrand.php<?php echo ((isset($action)?"?act=chg&id=$id":"")); ?>" name="addbrand" id="addbrand" method="POST">
 					<ul>
 						<li>
 							<label for="brandname">Brand Name<em>*</em></label>

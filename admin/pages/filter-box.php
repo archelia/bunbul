@@ -42,7 +42,7 @@ switch($pagecall){
 	break;	
 	case "listsubcategory" :
 	// variables needed :
-	$addnewpage = "addsubcategory.php";
+	$addnewpage = "addsubcategory.php?kode=$kode";
 	$filteropt = array
 	(
 		array("Subcategory A-Z","subcategory_name:ASC"),
@@ -56,8 +56,8 @@ switch($pagecall){
 	(
 		array("Color A-Z","color_name:ASC"),
 		array("Color Z-A","color_name:DESC"),	
-		array("Color Code A-Z","color_code:DESC"),	
-		array("Color Code Z-A","color_code:DESC")	
+		array("Color Code A-Z","html_code:DESC"),	
+		array("Color Code Z-A","html_code:DESC")	
 	);
 	break;	
 	case "listpage" :

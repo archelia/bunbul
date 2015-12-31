@@ -3,13 +3,21 @@
 	include "header.php";	
 	$pagecall = "listsubcategory";
 	include "controller.php";
+	include "getfieldname.php"; // return $tabel, $fieldname, $id
 	
+	// GET kode
 	if(isset($_GET['kode'])){$kode=$_GET['kode'];}
 	else if(isset($_POST['kode'])){$kode=$_POST['kode'];}
+	else {header("Location: listcategory.php");}
+	// GET Category Name
+	$sqlx = "SELECT c.category_name FROM subcategory s, category c ";
+	$sqlx .= "WHERE s.id_category=c.id_category ";
+	$sqlx .= "AND c.id_category='$kode' ";
+	$rowx = mysql_fetch_array(mysql_query($sqlx));
 ?>
 <div class="container">
 	<div class="content list listsubcategory">	
-		<h3>List Subcategory</h3>
+		<h3><?php echo ucwords("List ".$tabel)." of ".$rowx['category_name']; ?></h3>
 		<?php								   
 			// pagination
 			include ("../pages/filter-box.php");
@@ -25,8 +33,8 @@
 				<thead>
 					<tr>
 						<th>&nbsp;</th>
-						<th>Category</th>
 						<th>Subcategory</th>
+						<th>Description</th>
 						<th>&nbsp;</th>
 					</tr>
 				</thead>
@@ -78,13 +86,13 @@
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="'.$addnewpage.'?action=ubah&kode='.$row["id_subcategory"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$pageedit.'.php?kode='.$kode.'&act=chg&id='.$row["id_subcategory"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
-						echo '	<td align="left">'.$row['category_name'].'</td>';
-						echo '	<td align="left">'.$row['subcategory_name'].'</td>';														
+						echo '	<td align="left">'.$row['subcategory_name'].'</td>';
+						echo '	<td align="left">'.$row['subcategory_desc'].'</td>';														
 						echo '	<td align="center">
-									<a href="deletion.php?kode='.$row["id_subcategory"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?id='.$row["id_subcategory"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';
@@ -112,7 +120,10 @@
 		<?php								   
 			// pagination
 			include ("../modules/paging.php");
-		?>		
+		?>	
+		<div class="go-back">
+			<a href="listcategory.php" class="button back-button">Back to Category List</a>
+		</div>
 	</div>
 	<div class="clear"></div>
 </div>
