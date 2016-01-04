@@ -10,9 +10,8 @@
 	else if(isset($_POST['kode'])){$kode=$_POST['kode'];}
 	else {header("Location: listcategory.php");}
 	// GET Category Name
-	$sqlx = "SELECT c.category_name FROM subcategory s, category c ";
-	$sqlx .= "WHERE s.id_category=c.id_category ";
-	$sqlx .= "AND c.id_category='$kode' ";
+	$sqlx = "SELECT category_name FROM category c ";
+	$sqlx .= "WHERE c.id_category='$kode' ";
 	$rowx = mysql_fetch_array(mysql_query($sqlx));
 ?>
 <div class="container">

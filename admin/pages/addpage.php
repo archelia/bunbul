@@ -3,17 +3,39 @@
 	include "header.php";	
 	$pagecall = "addpage";
 	include "controller.php";
+	include "getfieldname.php"; // return $tabel, $fieldname, $id
+?>
+<?php
+	// define variables for editing
+	if(isset($_GET['act'])){
+		if($_GET['act']=="chg"){
+			if($id != ""){
+				$action = "change";
+				$qload = "SELECT * FROM ".$tabel." WHERE ".$fieldname."='$id'";
+				$rload = mysql_query($qload);
+				if(mysql_num_rows($rload)>0){
+					$row = mysql_fetch_array($rload);
+				}
+				else{
+					header("location: ".$pageorigin.".php");
+				}
+			}
+			else{
+				header("location: ".$pageorigin.".php");
+			}
+		}
+	}
 ?>
 <div class="container">
 	<div class="content addpage">		
 		<div class="box white-box addpage-box">			
-			<h3>Add Page</h3>
+			<h3><?php echo ucwords((isset($action)?"Edit ":"Add ").$tabel); ?></h3>
 			<div class="message">
 				<p><?php if($message!=""){ echo $message; }?></p>
 				<p><?php if($messageUpload!=""){ echo $messageUpload; }?></p>
 			</div>
 			<div class="form-container">
-				<form action="addpage.php" name="addpage" id="addpage" method="POST" enctype="multipart/form-data">
+				<form action="addpage.php<?php echo ((isset($action)?"?act=chg&id=$id":"")); ?>" name="addpage" id="addpage" method="POST" enctype="multipart/form-data">
 					<ul>
 						<li>
 							<label for="pagename">Page Name<em>*</em></label>
@@ -76,7 +98,14 @@
 							<p class="righted small"><em>*</em>Required fields.</p>
 						</li>
 						<li class="centered">
+							<a href="<?php echo $pageorigin.".php"?>" class="button">BACK</a>
 							<input type="submit" name="submit" id="submit" value="CREATE">
+							<?php
+							if(isset($action)){
+								echo '<input type="hidden" name="id" id="id" value="'.$row['id_brand'].'">';
+								echo '<input type="hidden" name="action" id="action" value="$action">';
+							}
+							?>
 						</li>
 					</ul>
 				</form>

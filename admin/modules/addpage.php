@@ -1,6 +1,12 @@
 <?php
 if(isset($_POST["submit"])){
 	$query = "SELECT * FROM page WHERE page_name='$_POST[pagename]'";
+	
+	// if there's posting Edit
+	if($_POST['submit']=="EDIT"){
+		$query .= "AND id_page != '$_POST[id]'";
+	}
+	
 	$result=mysql_query($query);
 			
 	if(mysql_num_rows($result) > 0)
@@ -14,10 +20,25 @@ if(isset($_POST["submit"])){
 		$pagename = strtolower($_POST['pagename']);
 		$pagename = str_replace(' ', '', $pagename);
 		
+		
+		
+		// if there's posting Edit
+		if($_POST['submit']=="EDIT"){
+			$sql = "UPDATE page ";
+			$sql .= "SET page_name='$_POST[pagename]' ";
+			$sql .= ",page_desc='$_POST[pagedesc]' ";
+			$sql .= ", date_edited=now() ";
+			$sql .= ", user_edit='$_SESSION[viouser]' ";
+			$sql .= "WHERE id_page='$_POST[id]'";
+		}
+		else{
+			// do query results
+			$sql = "INSERT INTO page ";
+			$sql .= "VALUES ('', '$_POST[pagetype]', '$pagename', '$_POST[pagetitle]',
+			'$_POST[pageurl]', '$description', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
+		}
+		
 		// posting results
-		$sql = "INSERT INTO page ";
-		$sql .= "VALUES ('', '$_POST[pagetype]', '$pagename', '$_POST[pagetitle]',
-		'$_POST[pageurl]', '$description', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
 		$qr = mysql_query($sql);
 			
 		if($qr)

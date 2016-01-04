@@ -3,6 +3,7 @@
 	include "header.php";	
 	$pagecall = "listpage";
 	include "controller.php";
+	include "getfieldname.php"; // return $tabel, $fieldname, $id
 ?>
 <div class="container">
 	<div class="content list listpage">	
@@ -74,7 +75,7 @@
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="editpage?action=ubah&kode='.$row["id_page"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$pageedit.'.php?act=chg&id='.$row["id_page"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
 						echo '	<td align="left">'.$row['page_name'].'</td>';
@@ -82,7 +83,7 @@
 						echo '	<td align="left">'.$row['page_url'].'</td>';
 															
 						echo '	<td align="center">
-									<a href="deletion.php?kode='.$row["id_page"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?kode='.$row["id_page"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';

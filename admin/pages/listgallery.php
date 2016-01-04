@@ -3,10 +3,11 @@
 	include "header.php";	
 	$pagecall = "listgallery";
 	include "controller.php";
+	include "getfieldname.php"; // return $tabel, $fieldname, $id
 ?>
 <div class="container">
 	<div class="content list listgallery">	
-		<h3>List Gallery</h3>
+		<h3><?php echo ucwords("List ".$tabel); ?></h3>
 		<?php								   
 			// pagination
 			include ("../pages/filter-box.php");
