@@ -50,11 +50,12 @@
 					
 					// QUERY LISTING
 					$sql = "SELECT * FROM category ";
+					$sql .= "WHERE active=1 ";
 					
 					// if there's a search
 					if (isset($_POST['tekscari']))
 					{
-						$sql .= "WHERE category_name LIKE '%$_POST[tekscari]%' ";						
+						$sql .= "AND category_name LIKE '%$_POST[tekscari]%' ";						
 					}	
 					
 					// if there's a sorting
@@ -80,9 +81,9 @@
 						';
 						echo '	<td align="left">'.$row['category_name'].'</td>';
 						echo '	<td align="left">'.$row['category_description'].'</td>';
-						echo '<td><a href="listsubcategory.php?kode='.$row["id_category"].'"><img src="../images/icon-sub.png" alt="Subcategory" title="Subcategory"></a></td>';									
+						echo '<td><a href="listsubcategory.php?id='.$row["id_category"].'"><img src="../images/icon-sub.png" alt="Subcategory" title="Subcategory"></a></td>';									
 						echo '	<td align="center">
-									<a href="deactive.php?kode='.$row["id_category"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?id='.$row["id_category"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';

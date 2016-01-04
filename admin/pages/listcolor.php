@@ -48,11 +48,12 @@
 					
 					// QUERY LISTING
 					$sql = "SELECT * FROM color ";
+					$sql .= "WHERE active=1 ";
 					
 					// if there's a search
 					if (isset($_POST['tekscari']))
 					{
-						$sql .= "WHERE color_name LIKE '%$_POST[tekscari]%' ";						
+						$sql .= "AND color_name LIKE '%$_POST[tekscari]%' ";						
 					}	
 					
 					// if there's a sorting

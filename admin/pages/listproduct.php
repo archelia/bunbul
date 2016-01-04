@@ -53,8 +53,9 @@
 					
 					// QUERY LISTING
 					$sql = "SELECT p.*, c.category_name FROM product p, category c ";
-					$sql .= "WHERE p.id_category = c.id_category ";			
-					
+					$sql .= "WHERE p.active=1 ";
+					$sql .= "AND p.id_category = c.id_category ";			
+										
 					// if there's a search
 					if (isset($_POST['tekscari']))
 					{
@@ -79,7 +80,7 @@
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="editproduct?action=ubah&kode='.$row["id_product"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="editproduct?action=ubah&id='.$row["id_product"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
 						echo '	<td align="center">';
@@ -97,7 +98,7 @@
 						echo '	<td align="right">'.$row['product_discount'].'%'.(($row['product_discount_active']=='1')?'<span class="prod-dc">ON</span>':'<span class="prod-dc off">OFF</span>').'</td>';
 															
 						echo '	<td align="center">
-									<a href="deletion.php?kode='.$row["id_product"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?id='.$row["id_product"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';

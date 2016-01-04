@@ -57,7 +57,8 @@
 					
 					// QUERY LISTING
 					$sql = "SELECT s.*, c.category_name FROM subcategory s, category c ";
-					$sql .= "WHERE s.id_category=c.id_category ";
+					$sql .= "WHERE s.active=1 ";
+					$sql .= "AND s.id_category=c.id_category ";
 					$sql .= "AND c.id_category='$kode' ";
 									
 					// if there's a search

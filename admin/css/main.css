@@ -117,7 +117,6 @@ textarea.error {
 	border: 1px solid #777;
 	width: 100px;
 	height: 100px;
-	
 	margin-right: 20px;
 }
 .file-wrapper input[type="file"]{
@@ -282,6 +281,7 @@ a.link-opt{
 }
 
 /*================== ADD PRODUCT ======================*/
+
 .addproduct .box{
 	max-width: 640px;
 }
@@ -296,6 +296,10 @@ a.link-opt{
 .addpicture-box .form-container ul li{
 	margin-bottom: 30px;
 }
-/*======================= LOGIN =======================*/
+/*==================== ADD GALLERY ====================*/
+.addgallery .file-wrapper{
+	width: 150px;
+	height: 150px;
+}
 
 /*================== LOGIN ======================*/

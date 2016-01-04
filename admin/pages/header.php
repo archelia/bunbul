@@ -85,6 +85,9 @@
 					</ul>
 				</li>
 				-->
+				<?php 
+				if($_SESSION['viouser']==1){
+				?>				
 				<li>
 					<a href="">Settings</a>
 					<ul class="sub-menu">
@@ -94,6 +97,9 @@
 						<li><a href="listuser.php">User</a></li>
 					</ul>
 				</li>
+				<?php
+				}
+				?>
 				<li>
 					<a href="">Account</a>
 					<ul class="sub-menu">

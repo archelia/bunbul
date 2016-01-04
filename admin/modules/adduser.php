@@ -21,26 +21,27 @@ if(isset($_POST['submit']))
 		// if there's posting Edit
 		if($_POST['submit']=="EDIT"){
 			$sql = "UPDATE user ";
-			$sql .= "SET username='$_POST[username]' ";
+			$sql .= "SET username='$_POST[username]' "; 
 			
 			//if password changed
-			$row = mysql_fetch_array($result){
-				if($row['password']) != $securepass{
+			$query = "SELECT * FROM user WHERE username='$_POST[username]'";
+			$result=mysql_query($query);
+			$row = mysql_fetch_array($result);
+				
+				if($row['password'] != $_POST['password']){
 					$sql .= ", password= '$securepass' ";
 				}
-			}
-			
+				
 			$sql .= ", date_edited=now() ";
 			$sql .= ", user_edit='$_SESSION[viouser]' ";
 			$sql .= "WHERE id_user='$_POST[id]'";
-		}
+		}						
 		else{
 			// posting results		
 			$sql = "INSERT INTO user ";
 			$sql .= "VALUES ('', '$_POST[username]', '$securepass', '$_POST[usertype]', now(), now(), now(), '$_SESSION[viouser]', '$_SESSION[viouser]', 1)";
 		}
-		
-		
+				
 		$qr = mysql_query($sql);	
 	
 		if($qr)

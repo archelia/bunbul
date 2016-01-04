@@ -7,7 +7,7 @@
 ?>
 <div class="container">
 	<div class="content list listpage">	
-		<h3>List page</h3>
+		<h3><?php echo ucwords("List ".$tabel); ?></h3>
 		<?php								   
 			// pagination
 			include ("../pages/filter-box.php");
@@ -50,11 +50,12 @@
 					
 					// QUERY LISTING
 					$sql = "SELECT * FROM page ";
+					$sql .= "WHERE active=1 ";
 					
 					// if there's a search
 					if (isset($_POST['tekscari']))
 					{
-						$sql .= "WHERE page_name LIKE '%$_POST[tekscari]%' ";						
+						$sql .= "AND page_name LIKE '%$_POST[tekscari]%' ";						
 					}	
 					
 					// if there's a sorting
@@ -83,7 +84,7 @@
 						echo '	<td align="left">'.$row['page_url'].'</td>';
 															
 						echo '	<td align="center">
-									<a href="deactive.php?kode='.$row["id_page"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?id='.$row["id_page"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';

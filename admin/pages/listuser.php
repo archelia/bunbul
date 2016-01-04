@@ -48,11 +48,12 @@
 					
 					// QUERY LISTING
 					$sql = "SELECT * FROM user ";
+					$sql .= "WHERE active=1 ";
 					
 					// if there's a search
 					if (isset($_POST['tekscari']))
 					{
-						$sql .= "WHERE username LIKE '%$_POST[tekscari]%' ";						
+						$sql .= "AND username LIKE '%$_POST[tekscari]%' ";						
 					}	
 					
 					// if there's a sorting
@@ -91,7 +92,7 @@
 							break;							
 						}									
 						echo '	<td align="center">
-									<a href="deactive.php?kode='.$row["id_user"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?id='.$row["id_user"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';

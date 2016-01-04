@@ -82,7 +82,7 @@
 						echo '	<td align="left">'.$row['category_name'].'</td>';
 						echo '	<td align="left">'.$row['size_name'].'</td>';															
 						echo '	<td align="center">
-									<a href="deactive.php?kode='.$row["id_size"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?id='.$row["id_size"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';

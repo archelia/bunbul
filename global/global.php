@@ -8,4 +8,5 @@ include "session.php";
 
 // navigations
 $backserver = "../../";
+$server = "/";
 ?>

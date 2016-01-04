@@ -50,11 +50,12 @@
 					
 					// QUERY LISTING
 					$sql = "SELECT * FROM gallery ";
+					$sql .= "WHERE active=1 ";
 					
 					// if there's a search
 					if (isset($_POST['tekscari']))
 					{
-						$sql .= "WHERE gallery_title LIKE '%$_POST[tekscari]%' ";						
+						$sql .= "AND gallery_title LIKE '%$_POST[tekscari]%' ";						
 					}	
 					
 					// if there's a sorting
@@ -75,12 +76,12 @@
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="editgallery?action=ubah&kode='.$row["id_gallery"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$pageedit.'.php?act=chg&id='.$row["id_gallery"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
 						echo '	<td align="center">';
 						if(file_exists("../../source/gallery/".$row['id_gallery']."-1.jpg")){
-						echo '<img src="'.$backserver.'/source/gallery/'.$row['id_gallery'].'-1.jpg" alt="picture gallery" title="picture gallery" class="image-preview">';
+						echo '<img src="'.$backserver.'source/gallery/'.$row['id_gallery'].'-1.jpg" alt="picture gallery" title="picture gallery" class="image-preview">';
 						}
 						else echo '<img src="../../source/images/default.jpg" alt="picture" title="picture" class="image-preview">';				
 						echo '</td>';
@@ -88,7 +89,7 @@
 						echo '	<td align="left">'.$row['gallery_url'].'</td>';
 															
 						echo '	<td align="center">
-									<a href="deactive.php?kode='.$row["id_gallery"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?id='.$row["id_gallery"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 						';
 						echo '</tr>';

@@ -20,13 +20,18 @@ if(isset($_POST["submit"])){
 		$pagename = strtolower($_POST['pagename']);
 		$pagename = str_replace(' ', '', $pagename);
 		
-		
+		if(isset($_POST['pageurl'])){
+			$pageurl = str_replace("'", '"', $_POST['pageurl']);
+		} else {
+			$pageurl = 'pages.php?page="$pagename"';
+		}
 		
 		// if there's posting Edit
 		if($_POST['submit']=="EDIT"){
 			$sql = "UPDATE page ";
-			$sql .= "SET page_name='$_POST[pagename]' ";
-			$sql .= ",page_desc='$_POST[pagedesc]' ";
+			$sql .= "SET page_type='$_POST[pagetype]' ";
+			$sql .= ", page_content='$description' ";
+			$sql .= ", page_url='$pageurl' ";
 			$sql .= ", date_edited=now() ";
 			$sql .= ", user_edit='$_SESSION[viouser]' ";
 			$sql .= "WHERE id_page='$_POST[id]'";
@@ -35,7 +40,7 @@ if(isset($_POST["submit"])){
 			// do query results
 			$sql = "INSERT INTO page ";
 			$sql .= "VALUES ('', '$_POST[pagetype]', '$pagename', '$_POST[pagetitle]',
-			'$_POST[pageurl]', '$description', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
+			'$pageurl', '$description', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
 		}
 		
 		// posting results

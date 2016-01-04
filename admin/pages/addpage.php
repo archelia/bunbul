@@ -39,31 +39,36 @@
 					<ul>
 						<li>
 							<label for="pagename">Page Name<em>*</em></label>
-							<input type="text" name="pagename" id="pagename" class="required" maxlength="20" placeholder="Ex : pageextra (Must be unique, without space or special characters). ">
+							<input type="text" name="pagename" id="pagename" class="required" maxlength="20" placeholder="Ex : pageextra (Must be unique, without space or special characters)." value="<?php if(isset($action)) echo $row['page_name']; ?>" 
+							<?php if(isset($action)) echo "readonly"; ?>>
 							<label for="pagename" class="error">This is a required field.</label>
 						</li>
 						<li>
 							<label for="pageurl">Page Url</label>
-							<input type="text" name="pageurl" id="pageurl" class="required disabled" maxlength="20" placeholder="" readonly>
+							<input type="text" name="pageurl" id="pageurl" placeholder="Automaticly generated" value="<?php if(isset($action)) echo str_replace('"', "'", $row['page_url']); ?>" readonly>
 							<label for="pageurl" class="error">This is a required field.</label>
 						</li>
 						<li>
 							<label for="pagetitle">Page Title<em>*</em></label>
-							<input type="text" name="pagetitle" id="pagetitle" class="required" maxlength="20" placeholder="Page Title">
+							<input type="text" name="pagetitle" id="pagetitle" class="required" maxlength="60" placeholder="Page Title" value="<?php if(isset($action)) echo $row['page_title']; ?>">
 							<label for="pagetitle" class="error">This is a required field.</label>
 						</li>
 						<li>
 							<label for="pagetype">Page Type<em>*</em></label>
 							<select name="pagetype" id="pagetype">
-								<option value="1col" selected>1 Column</option>
-								<option value="2col">2 Columns</option>
-								<option value="3col">3 Columns</option>				
+							<?php 
+								$pagetypes = array("1 Column", "2 Columns", "3 Columns");
+								for ($x = 0; $x < 3; $x++) {
+									$j = $x + 1;
+									echo '<option value="'.$j.'"'.(($row['page_type']==$j)?"selected":"").'>'.$pagetypes[$x].'</option>';
+								}
+							?>		
 							</select>
 							<label for="pagetype" class="error">This is a required field.</label>
 						</li>					
 						<li>
 							<label for="pagecontent">Page Content</label>
-							<textarea name="pagecontent" id="pagecontent" cols="30" rows="5" placeholder="Write your page content here. You may using html tags as well." class="ckeditor"></textarea>
+							<textarea name="pagecontent" id="pagecontent" cols="30" rows="5" placeholder="Write your page content here. You may using html tags as well." class="ckeditor"><?php if(isset($action)) echo htmlspecialchars_decode($row['page_content']); ?></textarea>
 							<label for="pagecontent" class="error">This is a required field.</label>
 						</li>	
 						<li class="centered">
@@ -71,20 +76,54 @@
 								Click on the picture to add files.								
 							</label>
 							<label class="file-wrapper">
-								<img id="imgpreview1" name="imgpreview1"/>
+								<img id="imgpreview1" name="imgpreview1"
+								<?php 
+								if(isset($action)){
+									$filename = "../../source/content/".$row['page_name']."-1.jpg";
+									if(file_exists($filename)){echo "src='".$filename."'";} 
+								}			
+								?>
+								/>
 								<input type="file" id="file1" name="file1" class="" accept="image/*" onchange="PreviewImage(file1,imgpreview1);">
 							</label>						
 							<label for="file1" class="error">This is a required field.</label>
 							<label class="file-wrapper">
-								<img id="imgpreview2" name="imgpreview2"/>
+								<img id="imgpreview2" name="imgpreview2"
+								<?php 
+								if(isset($action)){
+									$filename = "../../source/content/".$row['page_name']."-2.jpg";
+									if(file_exists($filename)){
+										echo "src='".$filename."'";
+									}
+								}			
+								?>
+								/>
 								<input type="file" id="file2" name="file2" class="" accept="image/*" onchange="PreviewImage(file2,imgpreview2);">
 							</label>						
 							<label class="file-wrapper">
-								<img id="imgpreview3" name="imgpreview3"/>
+								<img id="imgpreview3" name="imgpreview3"
+								<?php 
+								if(isset($action)){
+									$filename = "../../source/content/".$row['page_name']."-3.jpg";
+									if(file_exists($filename)){
+										echo "src='".$filename."'";
+									} 
+								}			
+								?>
+								/>
 								<input type="file" id="file3" name="file3" class="" accept="image/*" onchange="PreviewImage(file3,imgpreview3);">
 							</label>
 							<label class="file-wrapper">
-								<img id="imgpreview4" name="imgpreview4"/>
+								<img id="imgpreview4" name="imgpreview4"
+								<?php 
+								if(isset($action)){
+									$filename = "../../source/content/".$row['page_name']."-4.jpg";
+									if(file_exists($filename)){
+										echo "src='".$filename."'";
+									} 
+								}		
+								?>
+								/>
 								<input type="file" id="file4" name="file4" class="" accept="image/*" onchange="PreviewImage(file4,imgpreview4);">
 							</label>
 						</li>	
@@ -99,10 +138,10 @@
 						</li>
 						<li class="centered">
 							<a href="<?php echo $pageorigin.".php"?>" class="button">BACK</a>
-							<input type="submit" name="submit" id="submit" value="CREATE">
+							<input type="submit" name="submit" id="submit" value="<?php echo ((isset($action)?"EDIT":"CREATE")); ?>">
 							<?php
 							if(isset($action)){
-								echo '<input type="hidden" name="id" id="id" value="'.$row['id_brand'].'">';
+								echo '<input type="hidden" name="id" id="id" value="'.$row['id_page'].'">';
 								echo '<input type="hidden" name="action" id="action" value="$action">';
 							}
 							?>
@@ -145,8 +184,8 @@ $(function() {
 		$(this).parents('li').removeClass('highlight');
 	});
 	$("#addpage").validate();
-	$("#pagename").keyup(function(){
-		$("#pageurl").val($("#pagename").val());
+	$("#pagename").change(function(){
+		$("#pageurl").val("page.php?page='"+$("#pagename").val()+"'");
 	});
 });
 </script>

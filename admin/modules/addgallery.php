@@ -1,23 +1,36 @@
 <?php
 if(isset($_POST["submit"])){
+	$description = htmlspecialchars($_POST['gallerycontent']);	
 	
-	$description = htmlspecialchars($_POST['gallerycontent']);
-	// looking for id
-	$sql = "SELECT id_gallery FROM gallery ORDER BY id_gallery DESC limit 1";
-	$qr = mysql_query($sql);
-	if(mysql_num_rows($qr)==0) {
-		$id = 1;
-	} 
-	else {
-		$rows=mysql_fetch_array($qr); 
-		$id = $rows[0] + 1;
+	// if there's posting Edit	
+	if($_POST['submit']=="EDIT"){	
+		$id = $_POST['id'];
+		$sql = "UPDATE gallery ";
+		$sql .= "SET gallery_title='$_POST[gallerytitle]' ";
+		$sql .= ",gallery_description='$description' ";
+		$sql .= ", date_edited=now() ";
+		$sql .= ", user_edit='$_SESSION[viouser]' ";
+		$sql .= "WHERE id_gallery='$id'";
+	}
+	else{
+		// looking for id
+		$sql = "SELECT id_gallery FROM gallery ORDER BY id_gallery DESC limit 1";
+		$qr = mysql_query($sql);
+		if(mysql_num_rows($qr)==0) {
+			$id = 1;
+		} 
+		else {
+			$rows=mysql_fetch_array($qr); 
+			$id = $rows[0] + 1;
+		}	
+		$url = $server."gallery.php?id=".$id;
+		
+		// posting results
+		$sql = "INSERT INTO gallery ";
+		$sql .= "VALUES ('', '$_POST[gallerytitle]', '$url', '$description', 
+		'$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
 	}	
-	$url = $server."/gallery?id=".$id;
 	
-	// posting results
-	$sql = "INSERT INTO gallery ";
-	$sql .= "VALUES ('', '$_POST[gallerytitle]', '$url', '$description', 
-	'$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
 	$qr = mysql_query($sql);
 		
 	if($qr)

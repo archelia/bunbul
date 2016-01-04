@@ -3,48 +3,91 @@
 	include "header.php";	
 	$pagecall = "addgallery";
 	include "controller.php";
+	include "getfieldname.php"; // return $tabel, $fieldname, $id
+?>
+<?php
+	// define variables for editing
+	if(isset($_GET['act'])){
+		if($_GET['act']=="chg"){
+			if($id != ""){
+				$action = "change";
+				$qload = "SELECT * FROM ".$tabel." WHERE ".$fieldname."='$id'";
+				$rload = mysql_query($qload);
+				if(mysql_num_rows($rload)>0){
+					$row = mysql_fetch_array($rload);
+				}
+				else{
+					header("location: ".$pageorigin.".php");
+				}
+			}
+			else{
+				header("location: ".$pageorigin.".php");
+			}
+		}
+	}
 ?>
 <div class="container">
 	<div class="content addgallery">		
 		<div class="box white-box addgallery-box">			
-			<h3>Add Gallery</h3>
+			<h3><?php echo ucwords((isset($action)?"Edit ":"Add ").$tabel); ?></h3>
 			<div class="message">
 				<p><?php if($message!=""){ echo $message; }?></p>
 				<p><?php if($messageUpload!=""){ echo $messageUpload; }?></p>
 			</div>
 			<div class="form-container">
-				<form action="addgallery.php" name="addgallery" id="addgallery" method="POST" enctype="multipart/form-data">
+				<form action="addgallery.php<?php echo ((isset($action)?"?act=chg&id=$id":"")); ?>" name="addgallery" id="addgallery" method="POST" enctype="multipart/form-data">
 					<ul>
 						<li class="centered">
-							<label for="file1" class="instruction">
-								Click on the picture to add files.								
+							<label for="file1" class="instruction">								
+								<?php
+								if(isset($action)){
+									echo "Click on the picture to change the picture.";
+									
+								}else {echo "Click on the picture to add files.";}
+								?>
 							</label>
 							<label class="file-wrapper">
-								<img id="imgpreview1" name="imgpreview1"/>
-								<input type="file" id="file1" name="file1" class="" accept="image/*" onchange="PreviewImage(file1,imgpreview1);">
+								<img id="imgpreview1" name="imgpreview1" 
+								<?php 
+								if(isset($action)){
+									$filename = "../../source/gallery/".$id."-1.jpg";
+									if(file_exists($filename)){echo "src='".$filename."'";} 
+								}			
+								?>
+								/>
+								<input type="file" id="file1" name="file1" class="" accept="image/*" onchange="PreviewImage(file1,imgpreview1);" >
 							</label>						
 							<label for="file1" class="error">This is a required field.</label>
 						</li>	
 						<li>
 							<label for="gallerytitle">Gallery Title<em>*</em></label>
-							<input type="text" name="gallerytitle" id="gallerytitle" class="required" maxlength="20" placeholder="Gallery Title">
+							<input type="text" name="gallerytitle" id="gallerytitle" class="required" maxlength="20" placeholder="Gallery Title" value="<?php if(isset($action)) echo $row['gallery_title']; ?>">
 							<label for="gallerytitle" class="error">This is a required field.</label>
-						</li>						
-						<!--<li>
+						</li>
+						<?php /*						
+						<li>
 							<label for="galleryurl">Gallery Url</label>
 							<input type="text" name="galleryurl" id="galleryurl" class="required disabled" maxlength="20" placeholder="" readonly>
 							<label for="galleryurl" class="error">This is a required field.</label>
-						</li>-->
+						</li>
+						*/?>
 						<li>
 							<label for="gallerycontent">Gallery Content</label>
-							<textarea name="gallerycontent" id="gallerycontent" cols="30" rows="5" placeholder="Write your gallery content here. You may using html tags as well." class="ckeditor"></textarea>
+							<textarea name="gallerycontent" id="gallerycontent" cols="30" rows="5" placeholder="Write your gallery content here. You may using html tags as well." class="ckeditor"><?php if(isset($action)) echo htmlspecialchars_decode($row['gallery_description']); ?></textarea>
 							<label for="gallerycontent" class="error">This is a required field.</label>
 						</li>						
 						<li>
 							<p class="righted small"><em>*</em>Required fields.</p>
 						</li>
 						<li class="centered">
-							<input type="submit" name="submit" id="submit" value="CREATE">
+							<a href="<?php echo $pageorigin.".php"?>" class="button">BACK</a>
+							<input type="submit" name="submit" id="submit" value="<?php echo ((isset($action)?"EDIT":"CREATE")); ?>">
+							<?php
+							if(isset($action)){
+								echo '<input type="hidden" name="id" id="id" value="'.$row['id_gallery'].'">';
+								echo '<input type="hidden" name="action" id="action" value="$action">';
+							}
+							?>
 						</li>
 					</ul>
 				</form>

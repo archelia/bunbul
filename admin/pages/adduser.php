@@ -58,7 +58,7 @@
 									$usertype = array("Super Admin", "Administrator", "Sales");
 									for ($x = 0; $x < 3; $x++) {
 										$j = $x + 1;
-										echo '<option value="'.($j).'"'.(($row['user_type']==$usertype[$j])?"selected":"").'>'.$usertype[$x].'</option>';
+										echo '<option value="'.($j).'"'.(($row['user_type']==$j)?"selected":"").'>'.$usertype[$x].'</option>';
 									}
 								?>
 							</select>
