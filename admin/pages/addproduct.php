@@ -3,6 +3,32 @@
 	include "header.php";	
 	$pagecall = "addproduct";
 	include "controller.php";
+	include "getfieldname.php"; // return $tabel, $fieldname, $id
+?>
+<?php
+	// define variables for editing
+	if(isset($_GET['act'])){
+		if($_GET['act']=="chg"){
+			if($id != ""){
+				$action = "change";
+				$qload = "SELECT * FROM ".$tabel." WHERE ".$fieldname."='$id'";
+				
+				// especially for edit product_name				
+				$qload .="";
+				
+				$rload = mysql_query($qload);
+				if(mysql_num_rows($rload)>0){
+					$row = mysql_fetch_array($rload);
+				}
+				else{
+					header("location: ".$pageorigin.".php");
+				}
+			}
+			else{
+				header("location: ".$pageorigin.".php");
+			}
+		}
+	}
 ?>
 <div class="container">
 	<div class="content addproduct">		
@@ -16,16 +42,16 @@
 			</nav>
 		</div>
 		<div class="box white-box addproduct-box">			
-			<h3>Add Product</h3>
+			<h3><?php echo ucwords((isset($action)?"Edit ":"Add ").$tabel); ?></h3>
 			<div class="message" id="message1">
 				<p><?php if($pesan!=""){ echo $pesan; }?></p>
 			</div>
 			<div class="form-container">
-				<form action="../modules/addproduct.php" name="addproduct" id="addproduct" method="POST">
+				<form action="../modules/addproduct.php<?php echo ((isset($action)?"?act=chg&id=$id":"")); ?>" name="addproduct" id="addproduct" method="POST">
 					<ul>
 						<li>
 							<label for="productname">Product Name<em>*</em></label>
-							<input type="text" name="productname" id="productname" maxlength="256" class="required" placeholder="Product Name">
+							<input type="text" name="productname" id="productname" maxlength="256" class="required" placeholder="Product Name" value="<?php if(isset($action)) echo $row['product_name']; ?>">
 							<label for="productname" class="error">This is a required field.</label>
 						</li>
 						<li>
@@ -56,8 +82,8 @@
 							<label for="producttype">Subcategory<em>*</em></label>
 							<select name="idsubcategory" id="idsubcategory">
 							<?php 
-							while($row=mysql_fetch_array($result)){
-									echo '<option value="'.$row['id_subcategory'].'">'.$row['subcategory_name'].'</option>';
+							while($rowx=mysql_fetch_array($result)){
+									echo '<option value="'.$rowx['id_subcategory'].'"'.(($rowx['id_subcategory']==$row['id_subcategory'])?'selected="selected"':"").'>'.$rowx['subcategory_name'].'</option>';
 								}
 							?>
 							</select>
@@ -94,7 +120,14 @@
 							<p class="righted small"><em>*</em>Required fields.</p>		
 						</li>
 						<li class="centered">
-							<input type="submit" name="submit" id="submit" value="NEXT">
+							<a href="<?php echo $pageorigin.".php"?>" class="button">BACK</a>
+							<input type="submit" name="submit" id="submit" value="<?php echo ((isset($action)?"EDIT":"NEXT")); ?>">
+							<?php
+							if(isset($action)){
+								echo '<input type="hidden" name="id" id="id" value="'.$row['id_product'].'">';
+								echo '<input type="hidden" name="action" id="action" value="$action">';
+							}
+							?>
 						</li>
 					</ul>
 				</form>
@@ -204,6 +237,7 @@
 				</li>	
 				<li class="centered">
 					<input type="hidden" name="id_product_saved" id="id_product_saved" class="id_product_saved" value="">
+					<button class="button" onclick="gototab2();">BACK</button>
 					<input type="submit" name="upload-pic" id="upload-pic" value="Upload">
 				</li>
 			</ul>

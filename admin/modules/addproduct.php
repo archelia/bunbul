@@ -14,9 +14,24 @@
 		$diskon=0;
 		if(isset($_POST['discactive'])&&($_POST['discactive']=='1')){$diskon=1;}
 		$description = htmlspecialchars($_POST['productdesc']);
-		// posting results
-		$sql = "INSERT INTO product ";
-		$sql .= "VALUES ('', '$_POST[idcategory]', '$_POST[idsubcategory]', '$_POST[productname]','$description', '$_POST[productdimension]','$_POST[productprice]','$_POST[discount]','$diskon', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
+		
+		
+		// if there's posting Edit	
+		if($_POST['submit']=="EDIT"){	
+			$id = $_POST['id'];
+			$sql = "UPDATE gallery ";
+			$sql .= "SET gallery_title='$_POST[gallerytitle]' ";
+			$sql .= ",gallery_description='$description' ";
+			$sql .= ", date_edited=now() ";
+			$sql .= ", user_edit='$_SESSION[viouser]' ";
+			$sql .= "WHERE id_gallery='$id'";
+		}
+		else{				
+			// posting results
+			$sql = "INSERT INTO product ";
+			$sql .= "VALUES ('', '$_POST[idcategory]', '$_POST[idsubcategory]', '$_POST[productname]','$description', '$_POST[productdimension]','$_POST[productprice]','$_POST[discount]','$diskon', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
+		}	
+
 		$qr = mysql_query($sql);
 			
 		if($qr)

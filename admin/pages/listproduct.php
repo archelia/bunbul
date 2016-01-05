@@ -3,10 +3,11 @@
 	include "header.php";	
 	$pagecall = "listproduct";
 	include "controller.php";
+	include "getfieldname.php"; // return $tabel, $fieldname, $id
 ?>
 <div class="container">
 	<div class="content list listproduct">	
-		<h3>List product</h3>
+		<h3><?php echo ucwords("List ".$tabel); ?></h3>
 		<?php								   
 			// pagination
 			include ("../pages/filter-box.php");
@@ -80,7 +81,7 @@
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="editproduct?action=ubah&id='.$row["id_product"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$pageedit.'.php?act=chg&id='.$row["id_product"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
 						echo '	<td align="center">';
@@ -91,8 +92,6 @@
 						echo '</td>';
 						echo '	<td align="left"><a href="'.$backserver.'/productdetail?pid='.$row['id_product'].'">'.$row['product_name'].'</a></td>';
 						echo '	<td align="center">'.$row['category_name'].'</td>';
-						
-						
 						
 						echo '	<td align="right">Rp. '.number_format($row['product_price'],0,',','.').'</td>';
 						echo '	<td align="right">'.$row['product_discount'].'%'.(($row['product_discount_active']=='1')?'<span class="prod-dc">ON</span>':'<span class="prod-dc off">OFF</span>').'</td>';
