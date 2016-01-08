@@ -1,38 +1,20 @@
 /*=================== HEADER & FOOTER =======================*/
-
-header h1{
-	font-family: 'Slabo 27px', serif;
-	text-align: center;
-	font-size: 34px;
-	line-height: 40px;
-	letter-spacing: 0.1em;
-	color: #444444;
-}
-.container h2{
-	text-align: center;
-}
-.container.main{
-	padding-top: 30px;
-	min-height: 68%;
-}
 footer{
-	color: #fff;
-}
-footer address,
-footer .socmed{
-	padding: 10px;
-}
-footer address span{
-	display: block;
-}
-footer address a{
-	display: block;
-	color: #fff;
+	margin: auto;
+	max-width: 960px;
+	padding: 10px 20px;
 }
 footer .copy{
-	padding: 5px 0;
-	background-color: rgba(94, 94, 94, 1);
-	text-align: center;
+	font-size: 14px;
+	line-height: 25px;
+}
+footer .copy,
+footer .socmed{
+	width: 50%;
+	float: left;
+}
+footer .socmed{
+	text-align: right;	
 }
 footer .socmed ul{
 	list-style: none;
@@ -40,75 +22,29 @@ footer .socmed ul{
 footer .socmed ul li{
 	display: inline-block;
 	margin-left: 0;
-	margin-right: 15px;
+	margin-right: 10px;
+	vertical-align: middle;
 }
 footer .socmed ul li a{
 	display: block;
 }
 footer .socmed ul li a span{
 	display: block;
-	width: 30px;
-	height: 30px;
-	background: url("../images/socmed.jpg") no-repeat -8px -9px;
+	width: 25px;
+	height: 25px;
+	background: url("../images/facebook.png") no-repeat center
 }
 footer .socmed ul li a span.twitter{
-	background-position: -46px -9px;	
+	background: url("../images/twitter.png") no-repeat center
 }
 footer .socmed ul li a span.insta{
-	background-position: -236px -9px;
+	background: url("../images/instagram.png") no-repeat center
 }
 .footer-block{
 	float: left;
 	width: 50%;
 }
 
-/*=================== FRONT PAGE =======================*/
-
-.page-block{
-	background: rgba(255,255,255,0.8);
-	margin-bottom: 40px;
-}
-.page-block h3{
-	text-align: left;
-	font: normal normal bold 48px/1.4em raleway,sans-serif;
-    color: #445F64;
-}
-.page-block .content{
-	width: 50%;
-	float: left;	
-	height: 250px;
-}
-.page-block .content.wording{
-	background: rgba(137, 192, 201, 1);
-	padding: 20px;	
-}
-.page-block .content.picture img{
-	display: block;
-	width: 100%;
-	height: 100%;
-}
-.image-example{
-	display: inline-block;
-	min-width: 50%;
-}
-
-.image-example ul{
-	list-style: none;
-}
-.image-example ul li{
-	background: #dedede;
-	margin: 0;
-	display: block;
-	float: left;
-	width: 20%;
-	height: 180px;
-}
-.image-example ul li img{
-	vertical-align: middle;
-	display: block;
-	width: 100%;
-	height: 100%;
-}
 .header-content{
 	text-align: center;
 }
@@ -123,15 +59,189 @@ footer .socmed ul li a span.insta{
 .header-content li a{
 	display: block;
 	padding: 10px 10px 8px;
-	font-family: 'Raleway', sans-serif;
-	font-size: 14px;
+	font-family: 'myfont', sans-serif;
+	font-size: 16px;
 	line-height: 20px;
-	border-bottom: 2px solid rgba(255, 255, 255, 1);
-	color: #9C9C9C;
+	border-bottom: 2px solid transparent;
+	color: #888785;
     transition: color 0.4s ease 0s;
 }
 .header-content li a.active,
 .header-content li a:hover{
-	border-bottom: 2px solid rgba(102, 143, 150, 1);
-	color: #668F96;
+	border-bottom: 2px solid #FFCA00;
+	color: #FFCA00;
+}
+
+/*===================== FRONT PAGE =======================*/
+
+.container h2{
+	text-align: center;
+}
+.container.main{
+	/*min-height: 68%;*/
+	padding: 40px;
+}
+.banner-block{
+	position: relative;
+	margin-bottom: 20px;
+}
+.pic-block{
+	height: 700px;
+}
+.word-block{
+	position: absolute;
+	top: 10%;
+	left: 5%;
+	width: 50%;
+}
+.word-block h3{
+	font-size: 38px;
+	line-height: 50px;
+	color: #FFCA00;
+}
+.word-block .button{
+	margin-top: 30px;
+	padding: 10px 20px;
+}
+.pic-block img{
+	display: block;
+	width: auto;
+	height: 100%;
+	margin: auto;
+}
+
+/*=================== CATALOG PAGE =======================*/
+
+.front-content h1{
+	margin-bottom: 30px;
+	color: #A2CC01;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+}
+.pagination{
+	text-align: center;
+	margin-bottom: 30px;
+}
+.pagination nav ul{ 
+	list-style-type: none;
+}
+.pagination nav ul li{ 
+	display: inline-table;
+	margin: 0;
+}
+.pagination nav ul li a,
+.pagination nav ul li b{ 
+	display: block;
+	padding: 5px 10px;	
+	background: #A2CC01;
+	color: #FFF;
+	font-size: 14px;
+	font-weight: bold;
+}
+.pagination nav ul li b.active{ 
+	opacity: 0.8;
+}
+.pagination nav ul li a:hover{
+	opacity: 0.8;
+}
+.form-tools{
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+.filter-box{
+	float: left;
+	width: 30%;
+	padding-right: 20px;
+}
+.filter-box select{
+	border: 1px solid #A2CC01;
+}
+.filter-box.search{
+	position: relative;
+	float: right;
+}
+.filter-box.search input[type="text"]{
+	padding-right: 50px;
+	border: 1px solid #A2CC01;
+}
+.filter-box.search input[type="submit"]{
+	position: absolute;
+	right: 20px;
+	top: 0;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	background: #A2CC01 url("../../admin/images/zoom-icon.png") no-repeat 3px center;
+	border: 1px solid #A2CC01;
+}
+.product-container{
+	margin-bottom: 30px;
+}
+.product-block{
+	width: 22.75%;
+	float: left;
+	margin-right: 3%;
+	margin-left: 0;
+	margin-bottom: 50px;
+}
+.product-block:nth-child(4n){
+	margin-right: 0;
+}
+.product-pic{
+	height: 210px;
+	margin-bottom: 20px;
+}
+.product-pic img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.product-name h3{
+	font-family: font-family: 'myfont', sans-serif;
+	font-size: 14px;
+	line-height: 24px;
+	color: #575757;
+	font-weight: normal;
+}
+.product-price{
+	color: #B3ADA9;
+	font-size: 13px;
+	line-height: 24px;
+}
+
+/*=================== PRODUCT DETAIL PAGE =======================*/
+
+.pdp .col2{
+	float: left;
+	width: 50%;
+}
+.picture-box .picture{
+	height: 500px;
+	max-width: 95%;
+	border: 1px solid #ededed;
+}
+.picture-box .picture img{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.detail-box .product-name,
+.detail-box .product-block,
+.detail-box .product-price,
+.detail-box .product-disc,
+.detail-box .product-dimn,
+.detail-box .product-desc{
+	margin-bottom: 20px;
+}
+.detail-box .product-name h2{
+	text-align: left;
+	font-size: 26px;
+	line-height: 34px;
+	font-weight: normal;
+}
+.detail-box h6{
+	color: #A2CC01;
+	font-weight: normal;
+	font-size: 14px;
+	margin-bottom: 10px;
 }

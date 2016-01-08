@@ -1,7 +1,9 @@
 <?php
 	include "../../global/global.php";
 	$success= array();
-	$query = "SELECT * FROM product WHERE product_name='$_POST[productname]' AND id_category='$_POST[idcategory]'";
+	$query = "SELECT * FROM product WHERE product_name='$_POST[productname]' AND id_category='$_POST[idcategory]' ";
+	// if edit
+	if($_POST['submit']=="EDIT"){$query .= "AND id_product != '$_POST[id]'";}
 	$result=mysql_query($query);
 	
 	if(mysql_num_rows($result) > 0)
@@ -19,12 +21,17 @@
 		// if there's posting Edit	
 		if($_POST['submit']=="EDIT"){	
 			$id = $_POST['id'];
-			$sql = "UPDATE gallery ";
-			$sql .= "SET gallery_title='$_POST[gallerytitle]' ";
-			$sql .= ",gallery_description='$description' ";
+			$sql = "UPDATE product ";
+			$sql .= "SET product_name = '$_POST[productname]' ";
+			$sql .= ",product_description = '$description' ";
+			$sql .= ",id_category = '$_POST[idcategory]' ";
+			$sql .= ",id_subcategory = '$_POST[idsubcategory]' ";
+			$sql .= ",product_price = '$_POST[productprice]' ";
+			$sql .= ",product_dimension = '$_POST[productdimension]' ";
+			$sql .= ",product_discount_active ='$diskon' ";
 			$sql .= ", date_edited=now() ";
 			$sql .= ", user_edit='$_SESSION[viouser]' ";
-			$sql .= "WHERE id_gallery='$id'";
+			$sql .= "WHERE id_product='$id'";
 		}
 		else{				
 			// posting results

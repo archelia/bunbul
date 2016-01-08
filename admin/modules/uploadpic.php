@@ -79,6 +79,8 @@ if (file_exists($target_file)) {
 				<li>&nbsp;</li>
 				<li class="centered">
 					<a href="../pages/addproduct.php" class="button add-button button-new">Add New Product</a>
+					<a href="../pages/listproduct.php" class="button add-button button-new">See Product List</a>
+					
 				</li>		
 			</ul>
 				

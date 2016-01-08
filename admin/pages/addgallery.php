@@ -114,7 +114,7 @@ if(isset($message)&&($message!="")){
 }
 ?>
 <?php
-	include "/footer.php";
+	include "footer.php";
 ?>
 <script>
 $(function() {

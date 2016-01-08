@@ -11,11 +11,13 @@
 		if($_GET['act']=="chg"){
 			if($id != ""){
 				$action = "change";
-				$qload = "SELECT * FROM ".$tabel." WHERE ".$fieldname."='$id'";
-				
-				// especially for edit product_name				
-				$qload .="";
-				
+				// especially for edit product_name		
+				$qload = "SELECT * FROM ".$tabel. " a ";
+				$qload .= ", category b, subcategory c ";
+				$qload .= "WHERE a.id_category=b.id_category ";
+				$qload .= "AND b.id_category=c.id_category ";
+				$qload .="AND ".$fieldname."='$id'";
+										
 				$rload = mysql_query($qload);
 				if(mysql_num_rows($rload)>0){
 					$row = mysql_fetch_array($rload);
@@ -61,8 +63,8 @@
 								$query = "SELECT * FROM category WHERE active='1'";
 								$result = mysql_query($query);
 								$i=0;
-								while($row=mysql_fetch_array($result)){
-									echo '<option value="'.$row['id_category'].'" '.(($i==0)?'selected="selected"':"").'>'.$row['category_name'].'</option>';
+								while($rowx=mysql_fetch_array($result)){
+									echo '<option value="'.$rowx['id_category'].'" '.(($rowx['id_category']==$row['id_category'])?'selected="selected"':"").'>'.$rowx['category_name'].'</option>';
 									if($i==0){$idcat=$row['id_category'];}
 									$i++;
 								}
@@ -91,29 +93,29 @@
 						</li>	
 						<li>
 							<label for="productdimension">Product Dimension</label>
-							<input type="text" name="productdimension" id="productdimension" class="" maxlength="50" placeholder="ex : 12 x 25 x 10 cm">
+							<input type="text" name="productdimension" id="productdimension" class="" maxlength="50" placeholder="ex : 12 x 25 x 10 cm" value="<?php if(isset($action)) echo $row['product_dimension']; ?>">
 							<label for="productdimension" class="error">This is a required field.</label>
 						</li>					
 						<li>
 							<label for="productprice">Product Price<em>*</em></label>
-							<input type="number" name="productprice" id="productprice" class="required" maxlength="10" placeholder="ex : 5000000" min="1" max="9999999">
+							<input type="number" name="productprice" id="productprice" class="required" maxlength="10" placeholder="ex : 5000000" min="1" max="9999999" value="<?php if(isset($action)) echo $row['product_price']; ?>">
 							<label for="productprice" class="error">This is a required field.</label>
 						</li>					
 						<li>
 							<label for="discount">Discount</label>
-							<input type="number" name="discount" id="discount" class="" placeholder="ex : 20" min="1" max="99" maxlength=2>
+							<input type="number" name="discount" id="discount" class="" placeholder="ex : 20" min="1" max="99" maxlength=2 value="<?php if(isset($action)) echo $row['product_discount']; ?>">
 							<label for="discount" class="error">This is a required field.</label>
 							<div class="clear"></div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="discactive" id="discactive" class="" maxlength="2" value="1">
+									<input type="checkbox" name="discactive" id="discactive" class="" maxlength="2" value="1" <?php if(isset($action)){ if($row['product_discount_active']==1)echo "checked";}; ?>>
 									<span></span>Discount Active
 								</label>
 							</div>						
 						</li>					
 						<li>
 							<label for="productdesc">Product Description</label>
-							<textarea name="productdesc" id="productdesc" cols="30" rows="5" placeholder="Product Description" class="ckeditor"></textarea>
+							<textarea name="productdesc" id="productdesc" cols="30" rows="5" placeholder="Product Description" class="ckeditor"><?php if(isset($action)) echo htmlspecialchars_decode($row['product_description']); ?></textarea>
 							<label for="productdesc" class="error">This is a required field.</label>
 						</li>								
 						<li>
@@ -248,7 +250,7 @@
 	<div class="clear"></div>
 </div>
 <?php
-	include "/footer.php";
+	include "footer.php";
 ?>
 <script>
 function closealltabs(){

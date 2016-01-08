@@ -82,7 +82,7 @@ if($pesan!=""){
 }
 ?>
 <?php
-	include "/footer.php";
+	include "footer.php";
 ?>
 <script>
 $(function() {

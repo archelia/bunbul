@@ -11,7 +11,7 @@
 		clear: both;
 }
 body{
-	background: RGBA(237, 239, 240, 1);
+	background: RGBA(255, 255, 255, 1);
 }
 .wrapper{
 	padding-top: 70px;
@@ -34,17 +34,13 @@ header .header-content{
 	background: linear-gradient(to bottom,  rgba(140,140,140,0.65) 0%,rgba(126,126,126,0) 10%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a68c8c8c', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */	
 }
-footer{
-	background: rgba(137, 192, 201, 1);  
-}
+
 .container{
 	padding: 20px;
 	max-width: 960px;
 	margin: auto;
 }
-.logo{
-	
-}
+.logo{}
 .logo h1{
 	background: url(../images/logo.png) no-repeat center;
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2015 at 11:05 AM
+-- Generation Time: Jan 06, 2016 at 05:07 AM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -60,10 +60,13 @@ CREATE TABLE `brand` (
 --
 
 INSERT INTO `brand` (`id_brand`, `brand_name`, `brand_desc`, `user_create`, `user_edit`, `date_created`, `date_edited`, `active`) VALUES
-(1, 'Sinful', 'Sinful is an edqy brand for our high quality shoes.', 1, 1, '2015-11-26 10:36:54', '2015-11-26 10:36:54', 1),
-(2, 'Sinful', 'Sinful is an edqy brand for our high quality shoes.', 1, 1, '2015-11-26 10:38:11', '2015-11-26 10:38:11', 1),
-(3, 'Sinful', 'Sinful is an edqy brand for our high quality shoes.', 1, 1, '2015-11-26 11:11:54', '2015-11-26 11:11:54', 1),
-(4, 'Excited', '', 1, 1, '2015-11-26 14:05:52', '2015-11-26 14:05:52', 1);
+(3, 'Sinful', 'Sinful Shoes', 1, 1, '2015-11-26 11:11:54', '2015-12-31 09:21:24', 1),
+(4, 'Excited', 'Excited is one of the best brand we have.', 1, 1, '2015-11-26 14:05:52', '2015-12-31 09:30:12', 1),
+(5, 'Courage', 'Courage', 1, 1, '2015-12-01 00:00:00', '2015-12-31 09:27:29', 1),
+(6, 'Fierce', 'Fierce', 1, 1, '2015-12-01 00:00:00', '2015-12-31 09:27:36', 1),
+(7, 'Salvage', 'SALVAGE', 1, 1, '2015-12-01 00:00:00', '2015-12-31 09:27:49', 1),
+(8, 'Spoon', 'Spoon', 1, 1, '2015-12-31 09:24:13', '2015-12-31 09:29:52', 1),
+(9, 'Brand 1', 'asdasd', 1, 1, '2015-12-31 09:25:53', '2015-12-31 09:25:53', 0);
 
 -- --------------------------------------------------------
 
@@ -87,8 +90,11 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id_category`, `category_name`, `category_description`, `user_create`, `user_edit`, `date_created`, `date_edited`, `active`) VALUES
-(1, 'Shoes', 'Shoes', 1, 1, '2015-11-26 15:19:52', '2015-11-26 15:19:52', 1),
-(2, 'T-Shirt', 'T-shirt', 1, 1, '2015-11-26 15:20:07', '2015-11-26 15:20:07', 1);
+(1, 'Shoes', 'Sinful Shoes', 1, 1, '2015-11-26 15:19:52', '2015-12-31 10:40:25', 1),
+(2, 'T-Shirt', 'Just unordinary T-Shirt', 1, 1, '2015-11-26 15:20:07', '2015-12-31 10:35:23', 1),
+(3, 'Jewelry', 'Fashion Accessories', 1, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1),
+(4, 'Bags', 'Sinful Super Quality Bags', 1, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1),
+(5, 'Clutch', 'Sinful  Clutch', 1, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -112,9 +118,12 @@ CREATE TABLE `color` (
 --
 
 INSERT INTO `color` (`id_color`, `color_name`, `html_code`, `user_create`, `user_edit`, `date_created`, `date_edited`, `active`) VALUES
-(1, 'White', '', 1, 1, '2015-11-26 14:22:37', '2015-11-26 14:22:37', 1),
-(2, 'Pink', '', 1, 1, '2015-11-26 14:22:49', '2015-11-26 14:22:49', 1),
-(3, 'Black', '000000', 1, 1, '2015-12-03 14:30:33', '2015-12-03 14:30:33', 1);
+(1, 'White', 'FFFFFF', 1, 1, '2015-11-26 14:22:37', '2015-12-31 10:01:23', 1),
+(2, 'Pink', 'FFC0CB', 1, 1, '2015-11-26 14:22:49', '2015-12-31 10:02:35', 1),
+(3, 'Black', '000000', 1, 1, '2015-12-03 14:30:33', '2015-12-03 14:30:33', 1),
+(4, 'Brown', 'A52A2A', 1, 1, '2015-12-31 09:37:21', '2015-12-31 10:08:37', 1),
+(5, 'Grey', 'AAAAAA', 1, 1, '2015-12-31 09:39:09', '2015-12-31 09:39:09', 1),
+(6, 'Apricot', 'FBCEB1', 1, 1, '2015-12-31 10:12:05', '2015-12-31 10:12:05', 1);
 
 -- --------------------------------------------------------
 
@@ -195,9 +204,12 @@ CREATE TABLE `gallery` (
 --
 
 INSERT INTO `gallery` (`id_gallery`, `gallery_title`, `gallery_url`, `gallery_description`, `user_create`, `user_edit`, `date_created`, `date_edited`, `active`) VALUES
-(1, 'Birthday Cake', 'localhost/gallery?id=1', '&lt;p&gt;A birthday cake, Can be used as birthday present.&lt;/p&gt;\r\n', 1, 1, '2015-12-29 11:17:54', '2015-12-29 11:17:54', 1),
-(2, 'Koala', 'localhost/gallery?id=1', '&lt;p&gt;This is Koala&lt;/p&gt;\r\n', 1, 1, '2015-12-29 11:19:18', '2015-12-29 11:19:18', 1),
-(3, 'Pinguin', 'localhost/gallery?id=3', '&lt;p&gt;This is Pinguin. Live in North Pole.&lt;/p&gt;\r\n', 1, 1, '2015-12-29 11:21:07', '2015-12-29 11:21:07', 1);
+(1, 'Birthday Cake', 'localhost/gallery?id=1', '&lt;p&gt;A birthday cake, Can be used as birthday present. Yup, it&amp;#39;s so tasty.&lt;/p&gt;\r\n', 1, 1, '2015-12-29 11:17:54', '2016-01-04 10:56:20', 1),
+(2, 'Koala', 'localhost/gallery?id=1', '&lt;p&gt;This is Koala. It is so cute.&lt;/p&gt;\r\n', 1, 1, '2015-12-29 11:19:18', '2016-01-04 10:55:01', 1),
+(3, 'Pinguin', 'localhost/gallery?id=3', '&lt;p&gt;This is Pinguin. Live in North Pole.&lt;/p&gt;\r\n', 1, 1, '2015-12-29 11:21:07', '2016-01-04 10:54:24', 1),
+(4, 'Desserted Island', '/gallery?id=4', '&lt;p&gt;As far as you can see only sand.&lt;/p&gt;\r\n', 1, 1, '2016-01-04 10:59:42', '2016-01-04 10:59:42', 1),
+(5, 'Light House', '/gallery?id=5', '&lt;p&gt;As far as you can see only ?&lt;/p&gt;\r\n', 1, 1, '2016-01-04 11:02:28', '2016-01-04 11:03:29', 1),
+(6, 'Tulips', '/gallery?id=6', '&lt;p&gt;Yellow Tulips Flower.&lt;/p&gt;\r\n', 1, 1, '2016-01-04 11:02:51', '2016-01-04 11:02:51', 1);
 
 -- --------------------------------------------------------
 
@@ -252,7 +264,10 @@ INSERT INTO `item` (`id_item`, `id_product`, `id_size`, `id_color`, `sku`, `stoc
 (25, 48, 6, 1, 'try31-w35', 5, '5', 1, 1, '2015-12-28 11:59:15', '2015-12-28 11:59:15', 1),
 (26, 48, 7, 1, 'try31-w36', 5, '5', 1, 1, '2015-12-28 11:59:31', '2015-12-28 11:59:31', 1),
 (27, 49, 6, 1, 'TRY33-W35', 1, '12', 1, 1, '2015-12-28 14:31:07', '2015-12-28 14:31:07', 1),
-(28, 49, 7, 1, 'TRY33-W36', 1, '12', 1, 1, '2015-12-28 14:31:17', '2015-12-28 14:31:17', 1);
+(28, 49, 7, 1, 'TRY33-W36', 1, '12', 1, 1, '2015-12-28 14:31:17', '2015-12-28 14:31:17', 1),
+(29, 51, 1, 2, '85-85632-01', 12, '125A', 1, 1, '2016-01-05 15:41:15', '2016-01-05 15:41:15', 1),
+(30, 31, 6, 1, '001-001-1', 12, '125A', 1, 1, '2016-01-06 09:55:52', '2016-01-06 09:55:52', 1),
+(31, 31, 7, 1, '001-001-2', 12, '125A', 1, 1, '2016-01-06 09:56:01', '2016-01-06 09:56:01', 1);
 
 -- --------------------------------------------------------
 
@@ -295,14 +310,8 @@ CREATE TABLE `page` (
 --
 
 INSERT INTO `page` (`id_page`, `page_type`, `page_name`, `page_title`, `page_url`, `page_content`, `user_create`, `user_edit`, `date_created`, `date_edited`, `active`) VALUES
-(1, 1, 'about', 'About Us', '', '&lt;p&gt;About Us&amp;nbsp;&lt;/p&gt;\r\n\r\n&lt;p&gt;Here we are about Us.&lt;/p&gt;\r\n', 1, 1, '2015-12-28 09:49:40', '2015-12-28 09:49:40', 1),
-(2, 1, 'contactus', 'Contact Us', '', '&lt;p&gt;contact us page&lt;/p&gt;\r\n', 1, 1, '2015-12-28 09:52:19', '2015-12-28 09:52:19', 1),
-(3, 1, 'sinful', 'Sinful', '', '&lt;p&gt;This is the story about Sinful.&lt;/p&gt;\r\n', 1, 1, '2015-12-28 09:55:06', '2015-12-28 09:55:06', 1),
-(4, 1, 'excited', 'Excited', '', '&lt;p&gt;Excited yuhuu&lt;/p&gt;\r\n', 1, 1, '2015-12-28 09:55:45', '2015-12-28 09:55:45', 1),
-(5, 1, 'courage', 'About Courage', '', '&lt;p&gt;Courage is our brand&amp;nbsp;&lt;/p&gt;\r\n', 1, 1, '2015-12-28 10:01:36', '2015-12-28 10:01:36', 1),
-(6, 1, 'location', 'Location', '', '&lt;p&gt;asfasfasf&lt;/p&gt;\r\n', 1, 1, '2015-12-28 16:47:30', '2015-12-28 16:47:30', 1),
-(7, 1, 'trial01', 'trial', 'trial01', '&lt;p&gt;asfasfasf&lt;/p&gt;\r\n', 1, 1, '2015-12-28 16:52:09', '2015-12-28 16:52:09', 1),
-(8, 1, 'trial02', 'Trial 02', 'trial02', '&lt;p&gt;trial asfdnaslkdf jasdfa sd&lt;/p&gt;\r\n', 1, 1, '2015-12-28 16:55:18', '2015-12-28 16:55:18', 1);
+(1, 1, 'about', 'About Us', 'page.php?page=about', '&lt;p&gt;About us&lt;/p&gt;\r\n', 1, 1, '2016-01-04 16:29:50', '2016-01-04 16:49:07', 1),
+(2, 1, 'contact', 'Contact Us', 'page.php?page="contact"', '&lt;p&gt;Contact Us here 123456789&lt;/p&gt;\r\n\r\n&lt;p&gt;&lt;img alt=&quot;&quot; src=&quot;source/content/contact-1.jpg&quot; style=&quot;height:150px; width:150px&quot; /&gt;&lt;/p&gt;\r\n', 1, 1, '2016-01-04 16:45:35', '2016-01-04 16:48:00', 1);
 
 -- --------------------------------------------------------
 
@@ -380,7 +389,7 @@ INSERT INTO `product` (`id_product`, `id_category`, `id_subcategory`, `product_n
 (28, 1, 2, 'Sinful TRY05', '&lt;p&gt;trying 4x&lt;/p&gt;\r\n', '10 x 20 x 30', 225000, 15, 0, 1, 1, '2015-12-22 14:23:03', '2015-12-22 14:23:03', 1),
 (29, 1, 2, 'Sinful Try06', '&lt;p&gt;trial 06&lt;/p&gt;\r\n', '10 x 20 x 30', 450000, 10, 1, 1, 1, '2015-12-22 14:29:54', '2015-12-22 14:29:54', 1),
 (30, 1, 2, 'Sinful Shoes A001', '&lt;p&gt;Sinful shoes Abcsd&lt;/p&gt;\r\n', '12 x 20 x 25', 580000, 10, 1, 1, 1, '2015-12-28 10:30:27', '2015-12-28 10:30:27', 1),
-(31, 1, 1, 'Sinful Try10', '&lt;p&gt;auiiiii&lt;/p&gt;\r\n', '12 x 12', 560000, 10, 1, 1, 1, '2015-12-28 10:35:34', '2015-12-28 10:35:34', 1),
+(31, 1, 1, 'Sinful Try 001', '&lt;p&gt;auiiiii ohoy ohoy&lt;/p&gt;\r\n', '12 x 12 x 12 cm', 450000, 10, 1, 1, 1, '2015-12-28 10:35:34', '2016-01-06 09:55:14', 1),
 (32, 1, 1, 'Sinful Try 11', '&lt;p&gt;Sin fu l aw aw&lt;/p&gt;\r\n', '12 x 12', 120000, 10, 1, 1, 1, '2015-12-28 11:08:36', '2015-12-28 11:08:36', 1),
 (33, 1, 1, 'Sinful Try11', '&lt;p&gt;asfasf asf asf asf as&lt;/p&gt;\r\n', '10 x 10', 150000, 15, 0, 1, 1, '2015-12-28 11:12:39', '2015-12-28 11:12:39', 1),
 (34, 1, 1, 'Sinful Try12', '&lt;p&gt;asfasf asf asf asf as&lt;/p&gt;\r\n', '10 x 10', 150000, 15, 0, 1, 1, '2015-12-28 11:13:21', '2015-12-28 11:13:21', 1),
@@ -398,7 +407,9 @@ INSERT INTO `product` (`id_product`, `id_category`, `id_subcategory`, `product_n
 (46, 1, 1, 'Sinful Try23', '', '25 x 25', 650000, 0, 0, 1, 1, '2015-12-28 11:46:02', '2015-12-28 11:46:02', 1),
 (47, 1, 1, 'Sinful Try24', '', '', 650000, 0, 0, 1, 1, '2015-12-28 11:55:51', '2015-12-28 11:55:51', 1),
 (48, 1, 1, 'sinful try31', '', '', 450000, 0, 0, 1, 1, '2015-12-28 11:59:00', '2015-12-28 11:59:00', 1),
-(49, 1, 1, 'Sinful Try33', '&lt;p&gt;asfasfasfasf&lt;/p&gt;\r\n', '12 x 25 x 10', 560000, 0, 0, 1, 1, '2015-12-28 14:30:35', '2015-12-28 14:30:35', 1);
+(49, 1, 1, 'Sinful Try33', '&lt;p&gt;asfasfasfasf&lt;/p&gt;\r\n', '12 x 25 x 10', 560000, 0, 0, 1, 1, '2015-12-28 14:30:35', '2015-12-28 14:30:35', 1),
+(50, 2, 2, 'Jersey', '&lt;p&gt;gyahahahaha&lt;/p&gt;\r\n', '12 x 25 x 20', 1500000, 10, 0, 1, 1, '2016-01-05 10:17:25', '2016-01-05 10:17:25', 1),
+(51, 2, 2, 'Apple Ceri', '&lt;p&gt;apel ceriton&lt;/p&gt;\r\n', '50 x 50 x 12', 210000, 10, 1, 1, 1, '2016-01-05 15:38:16', '2016-01-05 15:38:16', 1);
 
 -- --------------------------------------------------------
 
@@ -475,20 +486,21 @@ CREATE TABLE `size` (
 --
 
 INSERT INTO `size` (`id_size`, `id_category`, `size_name`, `user_create`, `user_edit`, `date_created`, `date_edited`, `active`) VALUES
-(1, 2, 'XL', 1, 1, '2015-11-26 13:07:46', '2015-11-26 13:07:46', 1),
-(2, 2, 'XL', 1, 1, '2015-11-26 14:10:38', '2015-11-26 14:10:38', 1),
+(1, 2, 'S', 1, 1, '2015-11-26 13:07:46', '2015-11-26 13:07:46', 1),
+(2, 2, 'M', 1, 1, '2015-11-26 14:10:38', '2015-11-26 14:10:38', 1),
 (3, 2, 'XL', 1, 1, '2015-11-26 14:11:04', '2015-11-26 14:11:04', 1),
 (4, 2, 'L', 1, 1, '2015-11-26 14:13:03', '2015-11-26 14:13:03', 1),
 (5, 1, '38', 1, 1, '2015-11-26 14:13:11', '2015-11-26 14:13:11', 1),
 (6, 1, '35', 1, 1, '2015-12-21 10:59:19', '2015-12-21 10:59:19', 1),
 (7, 1, '36', 1, 1, '2015-12-21 10:59:24', '2015-12-21 10:59:24', 1),
-(8, 1, '37', 1, 1, '2015-12-21 10:59:32', '2015-12-21 10:59:32', 1),
-(9, 1, '38', 1, 1, '2015-12-21 10:59:49', '2015-12-21 10:59:49', 1),
-(10, 1, '38', 1, 1, '2015-12-21 11:10:16', '2015-12-21 11:10:16', 1),
+(8, 1, '34', 1, 1, '2015-12-21 10:59:32', '2015-12-21 10:59:32', 1),
+(9, 1, '43', 1, 1, '2015-12-21 10:59:49', '2015-12-31 09:36:15', 1),
 (11, 1, '37', 1, 1, '2015-12-21 11:13:44', '2015-12-21 11:13:44', 1),
 (12, 1, '39', 1, 1, '2015-12-21 11:14:52', '2015-12-21 11:14:52', 1),
 (13, 1, '40', 1, 1, '2015-12-21 11:14:57', '2015-12-21 11:14:57', 1),
-(14, 1, '41', 1, 1, '2015-12-21 11:14:59', '2015-12-21 11:14:59', 1);
+(14, 1, '41', 1, 1, '2015-12-21 11:14:59', '2015-12-21 11:14:59', 1),
+(15, 1, '42', 1, 1, '2015-12-31 08:57:23', '2015-12-31 08:57:23', 1),
+(16, 2, 'XXL', 1, 1, '2016-01-04 17:02:43', '2016-01-04 17:02:43', 1);
 
 -- --------------------------------------------------------
 
@@ -514,7 +526,14 @@ CREATE TABLE `subcategory` (
 
 INSERT INTO `subcategory` (`id_subcategory`, `id_category`, `subcategory_name`, `subcategory_desc`, `user_create`, `user_edit`, `date_created`, `date_edited`, `active`) VALUES
 (1, 1, 'Wedges', 'Shoes with flat high heels.', 1, 1, '2015-12-03 13:19:24', '2015-12-03 13:19:24', 1),
-(2, 1, 'Flat Shoes', 'Flat Shoes', 2147483647, 2147483647, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1);
+(2, 1, 'Flat Shoes', 'Flat Shoes', 2147483647, 2147483647, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(3, 2, 'V-neck T-Shirt', 'just v neck', 2147483647, 1, '0000-00-00 00:00:00', '2015-12-31 12:42:51', 1),
+(4, 2, 'Round neck', 'round and round and round', 2147483647, 1, '0000-00-00 00:00:00', '2015-12-31 11:56:28', 1),
+(5, 2, 'Multi Fabric', 'multi fabric', 2147483647, 2147483647, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(6, 2, 'Crew Neck', 'What is exactly a crew neck?', 2147483647, 1, '0000-00-00 00:00:00', '2015-12-31 12:13:48', 1),
+(7, 2, 'Turtle Neck', 'Turtle Neck', 2147483647, 2147483647, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(8, 1, 'Heels', 'Any kind of heels.', 2147483647, 1, '0000-00-00 00:00:00', '2015-12-31 12:44:30', 1),
+(9, 3, 'Bracelet', 'Gelang', 2147483647, 2147483647, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -554,8 +573,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `user_type`, `date_created`, `date_edited`, `last_login`, `user_create`, `user_edit`, `active`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, '2015-11-28 09:29:55', '2015-11-28 09:29:55', '2015-12-29 08:54:57', 1, 1, 1),
-(2, 'archelia', '9289f7eaaf869e4a025f408993566b4f', 2, '2015-11-28 09:30:49', '2015-11-28 09:30:49', '2015-11-28 09:30:49', 1, 1, 1);
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, '2015-11-28 09:29:55', '2015-11-28 09:29:55', '2016-01-06 08:46:43', 1, 1, 1),
+(2, 'archelia', '9289f7eaaf869e4a025f408993566b4f', 2, '2015-11-28 09:30:49', '2016-01-04 09:31:47', '2016-01-04 09:32:02', 1, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -676,17 +695,17 @@ ALTER TABLE `ads`
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id_brand` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_brand` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_category` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `color`
 --
 ALTER TABLE `color`
-  MODIFY `id_color` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_color` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `customer`
 --
@@ -696,17 +715,17 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id_gallery` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_gallery` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id_item` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_item` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `page`
 --
 ALTER TABLE `page`
-  MODIFY `id_page` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_page` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `page_type`
 --
@@ -716,7 +735,7 @@ ALTER TABLE `page_type`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id_product` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_product` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `shop`
 --
@@ -726,12 +745,12 @@ ALTER TABLE `shop`
 -- AUTO_INCREMENT for table `size`
 --
 ALTER TABLE `size`
-  MODIFY `id_size` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_size` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `subcategory`
 --
 ALTER TABLE `subcategory`
-  MODIFY `id_subcategory` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_subcategory` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `testimoni`
 --

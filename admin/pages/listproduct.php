@@ -94,7 +94,7 @@
 						echo '	<td align="center">'.$row['category_name'].'</td>';
 						
 						echo '	<td align="right">Rp. '.number_format($row['product_price'],0,',','.').'</td>';
-						echo '	<td align="right">'.$row['product_discount'].'%'.(($row['product_discount_active']=='1')?'<span class="prod-dc">ON</span>':'<span class="prod-dc off">OFF</span>').'</td>';
+						echo '	<td align="center"><span class="prod-dc'.(($row['product_discount_active']=='1')?' ON':'').'">'.$row['product_discount'].'%'.'</span></td>';
 															
 						echo '	<td align="center">
 									<a href="deactive.php?id='.$row["id_product"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>

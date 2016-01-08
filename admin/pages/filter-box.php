@@ -102,7 +102,6 @@ switch($pagecall){
 		array("Customer Name Z-A","customer_name:DESC")
 	);
 	break;	
-	
 }	
 ?>
 <div class="form-tools">
