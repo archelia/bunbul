@@ -82,8 +82,11 @@
 				echo '<div class="product-name"><a href="productdetail.php?pid='.$row['id_product'].'"><h3>'.$row['product_name'].'</h3></a></div>';
 						
 				echo '<div class="product-price">Rp. '.number_format($row['product_price'],0,',','.').'</div>';
-				//echo '	<div class="product-category">'.$row['category_name'].'</div>';		
-				//echo '	<div><span class="prod-dc'.(($row['product_discount_active']=='1')?' ON':'').'">'.$row['product_discount'].'%'.'</span></div>';											
+				//echo '<div class="product-category">'.$row['category_name'].'</div>';	
+				if ($row['product_discount_active']=='1'){
+					echo '<div class="product-discount"><span class="prod-dc">Sale</span></div>';
+				}
+															
 				// $no for pagination
 				$no++;
 				echo '</div>';
@@ -94,11 +97,77 @@
 				<p>There's no data to display.</p>
 			</div>";}
 			?>		
-		</div>		
-		<?php								   
-			// pagination
-			include ("../admin/modules/paging.php");
-		?>		
+		</div>									   			
+		<?php
+		// pagination
+		// langkah 3 halaman
+		$tampil= mysql_query($sql);
+		$jmldata=mysql_num_rows($tampil);
+		$jmlhalaman=ceil($jmldata/$batas);
+		$file="../pages/".$pagecall.".php";
+				
+		if (isset($_GET['cat']))
+		{
+			$filewithcat = "&cat=$_GET[cat]";						
+		}	
+		
+		?>
+		<div class="pagination">
+			<nav>
+				<ul>		
+				<?php		
+				// link ke halaman berikutnya, first-previous
+				if($halaman>1)
+				{
+					$previous=$halaman-1;
+					echo "<li><a href='$file?halaman=1".((isset($filewithcat))?$filewithcat:"")."'>&lt;&lt;</a></li>";
+					echo "<li><a href='$file?halaman=$previous'".((isset($filewithcat))?$filewithcat:"").">&lt;</a></li>";
+				}
+				else
+				{
+					echo "<li><b>&lt;&lt;</b></li>";
+					echo "<li><b>&lt;</b></li>";
+				}
+				
+				// tampilkan link halaman 123 modif ala google
+				// 3 angka awal
+				if ($halaman>1)
+					{				
+						for ($i=$halaman-3; $i<$halaman; $i++)
+						{
+							if ($i<1) continue;					
+							echo "<li><a href=$file?halaman=$i".((isset($filewithcat))?$filewithcat:"").">$i</a></li>";
+						}
+					}					
+				// angka tengah
+				echo "<li><b class='active'>$halaman</b></li>";		
+				//3 angka setelahnya
+				for ($i=$halaman+1;$i<($halaman+4);$i++)
+				{
+					if ($i > $jmlhalaman)
+					break;
+					echo "<li><a href=$file?halaman=$i".((isset($filewithcat))?$filewithcat:"").">$i</a></li>";
+				}
+						
+				// angka akhir
+				echo ($halaman+2<$jmlhalaman ? " ...  
+				  <li><b><a href=$file?halaman=$jmlhalaman".((isset($filewithcat))?$filewithcat:"").">$jmlhalaman</a></b></li> " : "");
+			
+				// link ke halaman selanjutnya
+				if ($halaman<$jmlhalaman)
+				{
+					$next=$halaman+1;
+					echo "<li><a href=$file?halaman=$next".((isset($filewithcat))?$filewithcat:"").">&gt;</a></li>";
+					echo "<li><a href=$file?halaman=$jmlhalaman".((isset($filewithcat))?$filewithcat:"").">&gt;&gt;</a></li>";
+				}
+				else{
+					echo "<li><b>&gt;</b></li>";
+					echo "<li><b>&gt;&gt;</b></li>";
+				}
+				?>
+				</ul>
+			</nav>	
+		</div>	
 	</div>
 	<div class="clear"></div>
 </div>

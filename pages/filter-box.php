@@ -12,6 +12,15 @@ switch($pagecall){
 		array("Price High-Low","product_price:DESC")
 	);
 	break;	
+	case "gallery" :
+	// variables needed :
+	$filteropt = array
+	(
+		array("Gallery Title A-Z","gallery_title:ASC"),
+		array("Gallery Title Z-A","gallery_title:DESC")
+	);
+	break;	
+	
 }	
 
 ?>

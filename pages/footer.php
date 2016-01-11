@@ -1,4 +1,5 @@
 	<footer>
+		<div class="container footer-container">
 		<div class="copy">&copy;2015 by Viore Shop</div>
 		<div class="socmed">
 			<nav>
@@ -10,6 +11,7 @@
 			</nav>
 		</div>
 		<div class="clear"></div>
+		</div>
 	</footer>
 </div>
 </body>

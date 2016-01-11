@@ -1,5 +1,11 @@
 /*=================== HEADER & FOOTER =======================*/
 footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	
+}
+footer .footer-container{
 	margin: auto;
 	max-width: 960px;
 	padding: 10px 20px;
@@ -113,7 +119,7 @@ footer .socmed ul li a span.insta{
 /*=================== CATALOG PAGE =======================*/
 
 .front-content h1{
-	margin-bottom: 30px;
+	margin-bottom: 40px;
 	color: #A2CC01;
     font-weight: normal;
     letter-spacing: 0.1em;
@@ -183,12 +189,27 @@ footer .socmed ul li a span.insta{
 	margin-right: 3%;
 	margin-left: 0;
 	margin-bottom: 50px;
+	position: relative;
+}
+.product-block .product-discount{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.product-block .product-discount span{
+	display: inline-block;
+	width: auto;
+	padding: 5px 10px;
+	text-align: center;
+	color: #fff;
+	background: red;
+	font-size: 16px;	
 }
 .product-block:nth-child(4n){
 	margin-right: 0;
 }
 .product-pic{
-	height: 210px;
+	height: 275px;
 	margin-bottom: 20px;
 }
 .product-pic img{
@@ -207,6 +228,7 @@ footer .socmed ul li a span.insta{
 	color: #B3ADA9;
 	font-size: 13px;
 	line-height: 24px;
+
 }
 
 /*=================== PRODUCT DETAIL PAGE =======================*/
@@ -216,21 +238,21 @@ footer .socmed ul li a span.insta{
 	width: 50%;
 }
 .picture-box .picture{
-	height: 500px;
-	max-width: 95%;
+	height: 600px;
+    max-width: 96%;
 	border: 1px solid #ededed;
+	margin-bottom: 10px;
+	position: relative;
 }
 .picture-box .picture img{
 	width: 100%;
 	height: 100%;
 	display: block;
 }
-.detail-box .product-name,
-.detail-box .product-block,
-.detail-box .product-price,
-.detail-box .product-disc,
-.detail-box .product-dimn,
-.detail-box .product-desc{
+.detail-box {
+	margin-bottom: 30px;
+}
+.detail-box > div {
 	margin-bottom: 20px;
 }
 .detail-box .product-name h2{
@@ -240,8 +262,129 @@ footer .socmed ul li a span.insta{
 	font-weight: normal;
 }
 .detail-box h6{
-	color: #A2CC01;
+	color: #888785;
 	font-weight: normal;
 	font-size: 14px;
 	margin-bottom: 10px;
+}
+.detail-box .product-small-block{
+	border-top : 1px solid #ededed;
+	margin-bottom: 10px;
+	padding: 20px 0;
+	font-size: 14px;
+	line-height: 24px;
+}
+.detail-box .product-small-block:last-child{
+	border-bottom : 1px solid #ededed;
+}
+.detail-box .product-small-block span.color,
+.detail-box .product-small-block span.size{
+	display: inline-block;
+	padding: 0 5px;
+	margin-right: 5px;
+	margin-left: 0;
+	background: #000;
+	color: #ededed;
+	font-size: 12px;
+	border: 1px solid #ededed;
+}
+.detail-box .product-price{	
+	margin-bottom: 50px;
+}
+.detail-box .product-price span{	
+	display: inline-block;
+	margin-right: 10px;
+	margin-left: 0;
+	color: #888785;
+    font-size: 20px;
+    line-height: 24px;
+}
+.detail-box .product-price span.before{	
+	color: #999;
+	font-size: 18px;
+	text-decoration: line-through; 
+}
+.product-images ul li{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 0;
+	margin-right: 20px;
+}
+.product-images ul li a{
+	display: block;
+	width: 80px;
+	height: 100px;
+}
+.product-images ul li a img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.zoom {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+.zoom a {
+    display: block;
+	height: 30px;
+	width: 30px;
+	background: url(../../admin/images/zoom-icon.png) no-repeat center;
+}
+.zoom-layer{
+	width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 7;
+    left: 0;
+	display: none;
+	background: rgba(255,255,255,0.8);
+}
+.zoom-layer img{
+	width: auto;
+	max-width: 100%;
+    height: 100%;
+    display: block;
+}
+.close-button{
+	background: url(../images/close-button-black.png) no-repeat center;
+	height: 50px;
+	width: 50px;
+	display: block;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	cursor: pointer;
+	z-index: 8;
+}
+
+/*=================== 404 ==================*/
+
+.notfound{
+	text-align: center;
+}
+.notfound .editor{
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+/*=================== GALLERY DETAIL PAGE =======================*/
+
+.gallery-detail h2{
+	color: #A2CC01;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 35px;
+	margin-bottom: 20px;
+}
+.gallery-content,
+.gallery-image{
+	max-width: 700px;
+	margin: auto;
+	margin-bottom: 30px;
+}
+.gallery-image img{
+	display: block;
+	width: 100%;
 }

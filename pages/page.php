@@ -14,7 +14,7 @@
 	}
 ?>
 <div class="container">
-	<div class="front-content pdp">	
+	<div class="front-content pages">	
 		<h1><?php echo $row['page_title'];?></h1>
 	</div>
 	<div class="page-detail">

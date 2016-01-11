@@ -90,7 +90,7 @@
 						}
 						else echo '<img src="../../source/images/default.jpg" alt="picture" title="picture" class="image-preview">';				
 						echo '</td>';
-						echo '	<td align="left"><a href="'.$backserver.'/productdetail?pid='.$row['id_product'].'">'.$row['product_name'].'</a></td>';
+						echo '	<td align="left"><a href="'.$backserver.'/productdetail.php?pid='.$row['id_product'].'">'.$row['product_name'].'</a></td>';
 						echo '	<td align="center">'.$row['category_name'].'</td>';
 						
 						echo '	<td align="right">Rp. '.number_format($row['product_price'],0,',','.').'</td>';

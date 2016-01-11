@@ -35,6 +35,8 @@
 					<li><a href="homepage.php">Home</a></li>
 					<li><a href="catalog.php?cat=tshirt">T-Shirt</a></li>
 					<li><a href="catalog.php?cat=shoes">Shoes</a></li>
+					<li><a href="gallery.php">Gallery</a></li>
+					<li><a href="page.php?page=exhibition">Exhibition</a></li>
 					<li><a href="page.php?page=about">About</a></li>
 					<li><a href="page.php?page=contact">Contact Us</a></li>
 				</ul>
