@@ -1,6 +1,5 @@
 <?php	
-	include "../global/global.php";
-	include "header.php";	
+	include "../global/global.php";		
 	$pagecall = "pdp";
 	if(!isset($_GET['page'])){header("location: 404.php");}
 	$sql = "SELECT * FROM page ";
@@ -12,6 +11,8 @@
 	if(mysql_num_rows($result)<1){
 		header("location: 404.php");
 	}
+	
+	include "header.php";
 ?>
 <div class="container">
 	<div class="front-content pages">	

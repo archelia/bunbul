@@ -50,7 +50,7 @@
 						</li>
 						<li>
 							<label for="pagetitle">Page Title<em>*</em></label>
-							<input type="text" name="pagetitle" id="pagetitle" class="required" maxlength="60" placeholder="Page Title" value="<?php if(isset($action)) echo $row['page_title']; ?>">
+							<input type="text" name="pagetitle" id="pagetitle" class="required" maxlength="80" placeholder="Page Title" value="<?php if(isset($action)) echo $row['page_title']; ?>">
 							<label for="pagetitle" class="error">This is a required field.</label>
 						</li>
 						<li>
@@ -130,7 +130,7 @@
 						<li>
 							<label class="instruction centered">
 								Picture which is succesfully uploaded can be used inside the content with format url :
-								source/content/page_name-1.jpg
+								../source/content/page_name-1.jpg
 							</label>
 						</li>
 						<li>

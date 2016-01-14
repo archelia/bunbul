@@ -85,7 +85,7 @@
 						}
 						else echo '<img src="../../source/images/default.jpg" alt="picture" title="picture" class="image-preview">';				
 						echo '</td>';
-						echo '	<td align="left"><a href="'.$backserver.'gallerydetail?pid='.$row['gallery_title'].'">'.$row['gallery_title'].'</a></td>';
+						echo '	<td align="left"><a href="'.$backserver.'pages/gallerydetail.php?idg='.$row['id_gallery'].'" target="_blank">'.$row['gallery_title'].'</a></td>';
 						echo '	<td align="left">'.$row['gallery_url'].'</td>';
 															
 						echo '	<td align="center">

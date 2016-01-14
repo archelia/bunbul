@@ -67,8 +67,7 @@
 			<div class="product-small-block">
 				<h6>PRODUCT DIMENSION</h6>
 				<?php echo $row['product_dimension']; ?>
-			</div>
-			<div class="product-small-block">				
+			</div>						
 				<?php
 				//searching available colors
 				$sqlload = "SELECT distinct i.id_color, c.color_name, c.html_code FROM item i, color c 
@@ -76,29 +75,28 @@
 							AND id_product='$row[id_product]'";
 				$queryload = mysql_query($sqlload);	
 				if(mysql_num_rows($queryload)>0){
+					echo "<div class='product-small-block'>";
 					echo "<h6>AVAILABLE COLORS</h6>";
 					while($rowld=mysql_fetch_array($queryload)){
 						echo "<span class='size' style='background: #".$rowld['html_code'].";'>".$rowld['color_name']."</span>";
 					}
+					echo "</div>";
 				}		
-				?>
-			</div>
-			<div class="product-small-block">
-				<?php
+				
 				//searching available size
 				$sqlload = "SELECT distinct s.id_size, s.size_name FROM item i, size s 
 							WHERE i.id_size = s.id_size
 							AND id_product='$row[id_product]'";
 				$queryload = mysql_query($sqlload);	
 				if(mysql_num_rows($queryload)>0){
+					echo "<div class='product-small-block'>";
 					echo "<h6>AVAILABLE SIZE</h6>";
 					while($rowld=mysql_fetch_array($queryload)){
 						echo "<span class='color'>".$rowld['size_name']."</span>";
 					}
+					echo "</div>";
 				}		
-				?>
-			</div>
-					
+				?>				
 		</div>
 		<div class="clear"></div>
 	</div>

@@ -61,7 +61,7 @@
 						</li>	
 						<li>
 							<label for="gallerytitle">Gallery Title<em>*</em></label>
-							<input type="text" name="gallerytitle" id="gallerytitle" class="required" maxlength="20" placeholder="Gallery Title" value="<?php if(isset($action)) echo $row['gallery_title']; ?>">
+							<input type="text" name="gallerytitle" id="gallerytitle" class="required" maxlength="80" placeholder="Gallery Title" value="<?php if(isset($action)) echo $row['gallery_title']; ?>">
 							<label for="gallerytitle" class="error">This is a required field.</label>
 						</li>
 						<?php /*						

@@ -33,6 +33,7 @@ for ($i = 0; $i < $max; $i++) {
 		}	  
 		// Allow certain file formats
 		if($imageFileType[$i] != "jpg" && $imageFileType[$i] != "png" && $imageFileType[$i] != "jpeg"
+		&& $imageFileType[$i] != "gif" && $imageFileType[$i] != "JPG" && $imageFileType[$i] != "PNG" && $imageFileType[$i] != "JPEG"
 		&& $imageFileType[$i] != "gif" ) {
 			$message[$i] = "Only JPG, JPEG, PNG & GIF files are allowed.";
 			$uploadOk[$i] = 0;

@@ -3,6 +3,10 @@
     src: url("../fonts/font1.woff") format('woff');
 }
 @font-face {
+    font-family: "myfont2";
+    src: url("../fonts/font2.woff") format('woff');
+}
+@font-face {
     font-family: "OpenSans-CondLight";
     src: url("../fonts/OpenSans-CondLight.ttf") format('truetype');
 }
@@ -20,8 +24,8 @@ h1, h2, h3, h4, h5, h6{
 }
 h1{
 	font-family: 'OpenSans-CondLight', sans-serif;
-    font-size: 30px;
-    line-height: 40px;
+    font-size: 35px;
+    line-height: 45px;
 }
 h2{
 	font-size: 26px;
@@ -56,8 +60,9 @@ a.active{
 }
 
 p{
-	font-size: 14px;
-	line-height: 24px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	line-height: 26px;
 	font-family: 'myfont', sans-serif;
 	color: rgba(136,135,133,1);
 }
@@ -71,6 +76,15 @@ em{
 }
 .editor{
 	text-align: justify;
+}
+address{
+	margin-bottom: 20px;
+}
+address p{
+	display: block;
+	font-size: 14px;
+	line-height: 20px;
+	color: #999;
 }
 sup{
 	font-size: 11px;
