@@ -205,7 +205,36 @@
 							<th>&nbsp;</th>
 						</tr>
 					</thead>
-					<tbody id="ajax-load-variant"></tbody>
+					<tbody id="ajax-load-variant">
+					<?php
+					if(isset($action)){
+						$resload = mysql_query("
+							SELECT i.*, c.color_name, s.size_name 
+							FROM item i, color c, size s 
+							WHERE i.id_color = c.id_color 
+							AND i.id_size = s.id_size 
+							AND id_product='$id' 
+							ORDER BY color_name ASC ");
+						if($resload){
+							while($rowload = mysql_fetch_array($resload)){
+								echo "<tr>";
+								echo "<td>$rowload[sku]</td>";
+								echo "<td class='centered'>$rowload[color_name]</td>";
+								echo "<td class='centered'>$rowload[size_name]</td>";
+								echo "<td class='righted'>$rowload[stock]</td>";
+								echo "<td class='centered'>$rowload[location]</td>";
+								echo '<td align="center">
+											<a href="" class="link-opt deletevariant" onclick="deletevariant('.$rowload["id_item"].');"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+										</td>						
+								';
+								echo "</tr>";
+							}
+						}
+					}
+					
+					
+					?>
+					</tbody>
 				</table>			
 			</div>				
 		</div>
@@ -239,7 +268,7 @@
 				</li>	
 				<li class="centered">
 					<input type="hidden" name="id_product_saved" id="id_product_saved" class="id_product_saved" value="">
-					<button class="button" onclick="gototab2();">BACK</button>
+					<button class="button btn-gototab2" onclick="">BACK</button>
 					<input type="submit" name="upload-pic" id="upload-pic" value="Upload">
 				</li>
 			</ul>
@@ -356,6 +385,20 @@ $(function(){
 });
 </script>
 <script>
+function deletevariant(iditem){
+	$.ajax({
+		url: "../modules/ajaxdeletevariant.php",
+		type: "post",
+		data: values,
+		dataType: "json",
+		success: function (){  		
+			loaddatavariant();			
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+		   console.log(textStatus, errorThrown);
+		}
+	});	
+}
 function adddatavariant(){
 	var values = $("#addvariant").serialize();	
 	$.ajax({

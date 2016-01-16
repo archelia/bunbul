@@ -17,7 +17,7 @@ if($resload){
 		echo "<td class='righted'>$rowload[stock]</td>";
 		echo "<td class='centered'>$rowload[location]</td>";
 		echo '<td align="center">
-					<a href="deletion.php?kode='.$rowload["id_item"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+					<a href="" class="link-opt deletevariant"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 				</td>						
 		';
 		echo "</tr>";
