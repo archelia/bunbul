@@ -7,6 +7,10 @@
     src: url("../fonts/font2.woff") format('woff');
 }
 @font-face {
+    font-family: "perpetua";
+    src: url("../fonts/Perpetua-Titling-MT.ttf") format('truetype');
+}
+@font-face {
     font-family: "OpenSans-CondLight";
     src: url("../fonts/OpenSans-CondLight.ttf") format('truetype');
 }

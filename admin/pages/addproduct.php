@@ -37,9 +37,9 @@
 		<div class="box white-box tabproduct-box">		
 			<nav>
 				<ul>
-					<li><a href="#addproduct" class="link-addproduct active">Add Product</a></li>
-					<li><a href="#addvariant" class="link-addvariant">Add Variant</a></li>
-					<li><a href="#addpicture" class="link-addpicture">Add Picture</a></li>
+					<li><a href="<?php echo ((isset($action)?"javascript:gototab1();":"")); ?>" class="link-addproduct active">Add Product</a></li>
+					<li><a href="<?php echo ((isset($action)?"javascript:gototab2();":"")); ?>" class="link-addvariant">Add Variant</a></li>
+					<li><a href="<?php echo ((isset($action)?"javascript:gototab3();":"")); ?>" class="link-addpicture">Add Picture</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -98,7 +98,7 @@
 						</li>					
 						<li>
 							<label for="productprice">Product Price<em>*</em></label>
-							<input type="number" name="productprice" id="productprice" class="required" maxlength="10" placeholder="ex : 5000000" min="1" max="9999999" value="<?php if(isset($action)) echo $row['product_price']; ?>">
+							<input type="number" name="productprice" id="productprice" class="required" maxlength="10" placeholder="ex : 5000000" min="10000" max="9999999" value="<?php if(isset($action)) echo $row['product_price']; ?>">
 							<label for="productprice" class="error">This is a required field.</label>
 						</li>					
 						<li>
@@ -150,8 +150,7 @@
 					</li>
 					<li>
 						<label for="productcolor">Color<em>*</em></label>
-						<select name="productcolor" id="productcolor">
-						
+						<select name="productcolor" id="productcolor">					
 						<?php
 						$result=mysql_query("SELECT * FROM color WHERE active='1' ORDER BY color_name DESC");
 						while($row=mysql_fetch_array($result)){
@@ -163,7 +162,17 @@
 					</li>
 					<li>
 						<label for="productsize">Size<em>*</em></label>
-						<select name="productsize" id="productsize"></select>
+						<select name="productsize" id="productsize">
+						<?php
+						if(isset($action)){						
+							$querysize="SELECT * FROM size WHERE active='1' AND id_category='$idcat' ORDER BY size_name ASC";
+							$result=mysql_query($querysize);
+							while($row=mysql_fetch_array($result)){
+								echo '<option value="'.$row['id_size'].'">'.$row['size_name'].'</option>';
+							}
+						}
+						?>					
+						</select>
 						<label for="producttype" class="error">This is a required field.</label>
 					</li>
 					<li>
@@ -177,9 +186,9 @@
 						<label for="location" class="error">This is a required field.</label>
 					</li>
 					<li class="centered">
-						<input type="hidden" name="id_product_saved" id="id_product_saved" class="id_product_saved">
+						<input type="hidden" name="id_product_saved" id="id_product_saved" class="id_product_saved" value="<?php if(isset($action)){ echo $id;} ?>">
 						<input type="submit" name="submit" id="submit" value="CREATE">
-						<button name="button-next" id="button-next" class="button button-next" >NEXT</button>
+						<button type="button" name="button-next" id="button-next" class="button button-next" >NEXT</button>
 					</li>
 				</ul>
 				</form>
@@ -208,13 +217,13 @@
 					<tbody id="ajax-load-variant">
 					<?php
 					if(isset($action)){
-						$resload = mysql_query("
-							SELECT i.*, c.color_name, s.size_name 
+						$queryload = "SELECT i.*, c.color_name, s.size_name 
 							FROM item i, color c, size s 
 							WHERE i.id_color = c.id_color 
 							AND i.id_size = s.id_size 
 							AND id_product='$id' 
-							ORDER BY color_name ASC ");
+							ORDER BY color_name ASC, size_name ASC ";
+						$resload = mysql_query($queryload);
 						if($resload){
 							while($rowload = mysql_fetch_array($resload)){
 								echo "<tr>";
@@ -224,15 +233,18 @@
 								echo "<td class='righted'>$rowload[stock]</td>";
 								echo "<td class='centered'>$rowload[location]</td>";
 								echo '<td align="center">
-											<a href="" class="link-opt deletevariant" onclick="deletevariant('.$rowload["id_item"].');"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+											<a href="javascript:deletevariant('.$rowload["id_item"].');" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 										</td>						
 								';
 								echo "</tr>";
 							}
+							if(mysql_num_rows($resload)<1){
+								echo "<tr>";
+								echo "<td colspan='6' align='center'>There's no item to display.</td>";
+								echo "</tr>";
+							}
 						}
-					}
-					
-					
+					}			
 					?>
 					</tbody>
 				</table>			
@@ -249,26 +261,58 @@
 				<li class="centered">
 					<label for="file1" class="instruction">Click on the picture to add files.</label>
 					<label class="file-wrapper">
-						<img id="imgpreview1" name="imgpreview1"/>
+						<img id="imgpreview1" name="imgpreview1" 
+						<?php
+							if(isset($action)){
+								$filename ="../../source/placeholder/".$id."-1.jpg";
+								if(file_exists($filename)){
+									echo 'src="'.$filename.'"';
+								}
+							}
+						?>/>
 						<input type="file" id="file1" name="file1" class="" accept="image/*" onchange="PreviewImage(file1,imgpreview1);">
 					</label>						
 					<label for="file1" class="error">This is a required field.</label>
 					<label class="file-wrapper">
-						<img id="imgpreview2" name="imgpreview2"/>
+						<img id="imgpreview2" name="imgpreview2"
+						<?php
+							if(isset($action)){
+								$filename ="../../source/placeholder/".$id."-2.jpg";
+								if(file_exists($filename)){
+									echo 'src="'.$filename.'"';
+								}
+							}
+						?>/>
 						<input type="file" id="file2" name="file2" class="" accept="image/*" onchange="PreviewImage(file2,imgpreview2);">
 					</label>						
 					<label class="file-wrapper">
-						<img id="imgpreview3" name="imgpreview3"/>
+						<img id="imgpreview3" name="imgpreview3" 
+						<?php
+							if(isset($action)){
+								$filename ="../../source/placeholder/".$id."-3.jpg";
+								if(file_exists($filename)){
+									echo 'src="'.$filename.'"';
+								}
+							}
+						?>/>
 						<input type="file" id="file3" name="file3" class="" accept="image/*" onchange="PreviewImage(file3,imgpreview3);">
 					</label>
 					<label class="file-wrapper">
-						<img id="imgpreview4" name="imgpreview4"/>
+						<img id="imgpreview4" name="imgpreview4"
+						<?php
+							if(isset($action)){
+								$filename ="../../source/placeholder/".$id."-4.jpg";
+								if(file_exists($filename)){
+									echo 'src="'.$filename.'"';
+								}
+							}
+						?>/>
 						<input type="file" id="file4" name="file4" class="" accept="image/*" onchange="PreviewImage(file4,imgpreview4);">
 					</label>
 				</li>	
 				<li class="centered">
-					<input type="hidden" name="id_product_saved" id="id_product_saved" class="id_product_saved" value="">
-					<button class="button btn-gototab2" onclick="">BACK</button>
+					<input type="hidden" name="id_product_saved" id="id_product_saved" class="id_product_saved" value="<?php if(isset($action)){ echo $id;} ?>">
+					<a href="javascript:gototab2();" class="button">BACK</a>
 					<input type="submit" name="upload-pic" id="upload-pic" value="Upload">
 				</li>
 			</ul>
@@ -389,10 +433,10 @@ function deletevariant(iditem){
 	$.ajax({
 		url: "../modules/ajaxdeletevariant.php",
 		type: "post",
-		data: values,
-		dataType: "json",
-		success: function (){  		
-			loaddatavariant();			
+		data: {iditem: iditem },
+		success: function (response){  
+			loaddatavariant();	
+			
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
 		   console.log(textStatus, errorThrown);
@@ -457,6 +501,7 @@ function loadproductsize(idcat){
 $(function(){
 	gototab1();
 	$("#addvariant").submit(function(e){
+		$("#message2").hide();
 		e.preventDefault();
 		if($("#productsku").val() == ""){
 			$("#productsku").removeClass("valid");

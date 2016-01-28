@@ -54,14 +54,13 @@
 			$result = mysql_query($sqlp);
 			while ($row=mysql_fetch_array($result))
 			{
-				echo '<div class="product-block">';	
-				
-				echo '<div class="product-pic">';
+				echo '<div class="gallery-block">';					
+				echo '<div class="gallery-pic"><div class="pic-content">';
 				if(file_exists("../source/gallery/".$row['id_gallery']."-1.jpg")){
 					echo '<a href="gallerydetail.php?idg='.$row['id_gallery'].'"><img src="../source/gallery/'.$row['id_gallery'].'-1.jpg" alt="picture" title="picture" class="image-preview"></a>';
 				}
 				else echo '<a href="gallerydetail.php?idg='.$row['id_gallery'].'"><img src="../source/images/default.jpg" alt="picture" title="picture" class="image-preview"></a>';
-				echo '</div>';
+				echo '</div></div>';
 				
 				echo '<div class="product-name"><a href="gallerydetail.php?idg='.$row['id_gallery'].'"><h3>'.$row['gallery_title'].'</h3></a></div>';
 						

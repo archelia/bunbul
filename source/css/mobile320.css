@@ -1,0 +1,17 @@
+.mainslide {
+    height: 240px;
+}
+.product-pic img, .gallery-pic img {
+    width: auto;
+	margin: auto;
+    height: 250px;
+	max-width: 100%;
+}
+.product-images ul li a {
+    width: 55px;
+    height: 50px;
+}
+
+.picture-box .picture {
+    height: 320px;
+}

@@ -31,12 +31,11 @@
 				<ul>
 					<?php 
 					$i = 1;					
-					for($i =1; $i<=4; $i++){
+					for($i = 1; $i <= 4; $i++){
 						$filename = "../source/placeholder/".$row['id_product']."-".$i.".jpg";
 						if(file_exists($filename)){
 							echo '<li class="img-thumb"><a href=""><img src="'.$filename.'" alt="picture" title="picture"></a></li>';
 						}
-						$i++;
 					}
 					?>				
 				</ul>

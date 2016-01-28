@@ -1,0 +1,39 @@
+.mainslide {
+    height: 380px;
+}
+
+/*===  PAGES ===*/
+
+.page-detail .right {
+    display: none;
+}
+.page-detail .left{
+	float: none;
+	width: 100%;
+	margin-right: 0;
+}
+
+/*=== PRODUCT PAGE ===*/
+
+.filter-box {
+	width: 45%;
+}
+.product-block, .gallery-block {
+    width: 48%;
+	margin-right: 4%;
+}
+.product-block:nth-child(3n), .gallery-block:nth-child(3n) {
+    margin-right: 4%;
+}
+.product-block:nth-child(2n), .gallery-block:nth-child(2n) {
+    margin-right: 0;
+}
+.product-pic {
+    height: 317px;
+}
+
+/*=== PRODUCT DETAIL PAGE ===*/
+
+.zoom-layer img {
+	height: auto;
+}

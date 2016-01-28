@@ -1,15 +1,9 @@
 <?php
 include "../../global/global.php";
 
-$pagecall = $_GET["pageorigin"];
-if((substr($pagecall,0,4)=="edit")||(substr($pagecall,0,4)=="list")){ 
-	$tabel = substr($pagecall, 4);
-}
-else {
-	$tabel = substr($pagecall, 3);
-}
+$tabel = "item";
 $fieldid = "id_" . $tabel;
-$id = $_GET['id'];
+$id = $_POST['iditem'];
 
 $query = "DELETE FROM ".$tabel." ";
 $query .= "WHERE  ". $fieldid. " =' ". $id . "'";
