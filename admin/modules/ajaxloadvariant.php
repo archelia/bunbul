@@ -11,6 +11,9 @@ $resload = mysql_query("
 if($resload){
 	while($rowload = mysql_fetch_array($resload)){
 		echo "<tr>";
+		echo '<td align="center">
+				<a href="javascript:editvariant('.$rowload["id_item"].')" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+				</td>';
 		echo "<td>$rowload[sku]</td>";
 		echo "<td class='centered'>$rowload[color_name]</td>";
 		echo "<td class='centered'>$rowload[size_name]</td>";

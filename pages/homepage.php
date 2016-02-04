@@ -9,27 +9,17 @@
 	<div class="mainslide">
 		<div class="banner-block">
 			<div class="pic-block">
-				<img src="../source/banner/banner2.jpg" alt="">
+				<a href="catalog.php?cat=tshirt"><img src="../source/banner/banner2.jpg" alt=""></a>
 			</div>
 		</div>
 		<div class="banner-block">
 			<div class="pic-block">
-				<img src="../source/banner/banner3.jpg" alt="">
+				<a href="catalog.php?cat=shoes"><img src="../source/banner/banner3.jpg" alt=""></a>
 			</div>
 		</div>
-		<div class="banner-block">
-			<?php
-			/*
-			<div class="word-block">
-				<h3></h3>
-				<h3>Extra Comfortable</h3>
-				<h3>Reasonable Price</h3>
-				<a href="catalog.php" class="button">See More</a>
-			</div>
-			*/
-			?>			
+		<div class="banner-block">		
 			<div class="pic-block">
-				<img src="../source/banner/banner1.jpg" alt="">
+				<a href=""><img src="../source/banner/banner1.jpg" alt=""></a>
 			</div>
 		</div>	
 	</div>

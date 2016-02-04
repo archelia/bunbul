@@ -108,7 +108,7 @@ switch($pagecall){
 	<div class="filter-box add-new">		
 		<a href="<?php echo $addnewpage; ?>" class="button add-button">Add New</a>
 	</div>
-	<form action='<?php echo $pagecall;?>.php' method='POST' name="sorting" id="sorting">
+	<form action='<?php echo $pagecall;?>.php<?php if(isset($_GET['discard']))echo "?discard"; ?>' method='POST' name="sorting" id="sorting">
 		<div class="filter-box sorting">		
 			<select name='sortingchoice' id='sortingchoice'>
 				<option value='all' selected>By Date Created</option>

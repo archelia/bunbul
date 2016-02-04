@@ -12,9 +12,9 @@ $fieldid = "id_" . $tabel;
 $id = $_GET['id'];
 
 $query = "UPDATE ".$tabel." ";
-$query .= "SET active=0 ";
+$query .= "SET active=1 ";
 $query .= "WHERE  ". $fieldid. " =' ". $id . "'";
 $result = mysql_query($query);
 
-header("Location: ".$pagecall.".php");
+header("Location: ".$pagecall.".php?discard");
 ?>

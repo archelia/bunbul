@@ -166,6 +166,7 @@ textarea.error {
 .addvariant-box .data-table h3{
 	margin-bottom: 20px;
 }
+
 /*=================== LIST ======================*/
 
 .list{
@@ -220,6 +221,10 @@ textarea.error {
 .data-table{
 	margin-bottom: 10px;
 }
+.data-table tr td a,
+.data-table tr td a:visited{
+	color: #44494d;
+}
 .data-show{
 	margin-bottom: 15px;	
 	text-align: center;
@@ -229,6 +234,16 @@ textarea.error {
 	line-height: 20px;
 	color: #000000;
 	font-style: italic;
+}
+.show-discard{
+	text-align: right;
+}
+.show-discard a{
+	display: block;
+	color: #999;
+}
+.show-discard a:hover{
+	color: #000;
 }
 .pagination{
 	text-align: center;

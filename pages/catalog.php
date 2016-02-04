@@ -81,7 +81,20 @@
 				
 				echo '<div class="product-name"><a href="productdetail.php?pid='.$row['id_product'].'"><h3>'.$row['product_name'].'</h3></a></div>';
 						
-				echo '<div class="product-price">Rp. '.number_format($row['product_price'],0,',','.').'</div>';
+				// product price
+				echo '<div class="product-price">';				
+				if($row['product_discount_active']=='1'){
+					$price = $row["product_price"] - ($row['product_discount']/100*$row["product_price"]);
+					echo '<span class="before">
+							Rp. '.number_format($row["product_price"],0,",",".").
+						'</span>';
+				}
+				else{
+					$price = $row["product_price"];
+				}
+				echo '<span>Rp. '.number_format($price,0,",",".").'</span>'; 
+				echo '</div>';
+				
 				//echo '<div class="product-category">'.$row['category_name'].'</div>';	
 				if ($row['product_discount_active']=='1'){
 					echo '<div class="product-discount"><span class="prod-dc">Sale</span></div>';

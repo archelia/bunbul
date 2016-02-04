@@ -169,6 +169,9 @@ footer .socmed ul li a span.insta{
 .pic-block{
 	height: 700px;
 }
+.pic-block a{
+	display: block;
+}
 .pic-block img{
 	display: block;
 	width: auto;
@@ -313,7 +316,15 @@ footer .socmed ul li a span.insta{
 	color: #B3ADA9;
 	font-size: 13px;
 	line-height: 24px;
-
+}
+.product-price span{
+	display: inline-block;
+	color: #A2CC01;
+}
+.product-price span.before{
+	color: #B3ADA9;
+	margin-right: 10px;
+	text-decoration: line-through;
 }
 
 /*=================== PRODUCT DETAIL PAGE =======================*/

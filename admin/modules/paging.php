@@ -13,8 +13,8 @@ $file="../pages/".$pagecall.".php";
 		if($halaman>1)
 		{
 			$previous=$halaman-1;
-			echo "<li><a href='$file?halaman=1'>&lt;&lt;</a></li>";
-			echo "<li><a href='$file?halaman=$previous'>&lt;</a></li>";
+			echo "<li><a href='$file?halaman=1".((isset($_GET['discard']))?'&discard':'')."'>&lt;&lt;</a></li>";
+			echo "<li><a href='$file?halaman=$previous".((isset($_GET['discard']))?'&discard':'')."'>&lt;</a></li>";
 		}
 		else
 		{
@@ -29,7 +29,7 @@ $file="../pages/".$pagecall.".php";
 				for ($i=$halaman-3; $i<$halaman; $i++)
 				{
 					if ($i<1) continue;					
-					echo "<li><a href=$file?halaman=$i>$i</a></li>";
+					echo "<li><a href=$file?halaman=$i".((isset($_GET['discard']))?'&discard':'').">$i</a></li>";
 				}
 			}
 				
@@ -40,19 +40,19 @@ $file="../pages/".$pagecall.".php";
 		{
 			if ($i > $jmlhalaman)
 			break;
-			echo "<li><a href=$file?halaman=$i>$i</a></li>";
+			echo "<li><a href=$file?halaman=$i".((isset($_GET['discard']))?'&discard':'').">$i</a></li>";
 		}
 				
 		// angka akhir
 		echo ($halaman+2<$jmlhalaman ? " ...  
-          <li><b><a href=$file?halaman=$jmlhalaman>$jmlhalaman</a></b></li> " : "");
+          <li><b><a href=$file?halaman=$jmlhalaman".((isset($_GET['discard']))?'&discard':'').">$jmlhalaman</a></b></li> " : "");
 	
 		// link ke halaman selanjutnya
 		if ($halaman<$jmlhalaman)
 		{
 			$next=$halaman+1;
-			echo "<li><a href=$file?halaman=$next>&gt;</a></li>";
-			echo "<li><a href=$file?halaman=$jmlhalaman>&gt;&gt;</a></li>";
+			echo "<li><a href=$file?halaman=$next".((isset($_GET['discard']))?'&discard':'').">&gt;</a></li>";
+			echo "<li><a href=$file?halaman=$jmlhalaman".((isset($_GET['discard']))?'&discard':'').">&gt;&gt;</a></li>";
 		}
 		else{
 			echo "<li><b>&gt;</b></li>";

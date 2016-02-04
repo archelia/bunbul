@@ -57,7 +57,15 @@
 					
 					// QUERY LISTING
 					$sql = "SELECT s.*, c.category_name FROM subcategory s, category c ";
-					$sql .= "WHERE s.active=1 ";
+					
+					// if show deleted data
+					if(isset($_GET['discard'])){
+						$sql .= "WHERE s.active=0 ";
+					}
+					else{
+						$sql .= "WHERE s.active=1 ";
+					}
+					
 					$sql .= "AND s.id_category=c.id_category ";
 					$sql .= "AND c.id_category='$kode' ";
 									
@@ -90,11 +98,22 @@
 								</td>						
 						';
 						echo '	<td align="left">'.$row['subcategory_name'].'</td>';
-						echo '	<td align="left">'.$row['subcategory_desc'].'</td>';														
-						echo '	<td align="center">
+						echo '	<td align="left">'.$row['subcategory_desc'].'</td>';
+
+						// delete and reactivate button
+						if(isset($_GET['discard'])){
+							echo '	<td align="center">
+									<a href="activate.php?id='.$row["id_subcategory"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/greenbutton.png" alt="Activate" title="Activate"></a>
+								</td>						
+							';
+						}
+						else{
+							echo '	<td align="center">
 									<a href="deactive.php?id='.$row["id_subcategory"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
-						';
+							';
+						}
+												
 						echo '</tr>';
 						
 						// $no for pagination
@@ -121,6 +140,18 @@
 			// pagination
 			include ("../modules/paging.php");
 		?>	
+		
+		<?php
+		// show deleted data
+		if($_SESSION['usertype']=="1"){						
+		?>		
+		<div class="show-discard">
+			<p><a href="<?php echo $pagecall.'.php?discard' ?>">Show Unactive <?php echo ucwords($tabel);?> </a></p>
+		</div>
+		<?php
+		}
+		?>
+		
 		<div class="go-back">
 			<a href="listcategory.php" class="button back-button">Back to Category List</a>
 		</div>

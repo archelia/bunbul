@@ -50,7 +50,14 @@
 					
 					// QUERY LISTING
 					$sql = "SELECT * FROM page ";
-					$sql .= "WHERE active=1 ";
+					
+					// if show deleted data
+					if(isset($_GET['discard'])){
+						$sql .= "WHERE active=0 ";
+					}
+					else{
+						$sql .= "WHERE active=1 ";
+					}
 					
 					// if there's a search
 					if (isset($_POST['tekscari']))
@@ -82,11 +89,21 @@
 						echo '	<td align="left">'.$row['page_name'].'</td>';
 						echo '	<td align="left">'.$row['page_title'].'</td>';
 						echo '	<td align="left">'.$row['page_url'].'</td>';
-															
-						echo '	<td align="center">
+								
+						// delete and reactivate button
+						if(isset($_GET['discard'])){
+							echo '	<td align="center">
+									<a href="activate.php?id='.$row["id_page"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/greenbutton.png" alt="Activate" title="Activate"></a>
+								</td>						
+							';
+						}
+						else{
+							echo '	<td align="center">
 									<a href="deactive.php?id='.$row["id_page"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
-						';
+							';
+						}
+						
 						echo '</tr>';
 						
 						// $no for pagination
@@ -112,7 +129,18 @@
 		<?php								   
 			// pagination
 			include ("../modules/paging.php");
+		?>	
+		
+		<?php
+		// show deleted data
+		if($_SESSION['usertype']=="1"){						
 		?>		
+		<div class="show-discard">
+			<p><a href="<?php echo $pagecall.'.php?discard' ?>">Show Unactive <?php echo ucwords($tabel);?> </a></p>
+		</div>
+		<?php
+		}
+		?>
 	</div>
 	<div class="clear"></div>
 </div>

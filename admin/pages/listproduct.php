@@ -54,7 +54,15 @@
 					
 					// QUERY LISTING
 					$sql = "SELECT p.*, c.category_name FROM product p, category c ";
-					$sql .= "WHERE p.active=1 ";
+					
+					// if show deleted data
+					if(isset($_GET['discard'])){
+						$sql .= "WHERE p.active=0 ";
+					}
+					else{
+						$sql .= "WHERE p.active=1 ";
+					}
+					
 					$sql .= "AND p.id_category = c.id_category ";			
 										
 					// if there's a search
@@ -95,11 +103,21 @@
 						
 						echo '	<td align="right">Rp. '.number_format($row['product_price'],0,',','.').'</td>';
 						echo '	<td align="center"><span class="prod-dc'.(($row['product_discount_active']=='1')?' ON':'').'">'.$row['product_discount'].'%'.'</span></td>';
-															
-						echo '	<td align="center">
-									<a href="deactive.php?id='.$row["id_product"].'&pagecall='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+						
+						// delete and reactivate button
+						if(isset($_GET['discard'])){
+								echo '	<td align="center">
+									<a href="activate.php?id='.$row["id_product"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/greenbutton.png" alt="Activate" title="Activate"></a>
 								</td>						
-						';
+							';
+						}
+						else{
+							echo '	<td align="center">
+									<a href="deactive.php?id='.$row["id_product"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+								</td>						
+							';
+						}
+						
 						echo '</tr>';
 						
 						// $no for pagination
@@ -123,9 +141,21 @@
 			?>			
 		</div>
 		<?php								   
-			// pagination
-			include ("../modules/paging.php");
+		// pagination
+		include ("../modules/paging.php");
+		?>	
+		
+		<?php
+		// show deleted data
+		if($_SESSION['usertype']=="1"){						
 		?>		
+		<div class="show-discard">
+			<p><a href="<?php echo $pagecall.'.php?discard' ?>">Show Unactive <?php echo ucwords($tabel);?> </a></p>
+		</div>
+		<?php
+		}
+		?>
+		
 	</div>
 	<div class="clear"></div>
 </div>

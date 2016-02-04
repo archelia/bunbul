@@ -64,9 +64,18 @@
 								$result = mysql_query($query);
 								$i=0;
 								while($rowx=mysql_fetch_array($result)){
-									echo '<option value="'.$rowx['id_category'].'" '.(($rowx['id_category']==$row['id_category'])?'selected="selected"':"").'>'.$rowx['category_name'].'</option>';
-									if($i==0){$idcat=$row['id_category'];}
-									$i++;
+									echo '<option value="'.$rowx['id_category'].'" ';
+									if(isset($action)){
+										if($rowx['id_category']==$row['id_category']){
+											echo 'selected="selected"';
+											$idcat = $row['id_category'];
+										}
+									}else{
+										if($i==0){$idcat=$rowx['id_category'];}
+										$i++;	
+									}
+									echo '>'.$rowx['category_name'];
+									echo '</option>';								
 								}
 								?>							
 							</select>
@@ -85,8 +94,15 @@
 							<select name="idsubcategory" id="idsubcategory">
 							<?php 
 							while($rowx=mysql_fetch_array($result)){
-									echo '<option value="'.$rowx['id_subcategory'].'"'.(($rowx['id_subcategory']==$row['id_subcategory'])?'selected="selected"':"").'>'.$rowx['subcategory_name'].'</option>';
-								}
+									echo '<option value="'.$rowx['id_subcategory'].'" ';
+									if(isset($action)){
+										if($rowx['id_subcategory']==$row['id_subcategory']){
+											echo 'selected="selected"';
+										}
+									}
+									echo '>'.$rowx['subcategory_name'];
+									echo '</option>';
+							}
 							?>
 							</select>
 							<label for="producttype" class="error">This is a required field.</label>
@@ -136,11 +152,11 @@
 			</div>					
 		</div>	
 		<div class="box white-box addvariant-box">
-			<h3>Add Variant for <span id="name_prod_saved"></span></h3>		
+			<h3>Add Variant for <span id="name_prod_saved"><?php if(isset($action)){ echo $row['product_name'];} ?></span></h3>		
 			<div class="message" id="message2">
 				<p>&nbsp;</p>
 			</div>			
-			<div class="form-container">
+			<div class="form-container form-add-variant">
 				<form action="../module/addvariant.php" name="addvariant" id="addvariant" method="POST">
 				<ul>
 					<li>
@@ -193,10 +209,15 @@
 				</ul>
 				</form>
 			</div>
+			<div class="form-container form-edit-variant">		
+				<form action="../module/addvariant.php" name="edit-variant" id="edit-variant" method="POST">		
+				</form>
+			</div>
 			<div class="data-table">
 				<h3>Variant List</h3>		
 				<table border="1" cellpadding="0" cellspacing="0" width="100%" id="variant-table">
 					<colgroup>
+						<col width="5%">
 						<col width="">
 						<col width="20%">
 						<col width="20%">
@@ -206,6 +227,7 @@
 					</colgroup>
 					<thead>
 						<tr>
+							<th>&nbsp;</th>
 							<th>Sku</th>
 							<th>Color</th>
 							<th>Size</th>
@@ -227,6 +249,9 @@
 						if($resload){
 							while($rowload = mysql_fetch_array($resload)){
 								echo "<tr>";
+								echo '<td align="center">
+									<a href="javascript:editvariant('.$rowload["id_item"].')" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									</td>';
 								echo "<td>$rowload[sku]</td>";
 								echo "<td class='centered'>$rowload[color_name]</td>";
 								echo "<td class='centered'>$rowload[size_name]</td>";
@@ -240,14 +265,14 @@
 							}
 							if(mysql_num_rows($resload)<1){
 								echo "<tr>";
-								echo "<td colspan='6' align='center'>There's no item to display.</td>";
+								echo "<td colspan='10' align='center'>There's no item to display.</td>";
 								echo "</tr>";
 							}
 						}
 					}			
 					?>
 					</tbody>
-				</table>			
+				</table>	
 			</div>				
 		</div>
 		<div class="box white-box addpicture-box">
@@ -429,6 +454,28 @@ $(function(){
 });
 </script>
 <script>
+function canceledit(){
+	$(".form-edit-variant").hide();
+	$(".form-add-variant").show();
+}
+function editvariant(iditem){
+	$.ajax({
+		url: "../modules/ajaxloadvariantedit.php",
+		type: "post",
+		data: {iditem: iditem },
+		success: function (response){ 
+			$(".form-edit-variant form")
+				.empty()
+				.append(response);	
+			$(".form-add-variant").hide();
+			$(".form-edit-variant").show();
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+		   console.log(textStatus, errorThrown);
+		}
+	});
+	
+}
 function deletevariant(iditem){
 	$.ajax({
 		url: "../modules/ajaxdeletevariant.php",
@@ -500,8 +547,9 @@ function loadproductsize(idcat){
 }
 $(function(){
 	gototab1();
+	$(".form-edit-variant").hide();	
 	$("#addvariant").submit(function(e){
-		$("#message2").hide();
+		$("#message2").removeClass("error");
 		e.preventDefault();
 		if($("#productsku").val() == ""){
 			$("#productsku").removeClass("valid");
@@ -515,7 +563,29 @@ $(function(){
 		e.preventDefault();
 		gototab3();
 	});
-		
+	$("#edit-variant").submit(function(e){
+		e.preventDefault();
+		var values = $("#edit-variant").serialize();	
+		$.ajax({
+			url: "../modules/ajaxeditvariant.php",
+			type: "post",
+			data: values,
+			dataType: "json",
+			success: function (response){  		
+				if(response[0]==0){				
+					$("#message2").addClass("error");
+					$("#message2 p").text(response[1]);
+					$('html, body').animate({
+						scrollTop: ($(".addproduct").offset()).top
+					}, 500);
+				}	
+				loaddatavariant();			
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+			   console.log(textStatus, errorThrown);
+			}
+		});	
+	});
 });
 </script>
 <script type="text/javascript">
