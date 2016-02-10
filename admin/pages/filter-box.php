@@ -102,6 +102,16 @@ switch($pagecall){
 		array("Customer Name Z-A","customer_name:DESC")
 	);
 	break;	
+	case "listbanner" :
+	// variables needed :
+	$addnewpage = "addbanner.php";
+	$filteropt = array
+	(
+		array("Banner Title A-Z","banner_title:ASC"),
+		array("Banner Title Z-A","banner_title:DESC")
+	);
+	break;	
+	
 }	
 ?>
 <div class="form-tools">

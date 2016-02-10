@@ -53,6 +53,7 @@
 						<li><a href="../pages/listsize.php">Manage Size</a></li>
 						<li><a href="../pages/listcolor.php">Manage Color</a></li>
 						<li><a href="../pages/listcategory.php">Manage Category</a></li>
+						<li><a href="../pages/listbanner.php">Manage Banner</a></li>
 					</ul>
 				</li>
 				<li>

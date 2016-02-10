@@ -40,6 +40,9 @@ switch($pagecall){
 		break;	
 	case "addgallery" :
 		include ($dest."addgallery.php");
+		break;	
+	case "addbanner" :
+		include ($dest."addbanner.php");
 		break;				
 }
 ?>

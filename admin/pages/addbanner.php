@@ -58,21 +58,20 @@
 								<input type="file" id="file1" name="file1" class="" accept="image/*" onchange="PreviewImage(file1,imgpreview1);" >
 							</label>						
 							<label for="file1" class="error">This is a required field.</label>
+							<label class="instruction">Please input images with 845 x 700 resolution.</label>
 						</li>	
 						<li>
-							<label for="bannertitle">banner Title<em>*</em></label>
-							<input type="text" name="bannertitle" id="bannertitle" class="required" maxlength="80" placeholder="banner Title" value="<?php if(isset($action)) echo $row['banner_title']; ?>">
+							<label for="bannertitle">Banner Title<em>*</em></label>
+							<input type="text" name="bannertitle" id="bannertitle" class="required" maxlength="80" placeholder="Banner Title" value="<?php if(isset($action)) echo $row['banner_title']; ?>">
 							<label for="bannertitle" class="error">This is a required field.</label>
-						</li>
-						<?php /*						
+						</li>						
 						<li>
-							<label for="bannerurl">banner Url</label>
-							<input type="text" name="bannerurl" id="bannerurl" class="required disabled" maxlength="20" placeholder="" readonly>
+							<label for="bannerurl">Banner Url</label>
+							<input type="text" name="bannerurl" id="bannerurl" class="required" maxlength="20" placeholder="www.vioreshop.com" value="<?php if(isset($action)) echo $row['banner_url']; ?>">
 							<label for="bannerurl" class="error">This is a required field.</label>
 						</li>
-						*/?>
 						<li>
-							<label for="bannercontent">banner Content</label>
+							<label for="bannercontent">Banner Text</label>
 							<textarea name="bannercontent" id="bannercontent" cols="30" rows="5" placeholder="Write your banner content here. You may using html tags as well." class="ckeditor"><?php if(isset($action)) echo htmlspecialchars_decode($row['banner_description']); ?></textarea>
 							<label for="bannercontent" class="error">This is a required field.</label>
 						</li>						

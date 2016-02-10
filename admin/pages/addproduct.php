@@ -284,7 +284,7 @@
 			<form action="../modules/uploadpic.php" name="addpictureform" id="addpictureform" method="POST" enctype="multipart/form-data">
 			<ul>
 				<li class="centered">
-					<label for="file1" class="instruction">Click on the picture to add files.</label>
+					<label class="instruction">Click on the picture to add files.</label>
 					<label class="file-wrapper">
 						<img id="imgpreview1" name="imgpreview1" 
 						<?php
@@ -334,6 +334,7 @@
 						?>/>
 						<input type="file" id="file4" name="file4" class="" accept="image/*" onchange="PreviewImage(file4,imgpreview4);">
 					</label>
+					<label class="instruction">Please input images with 762 x 1040 resolution.</label>
 				</li>	
 				<li class="centered">
 					<input type="hidden" name="id_product_saved" id="id_product_saved" class="id_product_saved" value="<?php if(isset($action)){ echo $id;} ?>">
