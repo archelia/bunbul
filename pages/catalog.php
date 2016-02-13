@@ -36,16 +36,13 @@
 			//if there is category request
 			if (isset($_GET['cat']))
 			{
-				switch($_GET['cat']){
-					case "tshirt" :
-						$cat_id="2";
-						break;
-					case "shoes" :
-						$cat_id="1";
-						break;
-						
-				}
-				$sql .= "AND p.id_category = '$cat_id' ";						
+				//get category id
+				$sqcari = "SELECT id_category FROM category WHERE category_name='$_GET[cat]'";
+				$qcari = mysql_query($sqcari);
+				if($qcari){
+					$rowcat = mysql_fetch_array($qcari);			
+					$sql .= "AND p.id_category = '$rowcat[id_category]' ";	
+				}									
 			}	
 			
 			// if there's a search

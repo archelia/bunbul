@@ -23,11 +23,14 @@
 			$id = $_POST['id'];
 			$sql = "UPDATE product ";
 			$sql .= "SET product_name = '$_POST[productname]' ";
+			$sql .= ",product_model = '$_POST[productmodel]' ";
 			$sql .= ",product_description = '$description' ";
 			$sql .= ",id_category = '$_POST[idcategory]' ";
 			$sql .= ",id_subcategory = '$_POST[idsubcategory]' ";
+			$sql .= ",id_brand = '$_POST[idbrand]' ";
 			$sql .= ",product_price = '$_POST[productprice]' ";
 			$sql .= ",product_dimension = '$_POST[productdimension]' ";
+			$sql .= ",product_discount ='$_POST[discount]' ";
 			$sql .= ",product_discount_active ='$diskon' ";
 			$sql .= ", date_edited=now() ";
 			$sql .= ", user_edit='$_SESSION[viouser]' ";
@@ -36,7 +39,7 @@
 		else{				
 			// posting results
 			$sql = "INSERT INTO product ";
-			$sql .= "VALUES ('', '$_POST[idcategory]', '$_POST[idsubcategory]', '$_POST[productname]','$description', '$_POST[productdimension]','$_POST[productprice]','$_POST[discount]','$diskon', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
+			$sql .= "VALUES ('', '$_POST[idcategory]', '$_POST[idsubcategory]', '$_POST[productname]','$_POST[productmodel]','$description', '$_POST[productdimension]','$_POST[productprice]','$_POST[discount]','$diskon', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
 		}	
 
 		$qr = mysql_query($sql);

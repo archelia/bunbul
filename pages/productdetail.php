@@ -3,9 +3,10 @@
 	include "header.php";	
 	$pagecall = "pdp";
 	if(!isset($_GET['pid'])){header("location: 404.php");}
-	$sql = "SELECT p.*, c.category_name FROM product p, category c ";
+	$sql = "SELECT p.*, c.category_name, b.brand_name FROM product p, category c, brand b ";
 	$sql .= "WHERE p.active=1 ";
 	$sql .= "AND p.id_category = c.id_category ";	
+	$sql .= "AND p.id_brand = b.id_brand ";	
 	$sql .= "AND p.id_product='$_GET[pid]'";
 	
 	$result = mysql_query($sql);
@@ -14,6 +15,14 @@
 <div class="container">
 	<div class="front-content pdp">	
 		<h1>PRODUCT DETAIL</h1>
+		<div class="breadcrumb">
+			<ul>
+				<li><a href="homepage.php">Home</a></li>
+				<li><a href="catalog.php">Catalog</a></li>
+				<li><a href="catalog.php?cat=<?php echo $row['category_name']; ?>"><?php echo $row['category_name']; ?></a></li>
+				<li><b><?php echo $row['product_name']; ?></b></li>
+			</ul>
+		</div>
 		<div class="col2 picture-box">
 			<div class="picture main-image">
 				<?php
@@ -64,20 +73,28 @@
 				</span>
 			</div>
 			<div class="product-small-block">
+				<h6>BRAND</h6>
+				<?php echo $row['brand_name']; ?>
+			</div>
+			<div class="product-small-block">
 				<h6>PRODUCT DIMENSION</h6>
 				<?php echo $row['product_dimension']; ?>
 			</div>						
 				<?php
 				//searching available colors
-				$sqlload = "SELECT distinct i.id_color, c.color_name, c.html_code FROM item i, color c 
+				$sqlload = "SELECT distinct i.id_color, c.color_name, c.html_code, i.id_product
+							FROM item i, color c, product p
 							WHERE i.id_color = c.id_color 
-							AND id_product='$row[id_product]'";
+							AND i.id_product = p.id_product 
+							AND product_model='$row[product_model]' ";
 				$queryload = mysql_query($sqlload);	
 				if(mysql_num_rows($queryload)>0){
 					echo "<div class='product-small-block'>";
 					echo "<h6>AVAILABLE COLORS</h6>";
 					while($rowld=mysql_fetch_array($queryload)){
+						echo '<a href="productdetail.php?pid='.$rowld['id_product'].'">';
 						echo "<span class='size' style='background: #".$rowld['html_code'].";'>".$rowld['color_name']."</span>";
+						echo '</a>';
 					}
 					echo "</div>";
 				}		
@@ -85,6 +102,7 @@
 				//searching available size
 				$sqlload = "SELECT distinct s.id_size, s.size_name FROM item i, size s 
 							WHERE i.id_size = s.id_size
+							AND stock > 0 
 							AND id_product='$row[id_product]'";
 				$queryload = mysql_query($sqlload);	
 				if(mysql_num_rows($queryload)>0){

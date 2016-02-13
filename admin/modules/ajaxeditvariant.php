@@ -34,6 +34,7 @@ else
 	$sql .= ",id_color='".$_POST['productcolor']."' ";
 	$sql .= ",stock='".$_POST['productstok']."' ";
 	$sql .= ",location='".$_POST['location']."' ";
+	$sql .= ",barcode='".$_POST['barcode']."' ";
 	$sql .= ", date_edited=now() ";
 	$sql .= ", user_edit='".$_SESSION['viouser']."' ";
 	$sql .= "WHERE id_item='".$_POST['id_item_saved']."'";

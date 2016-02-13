@@ -19,6 +19,11 @@ if($resload){
 			<label for="productsku" class="error">This is a required field.</label>
 		</li>';
 	echo '<li>
+			<label for="barcode">Barcode</label>
+			<input type="text" name="barcode" id="barcode" maxlength="20" class="required" placeholder="Barcode" value="'.$rowx['barcode'].'">
+			<label for="barcode" class="error">This is a required field.</label>
+		</li>';
+	echo '<li>
 			<label for="productcolor">Color<em>*</em></label>
 			<select name="productcolor" id="productcolor">	
 			';	

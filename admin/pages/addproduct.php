@@ -57,6 +57,12 @@
 							<label for="productname" class="error">This is a required field.</label>
 						</li>
 						<li>
+							<label for="productmodel">Product Model</label>
+							<input type="text" name="productmodel" id="productmodel" maxlength="50" class="" placeholder="Product Model / Type" value="<?php if(isset($action)) echo $row['product_model']; ?>">
+							<label for="productmodel" class="error">This is a required field.</label>
+						</li>
+						
+						<li>
 							<label for="producttype">Category<em>*</em></label>
 							<select name="idcategory" id="idcategory">
 								<?php
@@ -106,7 +112,28 @@
 							?>
 							</select>
 							<label for="producttype" class="error">This is a required field.</label>
-						</li>	
+						</li>
+						<li>
+							<label for="producttype">Brand<em>*</em></label>
+							<select name="idbrand" id="idbrand">
+								<?php
+								$query = "SELECT * FROM brand WHERE active='1'";
+								$result = mysql_query($query);
+								$i=0;
+								while($rowx=mysql_fetch_array($result)){
+									echo '<option value="'.$rowx['id_brand'].'" ';
+									if(isset($action)){
+										if($rowx['id_brand']==$row['id_brand']){
+											echo 'selected="selected"';
+										}
+									}
+									echo '>'.$rowx['brand_name'];
+									echo '</option>';								
+								}
+								?>							
+							</select>
+							<label for="producttype" class="error">This is a required field.</label>
+						</li>
 						<li>
 							<label for="productdimension">Product Dimension</label>
 							<input type="text" name="productdimension" id="productdimension" class="" maxlength="50" placeholder="ex : 12 x 25 x 10 cm" value="<?php if(isset($action)) echo $row['product_dimension']; ?>">
@@ -163,6 +190,11 @@
 						<label for="productsku">Product SKU<em>*</em></label>
 						<input type="text" name="productsku" id="productsku" maxlength="256" class="required" placeholder="Stock Keeping Unit">
 						<label for="productsku" class="error">This is a required field.</label>
+					</li>
+					<li>
+						<label for="barcode">Barcode</label>
+						<input type="text" name="barcode" id="barcode" maxlength="20" class="required" placeholder="Barcode">
+						<label for="barcode" class="error">This is a required field.</label>
 					</li>
 					<li>
 						<label for="productcolor">Color<em>*</em></label>
@@ -229,8 +261,8 @@
 						<tr>
 							<th>&nbsp;</th>
 							<th>Sku</th>
-							<th>Color</th>
-							<th>Size</th>
+							<th>Barcode</th>
+							<th>Color/Size</th>
 							<th>Stock</th>
 							<th>Location</th>
 							<th>&nbsp;</th>
@@ -253,8 +285,8 @@
 									<a href="javascript:editvariant('.$rowload["id_item"].')" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 									</td>';
 								echo "<td>$rowload[sku]</td>";
-								echo "<td class='centered'>$rowload[color_name]</td>";
-								echo "<td class='centered'>$rowload[size_name]</td>";
+								echo "<td>$rowload[barcode]</td>";
+								echo "<td class='centered'>$rowload[color_name] $rowload[size_name]</td>";
 								echo "<td class='righted'>$rowload[stock]</td>";
 								echo "<td class='centered'>$rowload[location]</td>";
 								echo '<td align="center">

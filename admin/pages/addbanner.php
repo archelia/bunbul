@@ -67,7 +67,7 @@
 						</li>						
 						<li>
 							<label for="bannerurl">Banner Url</label>
-							<input type="text" name="bannerurl" id="bannerurl" class="required" maxlength="20" placeholder="www.vioreshop.com" value="<?php if(isset($action)) echo $row['banner_url']; ?>">
+							<input type="text" name="bannerurl" id="bannerurl" class="required" placeholder="www.vioreshop.com" value="<?php if(isset($action)) echo $row['banner_url']; ?>">
 							<label for="bannerurl" class="error">This is a required field.</label>
 						</li>
 						<li>

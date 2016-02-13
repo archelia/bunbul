@@ -34,8 +34,17 @@
 			<nav class="desktop">
 				<ul>
 					<li><a href="homepage.php">Home</a></li>
-					<li><a href="catalog.php?cat=tshirt">T-Shirt</a></li>
-					<li><a href="catalog.php?cat=shoes">Shoes</a></li>
+					<?php 
+					$sqcat = "SELECT c.id_category, c.category_name, COUNT(id_product) as jumlah
+							FROM product p, category c
+							WHERE c.id_category=p.id_category
+							GROUP by id_category
+							ORDER by jumlah DESC";
+					$qcat = mysql_query($sqcat." LIMIT 3");
+					while ($rowcat = mysql_fetch_array($qcat)){
+						echo '<li><a href="catalog.php?cat='.$rowcat['category_name'].'">'.$rowcat['category_name'].'</a></li>';
+					}
+					?>
 					<li><a href="gallery.php">Gallery</a></li>
 					<li><a href="page.php?page=exhibition">Exhibition</a></li>
 					<li><a href="page.php?page=about">About</a></li>
@@ -53,8 +62,12 @@
 			<nav class="mobile">
 				<ul>
 					<li><a href="homepage.php">Home</a></li>
-					<li><a href="catalog.php?cat=tshirt">T-Shirt</a></li>
-					<li><a href="catalog.php?cat=shoes">Shoes</a></li>
+					<?php
+					$qcat = mysql_query($sqcat);
+					while ($rowcat = mysql_fetch_array($qcat)){
+						echo '<li><a href="catalog.php?cat='.$rowcat['category_name'].'">'.$rowcat['category_name'].'</a></li>';
+					}
+					?>
 					<li><a href="gallery.php">Gallery</a></li>
 					<li><a href="page.php?page=exhibition">Exhibition</a></li>
 					<li><a href="page.php?page=about">About</a></li>

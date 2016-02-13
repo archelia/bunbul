@@ -186,7 +186,7 @@ footer .socmed ul li a span.insta{
 /*=================== CATALOG PAGE =======================*/
 
 .front-content h1{
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 	color: #A2CC01;
     font-weight: normal;
     letter-spacing: 0.1em;
@@ -329,6 +329,31 @@ footer .socmed ul li a span.insta{
 
 /*=================== PRODUCT DETAIL PAGE =======================*/
 
+.breadcrumb{
+	margin-bottom: 30px;
+}
+.breadcrumb ul li{
+	margin: 0;
+	margin-right: 10px;
+	display: inline-block;
+}
+.breadcrumb ul li a, b{
+	font-size: 14px;
+	line-height: 20px;
+	color: #A2CC01;
+	font-weight: normal;
+}
+.breadcrumb ul li a:after{
+	content: ">";
+	margin-left: 10px;
+	color: #A2CC01;
+}
+.breadcrumb ul li a:hover{
+	color: inherit;
+}
+.breadcrumb ul li b{
+	color: inherit;
+}
 .pdp .col2{
 	float: left;
 	width: 50%;

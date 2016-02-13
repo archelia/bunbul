@@ -7,21 +7,19 @@
 <link href='../source/css/slick-theme.css' rel='stylesheet' type='text/css'>
 <div class="container main">
 	<div class="mainslide">
-		<div class="banner-block">
-			<div class="pic-block">
-				<a href="catalog.php?cat=tshirt"><img src="../source/banner/banner2.jpg" alt=""></a>
-			</div>
-		</div>
-		<div class="banner-block">
-			<div class="pic-block">
-				<a href="catalog.php?cat=shoes"><img src="../source/banner/banner3.jpg" alt=""></a>
-			</div>
-		</div>
-		<div class="banner-block">		
-			<div class="pic-block">
-				<a href=""><img src="../source/banner/banner1.jpg" alt=""></a>
-			</div>
-		</div>	
+		<?php
+		$sbanner = "SELECT * FROM banner WHERE active=1 ORDER BY date_edited, date_created DESC ";
+		$qbanner = mysql_query($sbanner);
+		
+		while($rowb = mysql_fetch_array($qbanner)){
+			echo '<div class="banner-block">
+					<div class="pic-block">';
+			echo '<a href="'.$rowb['banner_url'].'"><img src="../source/banner/'.$rowb['id_banner'].'-1.jpg" alt="">';
+			echo '</a>';
+			echo '</div>
+				</div>';
+		}
+		?>
 	</div>
 </div>
 <?php

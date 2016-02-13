@@ -15,8 +15,8 @@ if($resload){
 				<a href="javascript:editvariant('.$rowload["id_item"].')" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 				</td>';
 		echo "<td>$rowload[sku]</td>";
-		echo "<td class='centered'>$rowload[color_name]</td>";
-		echo "<td class='centered'>$rowload[size_name]</td>";
+		echo "<td class='centered'>$rowload[barcode]</td>";
+		echo "<td class='centered'>$rowload[color_name] $rowload[size_name]</td>";
 		echo "<td class='righted'>$rowload[stock]</td>";
 		echo "<td class='centered'>$rowload[location]</td>";
 		echo '<td align="center">
