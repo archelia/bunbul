@@ -5,7 +5,28 @@
 	include "controller.php";
 ?>
 <div class="container">
-	<div class="content homepage">		
+	<div class="content homepage">	
+		<?php
+		$sql = "SELECT * FROM announcement WHERE active=1 ORDER BY date_created DESC";
+		$query = mysql_query($sql);
+		while($row=mysql_fetch_array($query)){
+			echo '
+			<div class="announce-block">
+				<p class="date">'.$row['date_created'].'</p>
+				<h3>'.$row['announcement_title'].'</h3>
+				<div class="editor">
+					<article>
+						<p>'.$row['announcement_description'].'</p>
+					</article>
+				</div>
+			</div>
+			';
+		}
+		?>
+		
+					
+				
+		
 	</div>
 	<div class="clear"></div>
 </div>

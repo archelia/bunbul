@@ -28,7 +28,7 @@ else
 	$sql = "
 		INSERT INTO item 
 		VALUES ('', '$_POST[id_product_saved]', '$_POST[productsize]', 
-		'$_POST[productcolor]', '$_POST[productsku]', '$_POST[productstok]', 
+		'$_POST[productcolor]', '$_POST[productsku]', '$_POST[barcode]', '$_POST[productstok]', 
 		'$_POST[location]', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
 	
 	$qr = mysql_query($sql);

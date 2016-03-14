@@ -43,6 +43,9 @@ switch($pagecall){
 		break;	
 	case "addbanner" :
 		include ($dest."addbanner.php");
-		break;				
+		break;
+	case "addannouncement" :
+		include ($dest."addannouncement.php");
+		break;		
 }
 ?>

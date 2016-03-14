@@ -8,7 +8,7 @@
 <div class="container main">
 	<div class="mainslide">
 		<?php
-		$sbanner = "SELECT * FROM banner WHERE active=1 ORDER BY date_edited, date_created DESC ";
+		$sbanner = "SELECT * FROM banner WHERE active=1 ORDER BY date_created DESC ";
 		$qbanner = mysql_query($sbanner);
 		
 		while($rowb = mysql_fetch_array($qbanner)){

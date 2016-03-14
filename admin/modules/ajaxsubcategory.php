@@ -5,7 +5,7 @@
 	if(mysql_num_rows($result)!=0){
 		while($row=mysql_fetch_array($result)){
 			echo '
-				<option value="'.$row['id_category'].'">'.$row['subcategory_name'].'</option>';
+				<option value="'.$row['id_subcategory'].'">'.$row['subcategory_name'].'</option>';
 		}	
 		
 	} else return 0;

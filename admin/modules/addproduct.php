@@ -39,7 +39,7 @@
 		else{				
 			// posting results
 			$sql = "INSERT INTO product ";
-			$sql .= "VALUES ('', '$_POST[idcategory]', '$_POST[idsubcategory]', '$_POST[productname]','$_POST[productmodel]','$description', '$_POST[productdimension]','$_POST[productprice]','$_POST[discount]','$diskon', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
+			$sql .= "VALUES ('', '$_POST[idcategory]', '$_POST[idsubcategory]', '$_POST[idbrand]', '$_POST[productname]', '$_POST[productmodel]', '$description', '$_POST[productdimension]','$_POST[productprice]','$_POST[discount]','$diskon', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
 		}	
 
 		$qr = mysql_query($sql);
@@ -47,7 +47,8 @@
 		if($qr)
 		{
 			$success[0] = 1;
-			$success[1] = 'Product saved succesfully.';
+			//$success[1] = 'Product saved succesfully.';
+			$success[1] = $sql;
 			
 			// save the id for future editting
 			$rowsaved = mysql_fetch_array(mysql_query("SELECT id_product, product_name, id_category FROM product WHERE product_name='$_POST[productname]'"));
@@ -58,6 +59,7 @@
 		else
 		{	$success[0] = 0;	
 			$success[1] = 'Failed to save product';
+			
 		}
 	}	
 		

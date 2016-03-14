@@ -24,7 +24,6 @@
 .header-content li a.active,
 .header-content li a:hover{
 	border-bottom: 2px solid #FFCA00;
-	color: #FFCA00;
 }
 .logo h1,
 .mobile-logo h1{
@@ -263,17 +262,31 @@ footer .socmed ul li a span.insta{
 }
 .product-block .product-discount{
 	position: absolute;
-	left: 0;
+	left: 10px;
 	top: 0;
+}
+.product-block .product-discount:after{
+	content : "";
+	position: absolute;
+	top: 40px;
+	left: 0;
+	width: 0; 
+	height: 0; 
+	border-left: 18px solid transparent;
+	border-right: 18px solid transparent;	
+	border-top: 10px solid #f00;
 }
 .product-block .product-discount span{
 	display: inline-block;
-	width: auto;
-	padding: 5px 10px;
+	width: 36px;
+	padding: 5px 2px;
 	text-align: center;
 	color: #fff;
 	background: red;
-	font-size: 16px;	
+	font-size: 12px;
+    line-height: 15px;
+    font-family: arial;
+    font-weight: bold;
 }
 .product-block:nth-child(4n),
 .gallery-block:nth-child(4n){
@@ -311,6 +324,7 @@ footer .socmed ul li a span.insta{
 	line-height: 24px;
 	color: #575757;
 	font-weight: normal;
+	height: 48px;
 }
 .product-price{
 	color: #B3ADA9;
@@ -438,7 +452,7 @@ footer .socmed ul li a span.insta{
 .product-images ul li a{
 	display: block;
 	width: 93px;
-	height: 100px;
+	height: 95px;
 	padding: 0 15px;
 }
 .product-images ul li a img{

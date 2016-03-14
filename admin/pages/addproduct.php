@@ -13,9 +13,8 @@
 				$action = "change";
 				// especially for edit product_name		
 				$qload = "SELECT * FROM ".$tabel. " a ";
-				$qload .= ", category b, subcategory c ";
+				$qload .= ", category b ";
 				$qload .= "WHERE a.id_category=b.id_category ";
-				$qload .= "AND b.id_category=c.id_category ";
 				$qload .="AND ".$fieldname."='$id'";
 										
 				$rload = mysql_query($qload);
@@ -99,11 +98,12 @@
 							<label for="producttype">Subcategory<em>*</em></label>
 							<select name="idsubcategory" id="idsubcategory">
 							<?php 
+							
 							while($rowx=mysql_fetch_array($result)){
 									echo '<option value="'.$rowx['id_subcategory'].'" ';
 									if(isset($action)){
 										if($rowx['id_subcategory']==$row['id_subcategory']){
-											echo 'selected="selected"';
+											echo 'selected';
 										}
 									}
 									echo '>'.$rowx['subcategory_name'];

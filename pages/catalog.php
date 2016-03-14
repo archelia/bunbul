@@ -44,6 +44,17 @@
 					$sql .= "AND p.id_category = '$rowcat[id_category]' ";	
 				}									
 			}	
+			//if there is subcategory request
+			if (isset($_GET['subcat']))
+			{
+				//get category id
+				$sqcari = "SELECT id_subcategory FROM subcategory WHERE subcategory_name='$_GET[subcat]'";
+				$qcari = mysql_query($sqcari);
+				if($qcari){
+					$rowcat = mysql_fetch_array($qcari);			
+					$sql .= "AND p.id_subcategory = '$rowcat[id_subcategory]' ";	
+				}	
+			}
 			
 			// if there's a search
 			if (isset($_POST['tekscari']))
@@ -94,7 +105,7 @@
 				
 				//echo '<div class="product-category">'.$row['category_name'].'</div>';	
 				if ($row['product_discount_active']=='1'){
-					echo '<div class="product-discount"><span class="prod-dc">Sale</span></div>';
+					echo '<div class="product-discount"><span class="prod-dc">'.$row['product_discount'].'% OFF</span></div>';
 				}
 															
 				// $no for pagination
@@ -119,7 +130,11 @@
 		if (isset($_GET['cat']))
 		{
 			$filewithcat = "&cat=$_GET[cat]";						
-		}	
+		}
+		else if(isset($_GET['subcat']))
+		{	
+			$filewithcat = "&subcat=$_GET[subcat]";	
+		}
 		
 		?>
 		<div class="pagination">
@@ -160,8 +175,7 @@
 				}
 						
 				// angka akhir
-				echo ($halaman+2<$jmlhalaman ? " ...  
-				  <li><b><a href=$file?halaman=$jmlhalaman".((isset($filewithcat))?$filewithcat:"").">$jmlhalaman</a></b></li> " : "");
+				echo ($halaman+2<$jmlhalaman ? "<li><b>...</b></li>" : "");
 			
 				// link ke halaman selanjutnya
 				if ($halaman<$jmlhalaman)

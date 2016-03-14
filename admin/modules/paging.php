@@ -44,8 +44,8 @@ $file="../pages/".$pagecall.".php";
 		}
 				
 		// angka akhir
-		echo ($halaman+2<$jmlhalaman ? " ...  
-          <li><b><a href=$file?halaman=$jmlhalaman".((isset($_GET['discard']))?'&discard':'').">$jmlhalaman</a></b></li> " : "");
+		echo ($halaman+2<$jmlhalaman ?"<li><b>...</b></li>" : "");
+         // <li><b><a href=$file?halaman=$jmlhalaman".((isset($_GET['discard']))?'&discard':'').">$jmlhalaman</a></b></li> " : "");
 	
 		// link ke halaman selanjutnya
 		if ($halaman<$jmlhalaman)

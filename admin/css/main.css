@@ -313,10 +313,34 @@ a.link-opt{
 .addpicture-box .form-container ul li{
 	margin-bottom: 30px;
 }
+
 /*==================== ADD GALLERY ====================*/
+
 .addgallery .file-wrapper{
 	width: 150px;
 	height: 150px;
 }
 
-/*================== LOGIN ======================*/
+/*================== HOMEPAGE ======================*/
+
+.homepage{
+	margin-top: 30px;
+}
+.announce-block{
+	max-width: 480px;
+	margin: auto;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #ededed;
+}
+.announce-block .date{
+	text-align: right;
+	margin-bottom: 10px;
+	color: #00BD3C;
+}
+.announce-block h3{
+	margin-bottom: 15px;
+}
+.announce-block .editor{
+	margin-bottom: 10px;
+}

@@ -20,6 +20,12 @@
 				<li><a href="homepage.php">Home</a></li>
 				<li><a href="catalog.php">Catalog</a></li>
 				<li><a href="catalog.php?cat=<?php echo $row['category_name']; ?>"><?php echo $row['category_name']; ?></a></li>
+				<?php
+				if($row['id_subcategory']>0){
+					$rowsub = mysql_fetch_array(mysql_query("SELECT * FROM subcategory WHERE id_subcategory='$row[id_subcategory]'"));
+					echo '<li><a href="catalog.php?subcat='.$rowsub['subcategory_name'].'">'.$rowsub['subcategory_name'].'</a></li>';
+				}
+				?>
 				<li><b><?php echo $row['product_name']; ?></b></li>
 			</ul>
 		</div>

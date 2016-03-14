@@ -111,6 +111,15 @@ switch($pagecall){
 		array("Banner Title Z-A","banner_title:DESC")
 	);
 	break;	
+	case "listannouncement" :
+	// variables needed :
+	$addnewpage = "addannouncement.php";
+	$filteropt = array
+	(
+		array("Title A-Z","announcement_title:ASC"),
+		array("Title Z-A","announcement_title:DESC")
+	);
+	break;	
 	
 }	
 ?>
