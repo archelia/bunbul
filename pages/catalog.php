@@ -175,7 +175,7 @@
 				}
 						
 				// angka akhir
-				echo ($halaman+2<$jmlhalaman ? "<li><b>...</b></li>" : "");
+				echo ($halaman+3<$jmlhalaman ? "<li><b>...</b></li><li><a href=$file?halaman=$jmlhalaman".((isset($filewithcat))?$filewithcat:"").">$jmlhalaman</a></li>" : "");
 			
 				// link ke halaman selanjutnya
 				if ($halaman<$jmlhalaman)

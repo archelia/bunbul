@@ -3,9 +3,12 @@
 .header-content{
 	text-align: center;
 }
+.header-content.mobmode{
+	padding: 5px 0;
+	border-bottom: 1px solid #ededed;
+}
 .header-content ul{
 	list-style: none;
-	
 }
 .header-content li{
 	display: inline-block;
@@ -13,9 +16,9 @@
 }
 .header-content li a{
 	display: block;
-	padding: 10px 10px 8px;
+	padding: 5px 5px 3px;
 	font-family: 'myfont', sans-serif;
-	font-size: 16px;
+	font-size: 15px;
 	line-height: 20px;
 	border-bottom: 2px solid transparent;
 	color: #888785;
@@ -25,7 +28,17 @@
 .header-content li a:hover{
 	border-bottom: 2px solid #FFCA00;
 }
-.logo h1,
+.logo{
+	display: block;
+}
+.logo.hidden{
+	display: none;
+}
+.logo h1{
+	text-indent: -9999px;
+	background: url("../images/logo.png") no-repeat center;
+	line-height: 50px;
+}
 .mobile-logo h1{
 	font-family: "perpetua", "Times New Roman", Times, serif;
 	font-size: 18px;
@@ -76,11 +89,9 @@ nav.mobile ul li a:hover,
 nav.mobile ul li a:active{
 	border: 0;
 }
-footer{
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	
+footer{	
+	border: 1px solid #ededed;
+	padding-top: 10px;
 }
 footer .footer-container{
 	margin: auto;
@@ -90,21 +101,18 @@ footer .footer-container{
 footer .copy{
 	font-size: 14px;
 	line-height: 25px;
-}
-footer .copy,
-footer .socmed{
-	width: 50%;
-	float: left;
+	text-align: center;
 }
 footer .socmed{
-	text-align: right;	
+	margin-bottom: 10px;
+	text-align: center;	
 }
 footer .socmed ul{
 	list-style: none;
 }
 footer .socmed ul li{
 	display: inline-block;
-	margin-left: 0;
+	margin-left: 10px;
 	margin-right: 10px;
 	vertical-align: middle;
 }
@@ -115,19 +123,60 @@ footer .socmed ul li a span{
 	display: block;
 	width: 25px;
 	height: 25px;
-	background: url("../images/facebook.png") no-repeat center
+	background: url("../images/facebook.png") no-repeat center;
 }
 footer .socmed ul li a span.twitter{
-	background: url("../images/twitter.png") no-repeat center
+	background: url("../images/twitter.png") no-repeat center;
 }
 footer .socmed ul li a span.insta{
-	background: url("../images/instagram.png") no-repeat center
+	background: url("../images/instagram.png") no-repeat center;
 }
-.footer-block{
-	float: left;
-	width: 50%;
+.footer-links{
+	text-align: center;
+	margin-bottom: 20px;
 }
 
+.footer-links nav ul{
+	display: inline-block;
+	margin: 40px 40px 0;
+	vertical-align: top;
+}
+.footer-links nav ul li{
+	margin: 0;
+	text-align: left;
+}
+.footer-links nav ul li h6{
+	margin-bottom: 10px;
+	font-weight: normal;
+}
+.footer-links nav ul li a{
+	font-size: 12px;
+	line-height: 20px;
+	display: block;
+	color: inherit;
+	margin-bottom: 5px;
+}
+.scrol-top{
+	position: fixed;
+	width: 50px;
+	height: 50px;
+	bottom: 15%;
+	right: 30px;
+	display: none;
+}
+.scrol-top.shown{
+	display: block;
+}
+.scrol-top a{
+	display: block;
+	height: 100%;
+	width: 100%;
+    background: url("../images/back-to-top.png") no-repeat center;
+	opacity: .25;
+}
+.scrol-top a:hover{
+	opacity: .75;
+}
 /*===================== FRONT PAGE =======================*/
 
 .container h2{
@@ -135,7 +184,7 @@ footer .socmed ul li a span.insta{
 }
 .container.main{
 	/*min-height: 68%;*/
-	padding: 40px;
+	padding: 20px;
 }
 .banner-block{
 	position: relative;
@@ -166,21 +215,47 @@ footer .socmed ul li a span.insta{
 	padding: 10px 20px;
 }
 .pic-block{
-	height: 700px;
+	height: auto;
 }
 .pic-block a{
 	display: block;
 }
 .pic-block img{
 	display: block;
-	width: auto;
-	height: 100%;
+	width: 100%;
 	margin: auto;
 }
 .mainslide{
-	height: 700px;
+	height: 370px;	
 }
-
+.mainslide.slick-slider{
+	margin-bottom: 80px;
+}
+.slider{
+	height: 450px;
+}
+.slider h2{
+	margin-bottom: 20px;
+	text-align: left;
+	color: #A2CC01;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    font-family: 'myfont2', sans-serif;
+	font-size: 20px;
+}
+.slider .product-block{
+	margin: auto;	
+	padding: 0 15px;
+	height: 375px;
+}
+.slider .product-block .product-pic img{
+	border: 1px solid #ededed;
+	
+}
+.slider .product-block .product-name h3,
+.slider .product-block .product-price{
+	text-align: center;
+}
 
 /*=================== CATALOG PAGE =======================*/
 
@@ -293,7 +368,7 @@ footer .socmed ul li a span.insta{
 	margin-right: 0;
 }
 .product-pic{
-	height: 275px;
+	height: 286px;
 	margin-bottom: 20px;
 }
 .gallery-pic{	

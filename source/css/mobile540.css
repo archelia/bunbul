@@ -1,6 +1,9 @@
 .mainslide {
     height: 380px;
 }
+.footer-links{
+	display: none;
+}
 
 /*===  PAGES ===*/
 

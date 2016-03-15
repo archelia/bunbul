@@ -24,6 +24,7 @@
 	<link rel="stylesheet" type="text/css" href="../source/css/mobile360.css" media="only screen and (max-width: 360px)" charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../source/css/mobile320.css" media="only screen and (max-width: 320px)" charset="utf-8">		
 	<script type="text/javascript" src="../source/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="../source/js/jquery.ui.js"></script>
 	<script type="text/javascript" src="../source/js/slick.js"></script>
 	<script type="text/javascript" src="../source/js/main.js"></script>
 </head>
@@ -32,23 +33,23 @@
 	<header>
 		<div class="header-content">
 			<nav class="desktop">
+				<div class="logo">
+					<a href="homepage.php"><h1>Viore Shop</h1></a>
+				</div>
 				<ul>
-					<li><a href="homepage.php">Home</a></li>
 					<?php 
 					$sqcat = "SELECT c.id_category, c.category_name, COUNT(id_product) as jumlah
 							FROM product p, category c
 							WHERE c.id_category=p.id_category
 							GROUP by id_category
 							ORDER by jumlah DESC";
-					$qcat = mysql_query($sqcat." LIMIT 3");
+					$qcat = mysql_query($sqcat." LIMIT 5");
 					while ($rowcat = mysql_fetch_array($qcat)){
 						echo '<li><a href="catalog.php?cat='.$rowcat['category_name'].'">'.$rowcat['category_name'].'</a></li>';
 					}
 					?>
 					<li><a href="gallery.php">Gallery</a></li>
 					<li><a href="page.php?page=exhibition">Exhibition</a></li>
-					<li><a href="page.php?page=about">About</a></li>
-					<li><a href="page.php?page=contact">Contact Us</a></li>
 				</ul>
 			</nav>
 			<div class="mobile-header">

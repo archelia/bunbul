@@ -1,6 +1,9 @@
 .header-content{
 	border-bottom: 1px solid #ededed;
 }
+.footer-links nav ul {
+    margin: 40px 25px 0;
+}
 
 nav.desktop{
 	display: none;
@@ -16,6 +19,16 @@ nav.desktop{
 }
 .mainslide {
     height: 600px;
+}
+.slider h2{
+	text-align: center;
+}
+.slider .product-block{
+	margin: auto !important;	
+	height: 390px;
+}
+.slider .product-block .product-pic{
+	height: 295px;
 }
 .pic-block{
 	height: auto;
