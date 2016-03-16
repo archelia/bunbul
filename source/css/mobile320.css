@@ -1,5 +1,14 @@
 .mainslide {
-    height: 240px;
+    height: 120px;
+}
+.slider {
+    height: 375px;
+}
+.slider h2 {
+    font-size: 15px;
+}
+.slider .product-block .product-pic {
+    height: 250px;
 }
 .product-pic img, .gallery-pic img {
     width: auto;

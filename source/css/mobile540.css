@@ -1,5 +1,11 @@
 .mainslide {
-    height: 380px;
+    height: 200px;
+}
+.mainslide.slick-slider {
+    margin-bottom: 70px;
+}
+.slider .product-block .product-pic {
+    height: 198px;
 }
 .footer-links{
 	display: none;

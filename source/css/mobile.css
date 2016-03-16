@@ -1,10 +1,13 @@
-.header-content{
+.wrapper{
+    padding-top: 40px;
+}
+header .header-content{
 	border-bottom: 1px solid #ededed;
+	padding: 5px 0;
 }
 .footer-links nav ul {
     margin: 40px 25px 0;
 }
-
 nav.desktop{
 	display: none;
 }
@@ -18,7 +21,13 @@ nav.desktop{
     min-height: auto;
 }
 .mainslide {
-    height: 600px;
+    height: 290px;
+}
+.mainslide.slick-slider {
+    margin-bottom: 90px;
+}
+.slider{
+	height: 385px;
 }
 .slider h2{
 	text-align: center;
@@ -28,7 +37,7 @@ nav.desktop{
 	height: 390px;
 }
 .slider .product-block .product-pic{
-	height: 295px;
+	height: 220px;
 }
 .pic-block{
 	height: auto;

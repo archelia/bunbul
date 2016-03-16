@@ -56,7 +56,7 @@
 				<div class="mobile-menu-icon"><a href="#"></a></div>
 				<div class="mobile-logo">
 					<a href="homepage.php">
-						<h1>VIORE SHOP</h1>
+						<h1>Viore Shop</h1>
 					</a>
 				</div>
 			</div>

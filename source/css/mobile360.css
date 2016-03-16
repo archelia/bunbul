@@ -1,3 +1,6 @@
+.wrapper {
+    padding-top: 50px;
+}
 .container{
 	padding-top: 20px;
 }
@@ -5,10 +8,31 @@
     padding: 10px;
 }
 .mainslide {
-    height: 285px;
+    height: 135px;
 }
 .slick-slider {
     margin-bottom: 10px;
+}
+.slider{
+	height: 460px;
+}
+.slider h2{
+	font-size: 18px;
+}
+.slider .product-block {
+    height: 400px;
+}
+.slider .product-block .product-pic {
+    height: 300px;
+}
+.slider .product-block .product-name h3{
+	font-size: 14px;
+}
+.slick-prev {
+    left: -10px !important;
+}
+.slick-next {
+    right: -10px !important;
 }
 .front-content h1{
 	font-size: 26px;

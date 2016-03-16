@@ -28,33 +28,31 @@
 .header-content li a:hover{
 	border-bottom: 2px solid #FFCA00;
 }
-.logo{
+.logo,
+.mobile-logo{	
 	display: block;
 }
-.logo.hidden{
-	display: none;
-}
-.logo h1{
+.logo h1,
+.mobile-logo h1{
 	text-indent: -9999px;
 	background: url("../images/logo.png") no-repeat center;
 	line-height: 50px;
 }
-.mobile-logo h1{
-	font-family: "perpetua", "Times New Roman", Times, serif;
-	font-size: 18px;
-	line-height: 20px;
-	color: #44494d;
-	letter-spacing: 0.1em;
+.logo.hidden{
+	display: none;
 }
 .mobile-header{
 	width: 100%;
 	position: relative;	
-	padding: 10px 0;	
+	padding: 0;	
 	display: none;
+}
+.mobile-logo h1{
+	width: 200px;
 }
 .mobile-menu-icon{
 	position: absolute;
-	top: 10px;
+	top: 15px;
 	left: 10px;
 }
 .mobile-menu-icon a{
@@ -238,7 +236,6 @@ footer .socmed ul li a span.insta{
 	margin-bottom: 20px;
 	text-align: left;
 	color: #A2CC01;
-    font-weight: normal;
     letter-spacing: 0.1em;
     font-family: 'myfont2', sans-serif;
 	font-size: 20px;
@@ -255,6 +252,9 @@ footer .socmed ul li a span.insta{
 .slider .product-block .product-name h3,
 .slider .product-block .product-price{
 	text-align: center;
+}
+.new-arrival{
+	margin-bottom: 40px;
 }
 
 /*=================== CATALOG PAGE =======================*/
