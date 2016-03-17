@@ -23,7 +23,7 @@
 				<?php
 				if($row['id_subcategory']>0){
 					$rowsub = mysql_fetch_array(mysql_query("SELECT * FROM subcategory WHERE id_subcategory='$row[id_subcategory]'"));
-					echo '<li><a href="catalog.php?subcat='.$rowsub['subcategory_name'].'">'.$rowsub['subcategory_name'].'</a></li>';
+					echo '<li><a href="catalog.php?subcat='.$rowsub['id_subcategory'].'">'.$rowsub['subcategory_name'].'</a></li>';
 				}
 				?>
 				<li><b><?php echo $row['product_name']; ?></b></li>

@@ -48,7 +48,7 @@
 			if (isset($_GET['subcat']))
 			{
 				//get category id
-				$sqcari = "SELECT id_subcategory FROM subcategory WHERE subcategory_name='$_GET[subcat]'";
+				$sqcari = "SELECT id_subcategory FROM subcategory WHERE id_subcategory='$_GET[subcat]'";
 				$qcari = mysql_query($sqcari);
 				if($qcari){
 					$rowcat = mysql_fetch_array($qcari);			

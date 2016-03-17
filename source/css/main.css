@@ -401,18 +401,24 @@ footer .socmed ul li a span.insta{
 	font-weight: normal;
 	height: 48px;
 }
+.product-block .product-name a {
+    border-bottom: 1px solid #A2CC01;
+    display: block;
+}
 .product-price{
 	color: #B3ADA9;
-	font-size: 13px;
+	font-size: 12px;
 	line-height: 24px;
+	font-family: arial;
 }
 .product-price span{
 	display: inline-block;
-	color: #A2CC01;
+	color: #000;
+    font-weight: bold;
 }
 .product-price span.before{
 	color: #B3ADA9;
-	margin-right: 10px;
+	margin-right: 12px;
 	text-decoration: line-through;
 }
 
@@ -505,14 +511,16 @@ footer .socmed ul li a span.insta{
 	display: inline-block;
 	margin-right: 10px;
 	margin-left: 0;
-	color: #888785;
     font-size: 20px;
     line-height: 24px;
+	font-weight: normal;
 }
 .detail-box .product-price span.before{	
 	color: #999;
-	font-size: 18px;
+	font-size: 16px;
+	
 	text-decoration: line-through; 
+	margin-right: 15px;
 }
 .product-images {
 	margin-bottom: 20px;
