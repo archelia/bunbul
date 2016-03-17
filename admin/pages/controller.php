@@ -1,6 +1,8 @@
 <?php
 if($pagecall != "login"){
-	if(!isset($_SESSION['viouser'])){header("location: login.php");}
+	if(!isset($_SESSION['viouser'])){
+		echo '<script>window.location = "login.php";</script>';
+	}
 }				
 $dest="../modules/";
 

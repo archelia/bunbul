@@ -30,8 +30,7 @@ $(document).ready(function($){
 	var timeout = null;
 	$(window).scroll(function () {
 		if (!timeout) {
-			timeout = setTimeout(function () {
-				console.log('scroll');            
+			timeout = setTimeout(function () {          
 				clearTimeout(timeout);
 				timeout = null;
 				if ($(window).scrollTop() >= 200) {
