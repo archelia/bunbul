@@ -45,7 +45,14 @@
 							ORDER by jumlah DESC";
 					$qcat = mysql_query($sqcat." LIMIT 5");
 					while ($rowcat = mysql_fetch_array($qcat)){
-						echo '<li><a href="catalog.php?cat='.$rowcat['category_name'].'">'.$rowcat['category_name'].'</a></li>';
+						echo '<li class="'.(($rowcat['category_name']=="T-Shirt")?'hasub':"").'"><a href="catalog.php?cat='.$rowcat['category_name'].'">'.$rowcat['category_name'].'</a>';
+						if($rowcat['category_name']=="T-Shirt"){
+							echo '<ul class="submenu">';						
+							echo '	<li><a href="catalog.php?cat=T-Shirt&gen=1">Men T-Shirt</a></li>';
+							echo '	<li><a href="catalog.php?cat=T-Shirt&gen=2">Women T-Shirt</a></li>';
+							echo '</ul>';
+						}					
+						echo '</li>';
 					}
 					?>
 					<li><a href="gallery.php">Gallery</a></li>
@@ -66,11 +73,22 @@
 					<?php
 					$qcat = mysql_query($sqcat);
 					while ($rowcat = mysql_fetch_array($qcat)){
-						echo '<li><a href="catalog.php?cat='.$rowcat['category_name'].'">'.$rowcat['category_name'].'</a></li>';
+						echo '<li class="'.(($rowcat['category_name']=="T-Shirt")?'hasub':"").'"><a href="catalog.php?cat='.$rowcat['category_name'].'">'.$rowcat['category_name'].'</a>';
+						if($rowcat['category_name']=="T-Shirt"){
+							echo '<ul class="submenu">';						
+							echo '	<li><a href="catalog.php?cat=T-Shirt&gen=1">Men T-Shirt</a></li>';
+							echo '	<li><a href="catalog.php?cat=T-Shirt&gen=2">Women T-Shirt</a></li>';
+							echo '</ul>';
+						}					
+						echo '</li>';
 					}
 					?>
 					<li><a href="gallery.php">Gallery</a></li>
 					<li><a href="page.php?page=exhibition">Exhibition</a></li>
+					<li><a href="page.php?page=career">Career</a></li>
+					<li><a href="page.php?page=wash">Wash Care</a></li>
+					<li><a href="page.php?page=sizeguide">Size Guide</a></li>
+					<li><a href="page.php?page=faq">FAQ</a></li>
 					<li><a href="page.php?page=about">About</a></li>
 					<li><a href="page.php?page=contact">Contact Us</a></li>
 				</ul>

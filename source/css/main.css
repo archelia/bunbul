@@ -13,6 +13,7 @@
 .header-content li{
 	display: inline-block;
 	margin: 0 20px;
+	position: relative;
 }
 .header-content li a{
 	display: block;
@@ -27,6 +28,39 @@
 .header-content li a.active,
 .header-content li a:hover{
 	border-bottom: 2px solid #FFCA00;
+}
+.desktop ul li.hasub a:hover{
+	border-bottom: 2px solid #FFFFFF;
+}
+.desktop ul li.hasub:hover ul.submenu{
+	display: block;
+}
+.desktop ul.submenu{
+	display: none;
+}
+.desktop ul.submenu{	
+	position: absolute;
+	background: #fff;
+	top: 30px;
+	left: -50px;
+	border: 1px solid #FFCA00;
+	width: 150px;
+}
+.desktop ul.submenu li{
+	display: block;
+	margin: 0;
+	padding: 0 10px;
+}
+.desktop ul.submenu li:hover{
+	background: #FFCA00;
+}
+.desktop ul.submenu li:hover a{
+	color: #fff;
+	border-bottom: 2px solid #FFCA00;
+}
+.mobile ul.submenu li{
+	border-bottom: 0;
+	border-top: 1px solid #fff;
 }
 .logo,
 .mobile-logo{	
@@ -369,7 +403,7 @@ footer .socmed ul li a span.insta{
 }
 .product-pic{
 	height: 286px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 .gallery-pic{	
 	margin-bottom: 20px;

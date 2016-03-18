@@ -36,9 +36,9 @@
 		<div class="box white-box tabproduct-box">		
 			<nav>
 				<ul>
-					<li><a href="<?php echo ((isset($action)?"javascript:gototab1();":"")); ?>" class="link-addproduct active">Add Product</a></li>
-					<li><a href="<?php echo ((isset($action)?"javascript:gototab2();":"")); ?>" class="link-addvariant">Add Variant</a></li>
-					<li><a href="<?php echo ((isset($action)?"javascript:gototab3();":"")); ?>" class="link-addpicture">Add Picture</a></li>
+					<li><a href="<?php echo ((isset($action)?"javascript:gototab1();":"#")); ?>" class="link-addproduct active">Add Product</a></li>
+					<li><a href="<?php echo ((isset($action)?"javascript:gototab2();":"#")); ?>" class="link-addvariant">Add Variant</a></li>
+					<li><a href="<?php echo ((isset($action)?"javascript:gototab3();":"#")); ?>" class="link-addpicture">Add Picture</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -60,7 +60,14 @@
 							<input type="text" name="productmodel" id="productmodel" maxlength="50" class="" placeholder="Product Model / Type" value="<?php if(isset($action)) echo $row['product_model']; ?>">
 							<label for="productmodel" class="error">This is a required field.</label>
 						</li>
-						
+						<li>
+							<label for="gender">Gender<em>*</em></label>
+							<select name="gender" id="gender">
+								<option value="1" <?php if(isset($action)){if($row['gender']==1)echo 'selected="selected"';} ?>>Male</option>
+								<option value="2" <?php if(isset($action)){if($row['gender']==2)echo 'selected="selected"';} ?>>Female</option>
+							</select>
+							<label for="gender" class="error">This is a required field.</label>
+						</li>
 						<li>
 							<label for="producttype">Category<em>*</em></label>
 							<select name="idcategory" id="idcategory">

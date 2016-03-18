@@ -1,49 +1,54 @@
-<html>
-<head>
-<title>Admin Page</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="Admin Page">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta property="og:site_name" content="Admin Page">
-	<meta property="og:url" content="">
-	<meta property="description" content="Admin Page">
-	<meta property="og:type" content="website">
-	<meta property="og:description" content="Admin Page">
-	<meta property="og:title" content="Admin Page">
-	
-	<link rel="icon" type="image/png" href="images/favicon.png" />
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/baseline.css">
-	<link rel="stylesheet" type="text/css" href="css/layout.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	
-	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-	<script type="text/javascript" src="js/jquery.ui.js"></script>
-	<script src="js/core.js" type="text/javascript"></script>
-	<script src="js/jquery.bxslider.min.js" type="text/javascript"></script>
-	<script src='js/main.js' type='text/javascript'></script>
-</head>
-<body>
-	<div class="wrapper">
-		<header>
-			<h1>Victoire Gift Administrator</h1>
-		</header>
-		<div class="container">
-			<div class="content onecolumn login">
-				<h2>LOGIN</h2>
-				<p class="intro">Please type your username and password to enter</p>
-				<form action="">
-					<div class="input-block"><input type="text" name="" id=""></div>
-					<div class="input-block"><input type="password" name="" id=""></div>
-					<div class="input-block"><input type="submit"  name="" id=""></div>								
+<?php
+	include "../global/global.php";
+	if(isset($_SESSION['viouser'])){header("location: homepage.php");}
+	include "header.php";	
+	$pagecall = "login";
+	include "frontcontroller.php";	
+?>
+<div class="container">
+	<div class="front-content login">
+		<div class="login">
+			<h1>LOGIN</h1>
+			<div class="form-container">
+				<form action="" name="form-register" id="form-register" method="POST">
+				<ul>
+					<li>
+						<label for="idcustomer">Username</label>
+						<input type="text" name="username" id="username" class="" maxlength="50" placeholder="Username" placeholder="Username">
+						<label for="" class="error"></label>
+					</li>
+					<li>
+						<label for="">Password</label>
+						<input type="password" name="password" id="password" class="required" placeholder="Password">
+						<label for="" class="error"></label>
+					</li>
+					<li>
+						<p class="righted small"><em>*</em>This is required fields.</p>					
+					</li>
+					<li>
+						<p class="centered small">If you forget your password, please call your administrator.</p>
+						
+						</li><li class="centered"><input type="submit" name="submit" id="submit" value="LOGIN">
+					</li>
+				</ul>
 				</form>
 			</div>
-			<div class="clear"></div>
-		</div>
-		<footer>
-			<span>&copy;2015 www.victoiregifts.com by <a href="">Archelia</a>. All Rights Reserved.</span>
-		</footer>
-	</div>
-</body>
-</html>
+		</div>	
+	</div>	
+</div>
+<?php
+	include "footer.php";
+?>
+<script>
+$(function() {
+	// highlight
+	var elements = $("input[type!='submit'], textarea, select");
+	elements.focus(function() {
+		$(this).parents('li').addClass('highlight');
+	});
+	elements.blur(function() {
+		$(this).parents('li').removeClass('highlight');
+	});
+	$("#login").validate()
+});
+</script>

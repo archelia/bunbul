@@ -86,6 +86,7 @@
 <?php
 	include "footer.php";	
 ?>
+<script type='text/javascript' src="../source/js/jquery.validate.js"></script>
 <script>
 $( document ).ready(function() {
 	$( "#sortingchoice" ).change(function() {

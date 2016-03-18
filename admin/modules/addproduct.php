@@ -28,6 +28,7 @@
 			$sql .= ",id_category = '$_POST[idcategory]' ";
 			$sql .= ",id_subcategory = '$_POST[idsubcategory]' ";
 			$sql .= ",id_brand = '$_POST[idbrand]' ";
+			$sql .= ",gender = '$_POST[gender]' ";
 			$sql .= ",product_price = '$_POST[productprice]' ";
 			$sql .= ",product_dimension = '$_POST[productdimension]' ";
 			$sql .= ",product_discount ='$_POST[discount]' ";
@@ -39,7 +40,7 @@
 		else{				
 			// posting results
 			$sql = "INSERT INTO product ";
-			$sql .= "VALUES ('', '$_POST[idcategory]', '$_POST[idsubcategory]', '$_POST[idbrand]', '$_POST[productname]', '$_POST[productmodel]', '$description', '$_POST[productdimension]','$_POST[productprice]','$_POST[discount]','$diskon', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
+			$sql .= "VALUES ('', '$_POST[idcategory]', '$_POST[idsubcategory]', '$_POST[idbrand]', '$_POST[gender]', '$_POST[productname]', '$_POST[productmodel]', '$description', '$_POST[productdimension]','$_POST[productprice]','$_POST[discount]','$diskon', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(), 1)";
 		}	
 
 		$qr = mysql_query($sql);

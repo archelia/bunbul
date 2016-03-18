@@ -1,4 +1,5 @@
-$(document).ready(function($){	
+$(document).ready(function($){		
+	
 	// mobile menus function
 	$('.mobile-menu-icon a').click(function(e){
 		e.preventDefault();
