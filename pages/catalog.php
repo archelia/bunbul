@@ -33,6 +33,12 @@
 			$sql .= "WHERE p.active=1 ";
 			$sql .= "AND p.id_category = c.id_category ";	
 
+			// if there's gender
+			if (isset($_GET['gen']))
+			{
+				$sql .= "AND p.gender = '$_GET[gen]' ";	
+			}
+			
 			//if there is category request
 			if (isset($_GET['cat']))
 			{
@@ -134,6 +140,10 @@
 		else if(isset($_GET['subcat']))
 		{	
 			$filewithcat = "&subcat=$_GET[subcat]";	
+		}				
+		if (isset($_GET['gen']))
+		{
+			$filewithcat = "&gen=$_GET[gen]";						
 		}
 		
 		?>
