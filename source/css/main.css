@@ -441,19 +441,18 @@ footer .socmed ul li a span.insta{
 }
 .product-price{
 	color: #B3ADA9;
-	font-size: 12px;
+	font-size: 13px;
 	line-height: 24px;
-	font-family: arial;
 }
 .product-price span{
 	display: inline-block;
-	color: #000;
-    font-weight: bold;
+	color: #888785;
+	font-family: myfont;
 }
 .product-price span.before{
-	color: #B3ADA9;
 	margin-right: 12px;
-	text-decoration: line-through;
+	text-decoration: line-through;	
+    opacity: 0.5;
 }
 
 /*=================== PRODUCT DETAIL PAGE =======================*/

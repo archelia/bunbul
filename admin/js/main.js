@@ -3,6 +3,15 @@ $( document ).ready(function() {
 	  $( "#sorting" ).submit();
 	});
 });
+
+/*=================JQUERY VALIDATION FOR PHONE NUMBER==================*/
+// special regex for phone number
+jQuery.validator.addMethod("phoneNumber", function(phone_number, element) {
+	phone_number = phone_number.replace(/\s+/g, "");
+	return this.optional(element) || phone_number.length > 6 && 
+	phone_number.match(/^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/);
+}, "Please enter a valid phone number");
+	
 /*
 function showsearch(){
 	$(".search-dropdown").slideDown('fast', 'swing');

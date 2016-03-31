@@ -55,6 +55,11 @@ footer .copy{
 	margin: 0;
 	margin-bottom: 15px;
 }
+.form-container ul  li.bdate select{
+	display: inline-block;
+	margin-right: 2%;
+	width: auto;
+}
 .form-container ul  li:last-child{
 	margin-bottom: 0;
 }
@@ -172,7 +177,8 @@ textarea.error {
 .list{
 	margin: 20px 0 50px;
 }
-.list h3{
+.list h3,
+.detail h3{
 	margin-bottom: 20px;
 	padding-bottom: 10px;
 	border-bottom: 2px solid #000;
@@ -208,22 +214,21 @@ textarea.error {
 	padding: 0;
 	background: #000000 url("../images/zoom-icon.png") no-repeat 3px center;
 }
-.add-button,
-.back-button{
-	padding-left: 40px;
-	padding-right: 20px;
-	background: #000000 url("../images/icon-plus.png") no-repeat 10px center;
-	font-size: 12px;
-}
-.back-button{
-	background: #000000 url("../../source/images/arrow-left.png") no-repeat 10px center;
-}
 .data-table{
 	margin-bottom: 10px;
 }
 .data-table tr td a,
 .data-table tr td a:visited{
 	color: #44494d;
+}
+.data-table tr td.link-detail a{
+	display: block;
+	color: #000;
+	font-weight: bold;
+	opacity: 0.5;
+}
+.data-table tr td.link-detail a:hover{
+	opacity: 1;
 }
 .data-show{
 	margin-bottom: 15px;	
@@ -321,7 +326,7 @@ a.link-opt{
 	height: 150px;
 }
 
-/*================== HOMEPAGE ======================*/
+/*===================== HOMEPAGE =======================*/
 
 .homepage{
 	margin-top: 30px;
@@ -343,4 +348,107 @@ a.link-opt{
 }
 .announce-block .editor{
 	margin-bottom: 10px;
+}
+
+/*==================== CUSTOMER DETAIL ====================*/
+
+.detail-block{
+	position: relative;
+	padding: 0 30px;
+	margin: auto;
+	margin-bottom: 30px;
+}
+.detail-block .button-promote,
+.detail-block .button-edit{
+	position: absolute;
+	right: 20px;
+}
+.detail-block .button-edit{
+	top: 0;
+}
+.detail-block .button-promote{
+	bottom: 0;
+}
+.detail-block h4{
+	line-height: 40px;
+	font-weight: normal;
+}
+.detail-block ul li{
+	margin: 0;
+}
+.detail-block ul li span{
+	font-size: 12px;
+	line-height: 25px;
+	display: inline-block;
+}
+.detail-block ul li span.entitle{
+	margin-right: 20px;
+	width: 150px;
+	position: relative;
+	padding-right: 20px;
+}
+.detail-block ul li span.entitle:after{
+	content: ":";
+	position: absolute;
+	right: 0;
+}
+.customer-address{
+	position: relative;
+	text-align: center;
+	margin-bottom: 30px;
+}
+.customer-address h3{
+	margin-bottom: 30px;
+}
+.address-block{
+	position: relative;
+	vertical-align: top;
+	display: inline-block;
+	width: 30%;
+	border: 1px solid #ededed;
+	padding: 40px 20px 60px;
+	margin: 0 1.5% 20px;
+	min-height: 220px;
+}
+.address-block:hover .small-button{
+	display: block;
+}
+.address-block .small-button{
+	position: absolute;
+	bottom: 0;
+	display: none;
+}
+.address-block.add-new{
+	padding: 90px 0;
+}
+.address-block .edit-button{
+	left: 0px;
+}
+.address-block .del-button{
+	right: 0px;
+}
+.address-block h5{
+	margin-bottom: 10px;
+}
+.address-block address span{
+	display: block;
+	font-size: 12px;
+	line-height: 20px;
+}
+.address-block address span.phone{
+	margin-top: 5px;
+}
+.default-address{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom: 0;
+	left: 0;
+	background: #000000;
+}
+.default-address p{
+	display: block;
+	font-size: 12px;
+	line-height: 20px;
+	color: #ffffff;
 }

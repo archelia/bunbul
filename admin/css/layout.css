@@ -25,6 +25,9 @@
 .hidden{
 	display: none;
 }
+.shown{
+	display: block;
+}
 body{
 	background: #FFFFFF;	
 }
@@ -108,4 +111,36 @@ ul.sub-menu li{
 }
 ul.sub-menu li a{
 	display: inline-block;
+}
+
+/*================== BUTTONS ===================*/
+
+.add-button,
+.edit-button,
+.back-button{
+	padding-left: 40px;
+	padding-right: 20px;
+	background: #000000 url("../images/icon-plus.png") no-repeat 10px center;
+	font-size: 12px;
+}
+.back-button{
+	background: #000000 url("../../source/images/arrow-left.png") no-repeat 10px center;
+}
+.edit-button{
+	background: #000000 url("../images/pencil-white.png") no-repeat 10px center;
+}
+.small-button{
+	width: 30px;
+	height: 30px;
+	padding: 5px;
+	opacity: 0.75;
+}
+.small-button:hover{
+	opacity: 1;
+}
+.small-button.edit-button{
+	background: #000000 url("../images/pencil-white.png") no-repeat center;	
+}
+.small-button.del-button{
+	background: #000000 url("../images/trash-white.png") no-repeat center;
 }

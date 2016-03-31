@@ -132,20 +132,11 @@
 			?>			
 		</div>
 		<?php								   
-			// pagination
-			include ("../modules/paging.php");
+		// pagination
+		include ("../modules/paging.php");
+		// show unactive data
+		include ("../modules/showunactivelink.php");
 		?>	
-
-		<?php
-		// show deleted data
-		if($_SESSION['usertype']=="1"){						
-		?>		
-		<div class="show-discard">
-			<p><a href="<?php echo $pagecall.'.php?discard' ?>">Show Unactive <?php echo ucwords($tabel);?> </a></p>
-		</div>
-		<?php
-		}
-		?>
 	</div>
 	<div class="clear"></div>
 </div>

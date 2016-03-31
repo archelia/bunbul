@@ -1,12 +1,12 @@
 <?php	
 	include "../../global/global.php";
 	include "header.php";	
-	$pagecall = "listcustomer";
+	$pagecall = "listreseller";
 	include "controller.php";
 	include "getfieldname.php"; // return $tabel, $fieldname, $id
 ?>
 <div class="container">
-	<div class="content list listcustomer">	
+	<div class="content list listreseller">	
 		<h3><?php echo ucwords("List ".$tabel); ?></h3>
 		<?php								   
 			// pagination
@@ -16,17 +16,19 @@
 			<table border="1" cellpadding="0" cellspacing="0" width="100%">
 				<colgroup>
 					<col width="5%">
-					<col width="40%">
-					<col width="">
+					<col width="30%">
+					<col width="30%">
 					<col width="20%">
+					<col width="">
 					<col width="5%">
 				</colgroup>
 				<thead>
 					<tr>
 						<th>&nbsp;</th>
-						<th>Name</th>
+						<th>Reseller Name</th>
 						<th>Email</th>
-						<th>Detail Customer</th>
+						<th>Cashback</th>
+						<th>Detail</th>
 						<th>&nbsp;</th>
 					</tr>
 				</thead>
@@ -49,15 +51,17 @@
 					$no=$posisi+1;					
 					
 					// QUERY LISTING
-					$sql = "SELECT * FROM customer ";
+					$sql = "SELECT r.*, c.customer_name, c. email FROM reseller r, customer c ";
+					$sql .= "WHERE r.id_customer = c.id_customer ";
 					
 					// if show deleted data
 					if(isset($_GET['discard'])){
-						$sql .= "WHERE active=0 ";
+						$sql .= "AND r.active=0 ";
 					}
 					else{
-						$sql .= "WHERE active=1 ";
+						$sql .= "AND r.active=1 ";
 					}
+					
 					
 					// if there's a search
 					if (isset($_POST['tekscari']))
@@ -83,23 +87,24 @@
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="'.$pageedit.'.php?act=chg&id='.$row["id_customer"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$pageedit.'.php?idcust='.$row['id_customer'].'&act=chg&id='.$row["id_reseller"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
 						echo '	<td align="left">'.$row['customer_name'].'</td>';
 						echo '	<td align="left">'.$row['email'].'</td>';
-						echo '	<td align="center" class="link-detail"><a href=detailcustomer.php?idcust='.$row['id_customer'].'>See Detail</a></td>';
+						echo '	<td align="right"><b>Rp. '.number_format($row['cashback'],0,',','.').'</b></td>';
+						echo '	<td align="center"><a href=detailreseller.php?id='.$row['id_reseller'].'>See Detail</a></td>';
 						
 						// delete and reactivate button
 						if(isset($_GET['discard'])){
 							echo '	<td align="center">
-									<a href="activate.php?id='.$row["id_customer"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/greenbutton.png" alt="Activate" title="Activate"></a>
+									<a href="activate.php?id='.$row["id_reseller"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/greenbutton.png" alt="Activate" title="Activate"></a>
 								</td>						
 							';
 						}
 						else{
 							echo '	<td align="center">
-									<a href="deactive.php?id='.$row["id_customer"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?id='.$row["id_reseller"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 							';
 						}
@@ -132,6 +137,7 @@
 		// show unactive data
 		include ("../modules/showunactivelink.php");
 		?>			
+		
 	</div>
 	<div class="clear"></div>
 </div>

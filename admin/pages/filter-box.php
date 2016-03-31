@@ -99,7 +99,9 @@ switch($pagecall){
 	$filteropt = array
 	(
 		array("Customer Name A-Z","customer_name:ASC"),
-		array("Customer Name Z-A","customer_name:DESC")
+		array("Customer Name Z-A","customer_name:DESC"),
+		array("Customer Email A-Z","email:ASC"),
+		array("Customer Email Z-A","email:DESC")
 	);
 	break;	
 	case "listbanner" :
@@ -120,6 +122,36 @@ switch($pagecall){
 		array("Title Z-A","announcement_title:DESC")
 	);
 	break;	
+	case "listbank" :
+	// variables needed :
+	$addnewpage = "addbank.php";
+	$filteropt = array
+	(
+		array("Bank Name A-Z","bank_name:ASC"),
+		array("Bank Name Z-A","bank_name:DESC")
+	);
+	break;	
+	case "listreseller" :
+	// variables needed :
+	$addnewpage = "listcustomer.php";
+	$filteropt = array
+	(
+		array("Cashback Lower-Higher","cashback:ASC"),
+		array("Cashback Higher-Lower","cashback:DESC"),
+		array("Customer Name A-Z","customer_name:ASC"),
+		array("Customer Name Z-A","customer_name:DESC")
+	);
+	break;		
+	case "listpaymentmethod" :
+	// variables needed :
+	$addnewpage = "addpaymentmethod.php";
+	$filteropt = array
+	(
+		array("Method Name A-Z","method_title:ASC"),
+		array("Method Name Z-A","method_title:DESC")
+	);
+	break;	
+	
 	
 }	
 ?>

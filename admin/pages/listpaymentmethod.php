@@ -1,13 +1,13 @@
 <?php	
 	include "../../global/global.php";
 	include "header.php";	
-	$pagecall = "listcustomer";
+	$pagecall = "listpaymentmethod";
 	include "controller.php";
 	include "getfieldname.php"; // return $tabel, $fieldname, $id
 ?>
 <div class="container">
-	<div class="content list listcustomer">	
-		<h3><?php echo ucwords("List ".$tabel); ?></h3>
+	<div class="content list listpaymentmethod">	
+		<h3><?php echo ucwords("List Payment Method"); ?></h3>
 		<?php								   
 			// pagination
 			include ("../pages/filter-box.php");
@@ -16,17 +16,19 @@
 			<table border="1" cellpadding="0" cellspacing="0" width="100%">
 				<colgroup>
 					<col width="5%">
-					<col width="40%">
-					<col width="">
 					<col width="20%">
+					<col width="20%">
+					<col width="">
+					<col width="10%">
 					<col width="5%">
 				</colgroup>
 				<thead>
 					<tr>
-						<th>&nbsp;</th>
-						<th>Name</th>
-						<th>Email</th>
-						<th>Detail Customer</th>
+						<th>&nbsp;</th>					
+						<th>Method Name</th>
+						<th>Description</th>
+						<th>How To Pay</th>
+						<th>Picture</th>
 						<th>&nbsp;</th>
 					</tr>
 				</thead>
@@ -49,7 +51,7 @@
 					$no=$posisi+1;					
 					
 					// QUERY LISTING
-					$sql = "SELECT * FROM customer ";
+					$sql = "SELECT * FROM paymentmethod ";
 					
 					// if show deleted data
 					if(isset($_GET['discard'])){
@@ -62,7 +64,7 @@
 					// if there's a search
 					if (isset($_POST['tekscari']))
 					{
-						$sql .= "AND customer_name LIKE '%$_POST[tekscari]%' ";						
+						$sql .= "AND paymentmethod_title LIKE '%$_POST[tekscari]%' ";						
 					}	
 					
 					// if there's a sorting
@@ -83,25 +85,32 @@
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="'.$pageedit.'.php?act=chg&id='.$row["id_customer"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$pageedit.'.php?act=chg&id='.$row["id_paymentmethod"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
-						echo '	<td align="left">'.$row['customer_name'].'</td>';
-						echo '	<td align="left">'.$row['email'].'</td>';
-						echo '	<td align="center" class="link-detail"><a href=detailcustomer.php?idcust='.$row['id_customer'].'>See Detail</a></td>';
+						
+						echo '<td align="left">'.$row['method_title'].'</td>';
+						echo '<td align="left">'.$row['description'].'</td>';
+						echo '<td align="left">'.$row['howto'].'</td>';				
+						echo '	<td align="center">';
+						if(file_exists("../../source/paymentmethod/".$row['id_paymentmethod']."-1.jpg")){
+						echo '<img src="'.$backserver.'source/paymentmethod/'.$row['id_paymentmethod'].'-1.jpg" alt="picture paymentmethod" title="picture paymentmethod" class="image-preview">';
+						}
+						else echo '<img src="../../source/images/default.jpg" alt="picture" title="picture" class="image-preview">';				
+						echo '</td>';
 						
 						// delete and reactivate button
 						if(isset($_GET['discard'])){
 							echo '	<td align="center">
-									<a href="activate.php?id='.$row["id_customer"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/greenbutton.png" alt="Activate" title="Activate"></a>
+									<a href="activate.php?id='.$row["id_paymentmethod"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/greenbutton.png" alt="Activate" title="Activate"></a>
 								</td>						
 							';
 						}
 						else{
 							echo '	<td align="center">
-									<a href="deactive.php?id='.$row["id_customer"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?id='.$row["id_paymentmethod"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
-							';
+						';
 						}
 															
 						echo '</tr>';
@@ -131,7 +140,7 @@
 		include ("../modules/paging.php");
 		// show unactive data
 		include ("../modules/showunactivelink.php");
-		?>			
+		?>	
 	</div>
 	<div class="clear"></div>
 </div>

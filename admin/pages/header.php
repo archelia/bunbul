@@ -48,13 +48,15 @@
 				?>
 				<li><a href="">Master</a>
 					<ul class="sub-menu">
-						<li><a href="listbrand.php">Manage Brand</a></li>
-						<!-- <li><a href="listcustomer.php">Manage Customer</a></li> -->
-						<li><a href="../pages/listsize.php">Manage Size</a></li>
-						<li><a href="../pages/listcolor.php">Manage Color</a></li>
-						<li><a href="../pages/listcategory.php">Manage Category</a></li>
-						<li><a href="../pages/listbanner.php">Manage Banner</a></li>
 						<li><a href="../pages/listannouncement.php">Announcement</a></li>
+						<li><a href="listbank.php">Bank</a></li>
+						<li><a href="listbrand.php">Brand</a></li>
+						<li><a href="../pages/listcategory.php">Category</a></li>
+						<li><a href="listcustomer.php">Customer</a></li>
+						<li><a href="../pages/listcolor.php">Color</a></li>
+						
+						<li><a href="listreseller.php">Reseller</a></li>
+						<li><a href="../pages/listsize.php">Size</a></li>					
 					</ul>
 				</li>
 				<li>
@@ -67,26 +69,27 @@
 				<li>
 					<a href="">Page</a>
 					<ul class="sub-menu">
-						
-						<li><a href="../pages/listpage.php">Manage Page</a></li>
+						<li><a href="../pages/listbanner.php">Banner</a></li>
+						<li><a href="../pages/listgallery.php">Gallery</a></li>
+						<li><a href="../pages/listpage.php">Pages</a></li>
 						<!--
 						<li><a href="addpage.php">Add New Page</a></li>
 						<li><a href="addblock.php">Add New Block</a></li>
 						<li><a href="listblock.php">Manage Block</a></li>
 						<li><a href="addgallery.php">Add New Gallery</a></li>
 						<li><a href="listetstimony.php">Manage Testimony</a></li>
-						-->					
-						<li><a href="../pages/listgallery.php">Manage Gallery</a></li>				
+						-->															
 					</ul>
-				</li>
-				<!--
+				</li>				
 				<li>
 					<a href="">Order</a>
 					<ul class="sub-menu">
+						<li><a href="listpaymentmethod.php">Payment Method</a></li>
+						<!--
 						<li><a href="listorder.php">Manage Order</a></li>
+						-->
 					</ul>
 				</li>
-				-->
 				<?php 
 				if($_SESSION['viouser']==1){
 				?>				

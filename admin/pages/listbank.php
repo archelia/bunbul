@@ -1,12 +1,12 @@
 <?php	
 	include "../../global/global.php";
 	include "header.php";	
-	$pagecall = "listcustomer";
+	$pagecall = "listbank";
 	include "controller.php";
 	include "getfieldname.php"; // return $tabel, $fieldname, $id
 ?>
 <div class="container">
-	<div class="content list listcustomer">	
+	<div class="content list listbank">	
 		<h3><?php echo ucwords("List ".$tabel); ?></h3>
 		<?php								   
 			// pagination
@@ -18,15 +18,13 @@
 					<col width="5%">
 					<col width="40%">
 					<col width="">
-					<col width="20%">
 					<col width="5%">
 				</colgroup>
 				<thead>
 					<tr>
 						<th>&nbsp;</th>
-						<th>Name</th>
-						<th>Email</th>
-						<th>Detail Customer</th>
+						<th>Bank Name</th>
+						<th>Description</th>
 						<th>&nbsp;</th>
 					</tr>
 				</thead>
@@ -49,7 +47,7 @@
 					$no=$posisi+1;					
 					
 					// QUERY LISTING
-					$sql = "SELECT * FROM customer ";
+					$sql = "SELECT * FROM bank ";
 					
 					// if show deleted data
 					if(isset($_GET['discard'])){
@@ -62,7 +60,7 @@
 					// if there's a search
 					if (isset($_POST['tekscari']))
 					{
-						$sql .= "AND customer_name LIKE '%$_POST[tekscari]%' ";						
+						$sql .= "AND bank_name LIKE '%$_POST[tekscari]%' ";						
 					}	
 					
 					// if there's a sorting
@@ -83,23 +81,22 @@
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="'.$pageedit.'.php?act=chg&id='.$row["id_customer"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$pageedit.'.php?act=chg&id='.$row["id_bank"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
-						echo '	<td align="left">'.$row['customer_name'].'</td>';
-						echo '	<td align="left">'.$row['email'].'</td>';
-						echo '	<td align="center" class="link-detail"><a href=detailcustomer.php?idcust='.$row['id_customer'].'>See Detail</a></td>';
+						echo '	<td align="left">'.$row['bank_name'].'</td>';
+						echo '	<td align="left">'.$row['bank_description'].'</td>';
 						
 						// delete and reactivate button
 						if(isset($_GET['discard'])){
 							echo '	<td align="center">
-									<a href="activate.php?id='.$row["id_customer"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/greenbutton.png" alt="Activate" title="Activate"></a>
+									<a href="activate.php?id='.$row["id_bank"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/greenbutton.png" alt="Activate" title="Activate"></a>
 								</td>						
 							';
 						}
 						else{
 							echo '	<td align="center">
-									<a href="deactive.php?id='.$row["id_customer"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?id='.$row["id_bank"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
 							';
 						}
@@ -129,9 +126,10 @@
 		<?php								   
 		// pagination
 		include ("../modules/paging.php");
+
 		// show unactive data
 		include ("../modules/showunactivelink.php");
-		?>			
+		?>					
 	</div>
 	<div class="clear"></div>
 </div>

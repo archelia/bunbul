@@ -19,6 +19,9 @@ switch($pagecall){
 	case "addcustomer" :
 		include ($dest."addcustomer.php");
 		break;
+	case "addcustomeraddress" :
+		include ($dest."addcustomeraddress.php");
+		break;
 	case "addsize" :
 		include ($dest."addsize.php");
 		break;
@@ -48,6 +51,16 @@ switch($pagecall){
 		break;
 	case "addannouncement" :
 		include ($dest."addannouncement.php");
-		break;		
+		break;	
+	case "addbank" :
+		include ($dest."addbank.php");
+		break;	
+	case "addreseller" :
+		include ($dest."addreseller.php");
+		break;	
+	case "addpaymentmethod" :
+		include ($dest."addpaymentmethod.php");
+		break;	
+		
 }
 ?>
