@@ -12,6 +12,15 @@ $(document).ready(function($){
 			$('nav.mobile').addClass("open");
 		}		
 	});	
+	// has sub mobile toggle
+	$('.mobile ul li.hasub').click(function(e){		
+		if($(this).children(".submenu").is(":visible")){
+			$(this).removeClass("opened");
+		} else {
+			$(this).addClass("opened");
+		}
+		$(this).children(".submenu").toggle();
+	});
 	
 	// back to top function
 	$("scrol-top a").click(function(e){
@@ -47,4 +56,5 @@ $(document).ready(function($){
 			}, 250);
 		}
 	});
+	
 });

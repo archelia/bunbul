@@ -5,7 +5,7 @@
     margin-bottom: 70px;
 }
 .slider .product-block .product-pic {
-    height: 198px;
+    height: 300px;
 }
 .footer-links{
 	display: none;
@@ -45,4 +45,42 @@
 
 .zoom-layer img {
 	height: auto;
+}
+
+/*=== SCREEN 480 ===*/
+@media only screen and (max-width: 480px) {
+	.mainslide {
+		height: 175px;
+	}
+	.slider .product-block .product-pic {
+		height: 260px;
+	}
+}
+
+/*=== SCREEN 375 FOR IPHONE6 and IPHONE6plus ===*/
+
+@media only screen and (max-width: 414px) {
+	.mainslide {
+		height: 150px;
+	}
+	.slider .product-block .product-pic {
+		height: 215px;
+		margin-bottom: 10px;
+	}
+	
+}
+
+@media only screen and (max-width: 375px) {
+	.mainslide {
+		height: 135px;
+	}
+	.slider h2 {
+		font-size: 15px;
+	}
+    .slider .product-block .product-pic {
+		height: 180px;
+	}
+	.product-name h3 {
+		font-size: 12px;
+    }
 }

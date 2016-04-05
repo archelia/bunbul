@@ -10,6 +10,15 @@
 .clear{
 		clear: both;
 }
+.centered{
+	text-align: center;
+}
+.lefted{
+	text-align: left;
+}
+.righted{
+	text-align: right;
+}
 body{
 	background: RGBA(255, 255, 255, 1);
 }

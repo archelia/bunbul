@@ -13,14 +13,8 @@
 .slick-slider {
     margin-bottom: 10px;
 }
-.slider{
-	height: 460px;
-}
 .slider h2{
 	font-size: 18px;
-}
-.slider .product-block {
-    height: 400px;
 }
 .slider .product-block .product-pic {
     height: 300px;

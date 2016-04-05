@@ -133,17 +133,18 @@
 		$jmlhalaman=ceil($jmldata/$batas);
 		$file="../pages/".$pagecall.".php";
 				
-		if (isset($_GET['cat']))
+		if(isset($_GET['cat']))
 		{
 			$filewithcat = "&cat=$_GET[cat]";						
 		}
 		else if(isset($_GET['subcat']))
 		{	
 			$filewithcat = "&subcat=$_GET[subcat]";	
-		}				
+		}		
+		
 		if (isset($_GET['gen']))
 		{
-			$filewithcat = "&gen=$_GET[gen]";						
+			$filewithcat .= "&gen=$_GET[gen]";						
 		}
 		
 		?>

@@ -27,17 +27,17 @@ nav.desktop{
     margin-bottom: 90px;
 }
 .slider{
-	height: 385px;
+	height: auto;
 }
 .slider h2{
 	text-align: center;
 }
 .slider .product-block{
 	margin: auto !important;	
-	height: 390px;
+	height: auto;
 }
 .slider .product-block .product-pic{
-	height: 220px;
+	height: 305px;
 }
 .pic-block{
 	height: auto;

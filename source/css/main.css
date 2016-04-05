@@ -35,7 +35,8 @@
 .desktop ul li.hasub:hover ul.submenu{
 	display: block;
 }
-.desktop ul.submenu{
+.desktop ul.submenu,
+.mobile ul.submenu{
 	display: none;
 }
 .desktop ul.submenu{	
@@ -61,6 +62,21 @@
 .mobile ul.submenu li{
 	border-bottom: 0;
 	border-top: 1px solid #fff;
+}
+.mobile ul li.hasub{
+	position: relative;
+	background: #000 url("../images/icon-plus.png") no-repeat right+10px top+10px;
+}
+.mobile ul li.hasub:after{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 10px;
+	right: 10px;
+	content: "";
+}
+.mobile ul li.hasub.opened{
+	background-image: url("../images/icon-min.png");	
 }
 .logo,
 .mobile-logo{	
@@ -688,4 +704,33 @@ footer .socmed ul li a span.insta{
 .about-img img{
 	display: block;
 	width: 100%;
+}
+
+/*====================== FORMS =======================*/
+
+
+.form-container{
+	margin-bottom: 30px;
+}
+.form-container ul li{
+	margin: 0 0 20px;
+}
+.form-container ul li.info p{
+	font-size: 12px;
+	line-height: 20px;
+	font-style: italic;
+}
+.form-container a{
+	font-size: inherit;
+	color: inherit;
+}
+.form-container a:hover{
+	color: #A2CC01;
+}
+
+/*====================== FORMS =======================*/
+
+.mini-content{
+	width: 540px;
+	margin: auto;
 }
