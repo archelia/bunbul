@@ -10,7 +10,7 @@ else {
 }
 
 // for detail customer address only
-if($pagecall=="detailcustomer"){
+if(($pagecall=="detailcustomer") or ($pagecall=="myaddress")){
 	$tabel = "customeraddress";
 }
 
@@ -24,6 +24,9 @@ $result = mysql_query($query);
 // for detail customer address only
 if($pagecall=="detailcustomer"){
 	header("Location: ".$pagecall.".php?idcust=".$_GET['idcust']);
+}
+elseif($pagecall=="myaddress"){
+	header("Location: ../../pages/myaddress.php");
 }
 else header("Location: ".$pagecall.".php");
 ?>

@@ -54,6 +54,7 @@
 						<li><a href="../pages/listcategory.php">Category</a></li>
 						<li><a href="listcustomer.php">Customer</a></li>
 						<li><a href="../pages/listcolor.php">Color</a></li>
+						<li><a href="../pages/listprovince.php">Province &amp; City</a></li>
 						
 						<li><a href="listreseller.php">Reseller</a></li>
 						<li><a href="../pages/listsize.php">Size</a></li>					

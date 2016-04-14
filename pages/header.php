@@ -58,6 +58,41 @@
 					<li><a href="gallery.php">Gallery</a></li>
 					<li><a href="page.php?page=exhibition">Exhibition</a></li>
 				</ul>
+				<div class="user-links">
+					<ul>
+						<li class="hasub">
+							<a href="" class="user"><img src="../source/images/
+							user-icon.png" alt=""></a>
+							<ul class="submenu">
+								<li>
+									<a href="login.php">Login</a>
+								</li>
+								<li>
+									<a href="register.php">Register</a>
+								</li>
+								<li>
+									<a href="forgotpassword.php">Forgot Password</a>
+								</li>
+								<li>
+									<a href="myaccount.php">My Account</a>
+								</li>
+								<li>
+									<a href="page.php?page=contact">Help</a>
+								</li>
+								<li>
+									<a href="logout.php">Logout</a>
+								</li>
+								
+							</ul>
+						</li>
+						<li class="hasub">
+							<a href="shoppingcart.php" class="cart">
+								<img src="../source/images/shopping-cart.png" alt="">
+								<span class="count">2</span>
+							</a>
+						</li>
+					</ul>
+				</div>
 			</nav>
 			<div class="mobile-header">
 				<div class="mobile-menu-icon"><a href="#"></a></div>

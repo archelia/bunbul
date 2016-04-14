@@ -1,36 +1,28 @@
 <?php
 	include "../global/global.php";
-	if(isset($_SESSION['custlogin'])){header("location: homepage.php");}
+	if(isset($_SESSION['viouser'])){header("location: homepage.php");}
 	include "header.php";	
-	$pagecall = "login";
+	$pagecall = "forgotpassword";
 	include "frontcontroller.php";	
 ?>
 <div class="container">
-	<div class="front-content mini-content login">
-		<h1>LOGIN</h1>
+	<div class="front-content mini-content forgotpassword">
+		<h1>FORGOT PASSWORD</h1>
 		<div class="message">
 			<p><?php if($pesan!=""){ echo $pesan; }?></p>
 		</div>
 		<div class="form-container">
-			<form action="login.php" name="login" id="login" method="POST">
+			<form action="forgotpassword.php" name="forgotpassword" id="forgotpassword" method="POST">
 			<ul>
 				<li>
-					<input type="email" name="email" id="email" class="required" maxlength="50" placeholder="Your Email Address" placeholder="email">
+					<input type="email" name="email" id="email" class="" maxlength="50" placeholder="Your Email Address">
 					<label for="email" class="error"></label>
 				</li>
-				<li>
-					<input type="password" name="password" id="password" class="required" placeholder="Password">
-					<label for="password" class="error"></label>
-				</li>
 				<li class="info">
-					<p class="righted small"><em>*</em>Required field.</p>					
-				</li>
-				<li>
-					<p class="lefted small">Not a member? <a href="register.php">Register here</a>.</p>
-					<p class="righted small"><a href="forgotpassword.php">Forgot Password</a></p>				
+					<p class="righted small"><em>*</em>Harus diisi.</p>					
 				</li>
 				<li class="centered">
-					<input type="submit" name="submit" id="submit" value="LOGIN">
+					<input type="submit" name="submit" id="submit" value="SUBMIT">
 				</li>
 			</ul>
 			</form>
@@ -67,8 +59,6 @@ $(function() {
 	elements.blur(function() {
 		$(this).parents('li').removeClass('highlight');
 	});
-	
-	
 	$("#login").validate()
 });
 </script>

@@ -151,6 +151,24 @@ switch($pagecall){
 		array("Method Name Z-A","method_title:DESC")
 	);
 	break;	
+	case "listprovince" :
+	// variables needed :
+	$addnewpage = "addprovince.php";
+	$filteropt = array
+	(
+		array("Province Name A-Z","province_name:ASC"),
+		array("Province Name Z-A","province_name:DESC")
+	);
+	break;	
+	case "listcity" :
+	// variables needed :
+	$addnewpage = "addcity.php?kode=$kode";
+	$filteropt = array
+	(
+		array("City Name A-Z","city_name:ASC"),
+		array("City Name Z-A","city_name:DESC")
+	);
+	break;	
 	
 	
 }	

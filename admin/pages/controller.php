@@ -61,6 +61,12 @@ switch($pagecall){
 	case "addpaymentmethod" :
 		include ($dest."addpaymentmethod.php");
 		break;	
+	case "addprovince" :
+		include ($dest."addprovince.php");
+		break;	
+	case "addcity" :
+		include ($dest."addcity.php");
+		break;	
 		
 }
 ?>

@@ -47,11 +47,13 @@ $(document).ready(function($){
 					$(".scrol-top").addClass("shown");
 					$(".logo").addClass("hidden");
 					$(".header-content").addClass("mobmode");
+					$(".header-content .user-links").addClass("mobmode");
 				}
 				else{
 					$(".scrol-top").removeClass("shown");
 					$(".logo").removeClass("hidden");
 					$(".header-content").removeClass("mobmode");
+					$(".header-content .user-links").removeClass("mobmode");
 				}
 			}, 250);
 		}

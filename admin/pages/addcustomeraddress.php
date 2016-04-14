@@ -93,7 +93,12 @@
 								?>
 							</select>
 							<label for="" class="error"></label>
-						</li>						
+						</li>	
+						<li>
+							<label for="postalcode">Postal Code<em>*</em></label>
+							<input type="text" name="postalcode" id="postalcode" class="required" maxlength="256" placeholder="Postal Code" value="<?php if(isset($action)) echo $row['postal_code']; ?>">
+							<label for="postalcode" class="error">This is a required field.</label>
+						</li>
 						<li>
 							<div class="checkbox">
 								<label>
@@ -205,10 +210,10 @@ function selectcity(){
 	});	
 }
 $(function(){
-	$(".city-container").removeClass("shown");
+	$(".city-container").addClass("hidden");
 	$( "#province" ).change(function() {
 	  selectcity();
-	  $(".city-container").addClass("shown");
+	  $(".city-container").removeClass("hidden");
 	});
 });
 </script>

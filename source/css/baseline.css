@@ -85,7 +85,8 @@ em{
 address{
 	margin-bottom: 20px;
 }
-address p{
+address p,
+address span{
 	display: block;
 	font-size: 14px;
 	line-height: 20px;
@@ -114,7 +115,7 @@ textarea {
 	border-bottom: 1px solid #A2CC01;
 	width: 100%;
 	height: 40px;
-	background: #ffffff;
+	background: #FFFFFF;
 }
 textarea {
 	height: auto;
@@ -196,8 +197,8 @@ select{
 	font-size: 12px;
 	line-height: 20px;
 	padding: 10px;
-	border: 1px solid #777;
-	background: #fff;
+	border: 1px solid #A2CC01;
+	background: #FFFFFF;
 	width: 100%;
 }
 table{
@@ -210,7 +211,7 @@ table tr td{
 }
 table tr th{
 	text-align: center;
-	background: #000;
+	background: #858585;
 	color: #fff;
 }
 table tr td{
@@ -225,25 +226,40 @@ table tr:nth-child(2n+1) td{
 input[type="submit"],
 button,
 .button{
-	padding: 9px 30px;
+	padding: 12px 30px;
 	display: inline-block;
 	color: #ffffff;
 	border: 1px solid #A2CC01;
 	cursor: pointer;
 	font-size: 14px;
-	line-height: 20px;
+	line-height: 14px;
 	text-transform: uppercase;
 	text-align: center;
 	background: #A2CC01;
-	letter-spacing: 0.05em;
+	letter-spacing: 0.1em;
+}
+.small-button{
+	display: inline-block;
+	color: #ffffff;
+	cursor: pointer;
+	text-transform: uppercase;
+	text-align: center;	
+	background: #E6F9E1;
+    border: 1px solid #E6F9E1;
+    padding: 8px 15px;
+    line-height: 12px;
+    font-size: 12px;
+	letter-spacing: 0.1em;
 }
 input[type="submit"]:hover,
 button:hover,
-.button:hover {
+.button:hover,
+.small-button:hover {
 	opacity: 0.8;
 }
-
-
+.small-button:hover{
+	color: #6EBB86;
+}
 /*===== DATEPICKER =====*/
 
 .ui-widget {

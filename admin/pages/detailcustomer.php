@@ -55,7 +55,8 @@
 					SELECT ca.*, c.city_name, p.province_name FROM customeraddress  ca, city c, province p 
 					WHERE ca.id_city = c.id_city 
 					AND c.id_province = p.id_province 
-					AND id_customer=$_GET[idcust]";
+					AND id_customer=$_GET[idcust] 
+					ORDER BY shipping_address DESC, billing_address DESC";
 				$result = mysql_query($sqladdress);
 				if(($result)&&(mysql_num_rows($result)>0)){
 					while($rowa=mysql_fetch_array($result)){

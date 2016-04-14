@@ -1,9 +1,4 @@
 <?php
-if($pagecall != "login"){
-	if(!isset($_SESSION['viouser'])){
-		echo '<script>window.location = "login.php";</script>';
-	}
-}				
 $dest="../modules/";
 
 switch($pagecall){
@@ -12,6 +7,18 @@ switch($pagecall){
 		break;
 	case "register" :
 		include ($dest."register.php");
+		break;	
+	case "forgotpassword" :
+		include ($dest."forgotpassword.php");
+		break;
+	case "resetpassword" :
+		include ($dest."resetpassword.php");
+		break;
+	case "editaccount" :
+		include ($dest."editaccount.php");
+		break;
+	case "myaddress" :
+		include ("../admin/modules/addcustomeraddress.php");
 		break;	
 }
 ?>

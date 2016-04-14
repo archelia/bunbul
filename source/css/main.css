@@ -2,6 +2,7 @@
 
 .header-content{
 	text-align: center;
+	position: relative;
 }
 .header-content.mobmode{
 	padding: 5px 0;
@@ -24,6 +25,42 @@
 	border-bottom: 2px solid transparent;
 	color: #888785;
     transition: color 0.4s ease 0s;
+}
+.header-content .user-links{
+	position: absolute;
+	top: 25px;
+	right: 10px;
+}
+.user-links ul li{
+	margin: 0 12px;
+}
+.user-links ul li a img{
+	display: block;
+	opacity: 0.5;
+}
+.user-links ul li a{
+	display: block;
+	position: relative;
+}
+.user-links .cart span.count{
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	top: 0;
+	right: 0;
+	font-size: 9px;
+	line-height: 12px;
+	font-family: arial;
+	color: #FFFFFF;
+	background: #575757;
+	border-radius:50%;
+	
+}
+.user-links ul li a:hover img{
+	opacity: 0.7;
+}
+.user-links.mobmode{
+	top: 7px;
 }
 .header-content li a.active,
 .header-content li a:hover{
@@ -708,29 +745,158 @@ footer .socmed ul li a span.insta{
 
 /*====================== FORMS =======================*/
 
-
+.mini-content{
+	width: 540px;
+	margin: auto;
+}
 .form-container{
 	margin-bottom: 30px;
 }
 .form-container ul li{
-	margin: 0 0 20px;
+	margin: 0 0 30px;
 }
 .form-container ul li.info p{
 	font-size: 12px;
 	line-height: 20px;
 	font-style: italic;
 }
-.form-container a{
+.form-container ul  li label{
+	display: block;
+}
+.form-container ul  li label.error{
+	display: none;
+	color: red;
+}
+.form-container ul li.bdate select {
+    display: inline-block;
+    margin-right: 2%;
+    width: auto;
+}
+.form-container a:not(.button){
 	font-size: inherit;
 	color: inherit;
 }
-.form-container a:hover{
+.form-container a:not(.button){
 	color: #A2CC01;
 }
+.form-container em{
+    color: red;
+	font-style: normal;
+}
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"],
+.form-container input[type="number"],
+.form-container textarea {
+	background: #FCFFF6;
+}
+.form-container select{
+	background: #FCFFF6;
+}
+.message {
+    display: none;
+    background: green;
+    padding: 10px 20px;
+	margin-bottom: 20px;
+}
+.message.valid{
+	display: block;
+}
+.message.error {
+    display: block;
+    background: red;
+}
+.message p {
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+	margin-bottom: 0;
+}
 
-/*====================== FORMS =======================*/
+/*====================== MY ACCOUNT =======================*/
 
-.mini-content{
-	width: 540px;
-	margin: auto;
+.account-links{
+	margin-bottom: 30px;
+}
+.account-links ul li{
+	margin: 0;
+    width: 25%;
+    text-align: CENTER;
+    border: 1px solid #ffffff;
+	border-left: 0;
+	float: left;
+}
+.account-links ul li:first-child{
+	border-left: 1px solid #ffffff;
+}
+.account-links ul li a{ 
+	display: block;
+    font-size: 15px;
+    line-height: 20px;
+	padding: 10px 0;
+	background: #E6F9E1;
+	color: #ffffff;
+}
+.account-links ul li a:hover{
+	color: #6EBB86;
+}
+.myaccount .address-col,
+.myaccount .order-col{
+	margin-bottom: 20px;
+}
+.myaccount .twocols {
+	border-bottom: 1px solid #E6F9E1;
+}
+.myaccount .twocols > div:not(.clear){
+	position: relative;
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+.myaccount .twocols .acc-info{
+	border-right: 1px solid #E6F9E1;
+	padding-right: 20px;
+	padding-left: 0;
+}
+.myaccount .edit_address{
+	position: absolute;
+	top: 0;
+	right: 20px;
+}
+.myaccount .acc-address .edit_address{
+	right: 0;
+}
+.address-col h6{
+	font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+}
+.address-col p{
+	font-size: 14px;
+    line-height: 25px;
+    margin-bottom: 30px;
+}
+.acc-info h5,
+.order-col h5,
+.acc-address h5{
+	margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 25px;
+    letter-spacing: 0.05em;
+    color: #A2CC01;
+    font-weight: normal;
+}
+.acc-info ul li{
+	margin: 0;
+}
+.acc-info ul li span{
+	font-size: 12px;
+    line-height: 25px;
+    display: inline-block;
+	
+}
+.acc-info ul li span{
+	margin-right: 20px;
+    width: 150px;
+    position: relative;
+    padding-right: 20px;
 }

@@ -2,35 +2,33 @@
 	include "../global/global.php";
 	if(isset($_SESSION['custlogin'])){header("location: homepage.php");}
 	include "header.php";	
-	$pagecall = "login";
+	$pagecall = "resetpassword";
 	include "frontcontroller.php";	
 ?>
 <div class="container">
-	<div class="front-content mini-content login">
-		<h1>LOGIN</h1>
+	<div class="front-content mini-content resetpassword">
+		<h1>RESET PASSWORD</h1>
 		<div class="message">
 			<p><?php if($pesan!=""){ echo $pesan; }?></p>
 		</div>
 		<div class="form-container">
 			<form action="login.php" name="login" id="login" method="POST">
 			<ul>
-				<li>
-					<input type="email" name="email" id="email" class="required" maxlength="50" placeholder="Your Email Address" placeholder="email">
-					<label for="email" class="error"></label>
-				</li>
+				
 				<li>
 					<input type="password" name="password" id="password" class="required" placeholder="Password">
 					<label for="password" class="error"></label>
 				</li>
-				<li class="info">
-					<p class="righted small"><em>*</em>Required field.</p>					
-				</li>
 				<li>
-					<p class="lefted small">Not a member? <a href="register.php">Register here</a>.</p>
-					<p class="righted small"><a href="forgotpassword.php">Forgot Password</a></p>				
+					<input type="password" name="password1" id="password1" class="required" maxlength="" placeholder="Confirm Password" value="<?php if(isset($action)) echo $row['password']; ?>">
+					<label for="password1" class="error">This is a required field.</label>
+				</li>
+				
+				<li class="info">
+					<p class="righted small"><em>*</em>Required fields.</p>					
 				</li>
 				<li class="centered">
-					<input type="submit" name="submit" id="submit" value="LOGIN">
+					<input type="submit" name="submit" id="submit" value="SUBMIT">
 				</li>
 			</ul>
 			</form>
