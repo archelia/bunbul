@@ -70,7 +70,7 @@
 						$sql .= "ORDER BY ".$sorting_opt[0]." ".$sorting_opt[1]." ";
 					}
 					else{
-						$sql .= "ORDER BY date_created DESC ";
+						$sql .= "ORDER BY province_name ASC ";
 					}
 					
 					// the pagination

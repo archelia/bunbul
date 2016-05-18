@@ -1,23 +1,13 @@
 <?php	
 	include "../../global/global.php";
-	// GET kode
-	if(isset($_GET['kode'])){$kode=$_GET['kode'];}
-	else if(isset($_POST['kode'])){$kode=$_POST['kode'];}
-	else {header("Location: listprovince.php");}
-	
 	include "header.php";	
-	$pagecall = "listcity";
+	$pagecall = "listshippingmethod";
 	include "controller.php";
 	include "getfieldname.php"; // return $tabel, $fieldname, $id
-	
-	// GET province Name
-	$sqlx = "SELECT province_name FROM province c ";
-	$sqlx .= "WHERE c.id_province='$kode' ";
-	$rowx = mysql_fetch_array(mysql_query($sqlx));
 ?>
 <div class="container">
-	<div class="content list listcity">	
-		<h3><?php echo ucwords("List ".$tabel)." of ".$rowx['province_name']; ?></h3>
+	<div class="content list listshippingmethod">	
+		<h3><?php echo ucwords("List Payment Method"); ?></h3>
 		<?php								   
 			// pagination
 			include ("../pages/filter-box.php");
@@ -26,15 +16,19 @@
 			<table border="1" cellpadding="0" cellspacing="0" width="100%">
 				<colgroup>
 					<col width="5%">
+					<col width="20%">
+					<col width="20%">
 					<col width="">
-					<col width="5%">
+					<col width="10%">
 					<col width="5%">
 				</colgroup>
 				<thead>
 					<tr>
-						<th>&nbsp;</th>
-						<th>City</th>
-						<th>&nbsp;</th>
+						<th>&nbsp;</th>					
+						<th>Method Name</th>
+						<th>Description</th>
+						<th>How To Pay</th>
+						<th>Picture</th>
 						<th>&nbsp;</th>
 					</tr>
 				</thead>
@@ -57,24 +51,20 @@
 					$no=$posisi+1;					
 					
 					// QUERY LISTING
-					$sql = "SELECT s.*, c.province_name FROM city s, province c ";
+					$sql = "SELECT * FROM shippingmethod ";
 					
 					// if show deleted data
 					if(isset($_GET['discard'])){
-						$sql .= "WHERE s.active=0 ";
+						$sql .= "WHERE active=0 ";
 					}
 					else{
-						$sql .= "WHERE s.active=1 ";
+						$sql .= "WHERE active=1 ";
 					}
 					
-					$sql .= "AND s.id_province=c.id_province ";
-					$sql .= "AND c.id_province='$kode' ";
-									
 					// if there's a search
 					if (isset($_POST['tekscari']))
 					{
-						$sql .= "AND s.id_province= c.id_province ";
-						$sql .= "AND (city_name LIKE '%$_POST[tekscari]%' OR province_name LIKE '%$_POST[tekscari]%') ";						
+						$sql .= "AND shippingmethod_title LIKE '%$_POST[tekscari]%' ";						
 					}	
 					
 					// if there's a sorting
@@ -84,7 +74,7 @@
 						$sql .= "ORDER BY ".$sorting_opt[0]." ".$sorting_opt[1]." ";
 					}
 					else{
-						$sql .= "ORDER BY city_name ASC ";
+						$sql .= "ORDER BY date_created DESC ";
 					}
 					
 					// the pagination
@@ -95,26 +85,34 @@
 					{
 						echo '<tr>';
 						echo '	<td align="center">
-									<a href="'.$pageedit.'.php?kode='.$kode.'&act=chg&id='.$row["id_city"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
+									<a href="'.$pageedit.'.php?act=chg&id='.$row["id_shippingmethod"].'" class="link-opt"><img src="../images/icon-pencil.png" alt="Edit" title="Edit"></a>								
 								</td>						
 						';
-						echo '	<td align="left">'.$row['city_name'].'</td>';
-						echo '	<td align="center"><a href="listdistrict.php?kode='.$row["id_city"].'"><img src="../images/icon-sub.png" alt="See District List" title="See District List"></a></td>';
-
+						
+						echo '<td align="left">'.$row['method_title'].'</td>';
+						echo '<td align="left">'.$row['description'].'</td>';
+						echo '<td align="left">'.$row['howto'].'</td>';				
+						echo '	<td align="center">';
+						if(file_exists("../../source/shippingmethod/".$row['id_shippingmethod']."-1.jpg")){
+						echo '<img src="'.$backserver.'source/shippingmethod/'.$row['id_shippingmethod'].'-1.jpg" alt="picture shippingmethod" title="picture shippingmethod" class="image-preview">';
+						}
+						else echo '<img src="../../source/images/default.jpg" alt="picture" title="picture" class="image-preview">';				
+						echo '</td>';
+						
 						// delete and reactivate button
 						if(isset($_GET['discard'])){
 							echo '	<td align="center">
-									<a href="activate.php?id='.$row["id_city"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/greenbutton.png" alt="Activate" title="Activate"></a>
+									<a href="activate.php?id='.$row["id_shippingmethod"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/greenbutton.png" alt="Activate" title="Activate"></a>
 								</td>						
 							';
 						}
 						else{
 							echo '	<td align="center">
-									<a href="deactive.php?id='.$row["id_city"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
+									<a href="deactive.php?id='.$row["id_shippingmethod"].'&pageorigin='.$pagecall.'" class="link-opt"><img src="../images/icon-trash.png" alt="Delete" title="Delete"></a>
 								</td>						
-							';
+						';
 						}
-												
+															
 						echo '</tr>';
 						
 						// $no for pagination
@@ -139,16 +137,10 @@
 		</div>
 		<?php								   
 		// pagination
-		include ("../modules/pagingwithkode.php");
-
+		include ("../modules/paging.php");
 		// show unactive data
 		include ("../modules/showunactivelink.php");
 		?>	
-		
-		<div class="go-back">
-			<a href="listprovince.php" class="button back-button">
-			Back to Province List</a>
-		</div>
 	</div>
 	<div class="clear"></div>
 </div>

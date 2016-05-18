@@ -105,21 +105,43 @@
 					echo "</div>";
 				}		
 				
-				//searching available size
-				$sqlload = "SELECT distinct s.id_size, s.size_name FROM item i, size s 
+				// ADD TO CART form
+				// if size available
+				$sqlload = "SELECT distinct i.id_item, s.id_size, s.size_name FROM item i, size s 
 							WHERE i.id_size = s.id_size
 							AND stock > 0 
 							AND id_product='$row[id_product]'";
 				$queryload = mysql_query($sqlload);	
-				if(mysql_num_rows($queryload)>0){
-					echo "<div class='product-small-block'>";
-					echo "<h6>AVAILABLE SIZE</h6>";
-					while($rowld=mysql_fetch_array($queryload)){
-						echo "<span class='color'>".$rowld['size_name']."</span>";
-					}
-					echo "</div>";
+				if(mysql_num_rows($queryload)>0){				
+				?>						
+			<div class='product-small-block form-container'>
+				<form action="shoppingcart.php" name="addtocart" id="addtocart" method="POST">
+				<h6>AVAILABLE SIZE</h6>
+				<div class='size-list'>
+				<?php
+				while($rowld=mysql_fetch_array($queryload)){					
+					echo "
+						<div class='radiobtn'>				
+						<label>					
+							<input type='radio' name='iditem' id='iditem' value='$rowld[id_item]'>
+							<span>$rowld[size_name]</span>								
+						</label>								
+					</div>";
+				}				
+				?>
+				<label for='size' class='error'>Please choose the product size.</label>	
+				</div>
+				<label for="quantity">Quantity</label>
+					<select name="quantity" id="quantity">
+						<option value="">1</option>
+					</select>
+				<input type="submit" value="ADD TO CART" name="submitcart" id="submitcart">	
+				
+				</form>
+			</div>
+				<?php									
 				}		
-				?>				
+				?>		
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -133,30 +155,54 @@
 	include "footer.php";	
 ?>
 <script type='text/javascript'>
-	$(document).ready(function($){		
-		$('.img-thumb img').click(function(e){
-			e.preventDefault();		
-			var tmp= $(this).prop('src');
-			$('.main-image img').stop().animate({opacity:'0'},function(){
-				$('.main-image img').attr('src',tmp);
-			}).load(function(){
-				$('.main-image img').stop().animate({opacity:'1'});
-			});		
-			$(".img-thumb").removeClass("selected");
-			$(this).parents('.img-thumb').addClass("selected");
-			//$('.main-image img').attr('src',$(this).prop('src'));
+$(document).ready(function($){		
+	$('.img-thumb img').click(function(e){
+		e.preventDefault();		
+		var tmp= $(this).prop('src');
+		$('.main-image img').stop().animate({opacity:'0'},function(){
+			$('.main-image img').attr('src',tmp);
+		}).load(function(){
+			$('.main-image img').stop().animate({opacity:'1'});
 		});		
-		$('.close-zoom').click(function(){
-			$(".zoom-layer").css("display", "none");
-			$("html").removeClass("scrol-disabled");
-			$("body").removeClass("scrol-disabled");
-		});
-		$('.zoom a').click(function(e){
-			e.preventDefault();
-			$(".zoom-layer").css("display", "block");
-			$('.zoom-layer img').attr('src',$('.main-image img').prop('src'));
-			$("html").addClass("scrol-disabled");
-			$("body").addClass("scrol-disabled");
-		});
+		$(".img-thumb").removeClass("selected");
+		$(this).parents('.img-thumb').addClass("selected");
+		//$('.main-image img').attr('src',$(this).prop('src'));
+	});		
+	$('.close-zoom').click(function(){
+		$(".zoom-layer").css("display", "none");
+		$("html").removeClass("scrol-disabled");
+		$("body").removeClass("scrol-disabled");
 	});
+	$('.zoom a').click(function(e){
+		e.preventDefault();
+		$(".zoom-layer").css("display", "block");
+		$('.zoom-layer img').attr('src',$('.main-image img').prop('src'));
+		$("html").addClass("scrol-disabled");
+		$("body").addClass("scrol-disabled");
+	});
+	$('#addtocart').submit(function(){
+		if(!$('input[type=radio][name=iditem]').is(':checked')) {			
+			$("#addtocart label.error").css("display", "block");
+			return false;
+		}
+	});
+	$('input[type=radio][name=iditem]').change(function(){  
+		$("#addtocart label.error").css("display", "none");
+		var iditem = $('input[type=radio][name=iditem]:checked').val();
+		$.ajax({
+				url: "../modules/ajaxloadstock.php",
+				type: "post",
+				data: {iditem: iditem},
+				success: function (response){  	
+					$("#quantity")
+					.empty()
+					.append(response);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				   console.log(textStatus, errorThrown);
+				}
+		});		
+    });
+});
+
 </script>

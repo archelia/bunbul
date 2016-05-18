@@ -38,7 +38,7 @@
 					<ul>
 						<li>
 							<label for="provincename">Province Name<em>*</em></label>
-							<input type="text" name="provincename" id="provincename" class="required" maxlength="20" placeholder="Province Name" value="<?php if(isset($action)) echo $row['province_name']; ?>">
+							<input type="text" name="provincename" id="provincename" class="required" placeholder="Province Name" value="<?php if(isset($action)) echo $row['province_name']; ?>">
 							<label for="provincename" class="error">This is a required field.</label>
 						</li>
 						<li>

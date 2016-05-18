@@ -151,6 +151,15 @@ switch($pagecall){
 		array("Method Name Z-A","method_title:DESC")
 	);
 	break;	
+	case "listshippingmethod" :
+	// variables needed :
+	$addnewpage = "addshippingmethod.php";
+	$filteropt = array
+	(
+		array("Method Name A-Z","method_title:ASC"),
+		array("Method Name Z-A","method_title:DESC")
+	);
+	break;	
 	case "listprovince" :
 	// variables needed :
 	$addnewpage = "addprovince.php";
@@ -167,6 +176,15 @@ switch($pagecall){
 	(
 		array("City Name A-Z","city_name:ASC"),
 		array("City Name Z-A","city_name:DESC")
+	);
+	break;	
+	case "listdistrict" :
+	// variables needed :
+	$addnewpage = "adddistrict.php?kode=$kode";
+	$filteropt = array
+	(
+		array("Disctrict Name A-Z","district_name:ASC"),
+		array("Disctrict Name Z-A","district_name:DESC")
 	);
 	break;	
 	

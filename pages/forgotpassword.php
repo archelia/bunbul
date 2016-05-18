@@ -1,6 +1,6 @@
 <?php
 	include "../global/global.php";
-	if(isset($_SESSION['viouser'])){header("location: homepage.php");}
+	if(isset($_SESSION['custlogin'])){header("location: homepage.php");}
 	include "header.php";	
 	$pagecall = "forgotpassword";
 	include "frontcontroller.php";	

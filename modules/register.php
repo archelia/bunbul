@@ -71,9 +71,9 @@ if(isset($_POST['submit']))
 		}
 	
 		if($qr)
-		{
-			
-			$pesan = $sqlcari;
+		{		
+			//$pesan = $sqlcari;
+			$pesan = 'Register success. Let\'s shopping ! ';
 			$success=1;
 		}
 		else

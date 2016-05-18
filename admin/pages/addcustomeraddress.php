@@ -49,7 +49,7 @@
 						<li>
 							<label for="customeraddress1">Customer Address<em>*</em></label>
 							<input type="text" name="customeraddress1" id="customeraddress1" class="required" maxlength="256" style="margin-bottom: 10px;" placeholder="Address Line 1" value="<?php if(isset($action)) echo $row['address']; ?>">
-							<input type="text" name="customeraddress2" id="customeraddress2" class="required" maxlength="256" placeholder="Address Line 2" value="<?php if(isset($action)) echo $row['address2']; ?>">
+							<input type="text" name="customeraddress2" id="customeraddress2" maxlength="256" placeholder="Address Line 2" value="<?php if(isset($action)) echo $row['address2']; ?>">
 							<label for="customeraddress1" class="error"></label>
 						</li>
 						<li>
@@ -61,18 +61,22 @@
 							<label for="">Province<em>*</em></label>
 							<select name="province" id="province">
 								<?php
+								if(isset($action)){
 								// search id province
-								echo $sqlprov = "SELECT p.id_province 
-									FROM province p, city c 
+								$sqlprov = "SELECT p.id_province, c.id_city  
+									FROM province p, city c, district d 
 									WHERE p.id_province=c.id_province 
-									AND id_city='$row[id_city]'";
+									AND c.id_city = d.id_city 
+									AND id_district='$row[id_district]'";
 								$rowprov = mysql_fetch_array(mysql_query($sqlprov));
-								
+								}
 								$sqlisting = "SELECT * FROM province ORDER BY province_name ASC";
 								$reslist =mysql_query($sqlisting);
 								while($rowlist = mysql_fetch_array($reslist)){
 									echo "<option value='$rowlist[id_province]'";
-									if($rowprov['id_province']==$rowlist['id_province'])echo " selected";
+									if(isset($action)){
+										if($rowprov['id_province']==$rowlist['id_province'])echo " selected";
+									}
 									echo ">$rowlist[province_name]</option>";}
 								?>
 							</select>
@@ -83,12 +87,31 @@
 							<select name="city" id="city">	
 								<?php
 								if(isset($action)){
-									$sqlisting = "SELECT * FROM city ORDER BY city_name ASC";
+									$sqlisting = "SELECT * FROM city WHERE id_province ='$rowprov[id_province]' ORDER BY city_name ASC";
 									$reslist =mysql_query($sqlisting);
 									while($rowlist = mysql_fetch_array($reslist)){
-									echo "<option value='$rowlist[id_city]'";
-									if($row['id_city']==$rowlist['id_city'])echo " selected";
-									echo ">$rowlist[city_name]</option>";}
+										echo "<option value='$rowlist[id_city]'";
+										if($rowprov['id_city']==$rowlist['id_city'])echo " selected";
+										echo ">$rowlist[city_name]</option>";
+									}
+								}
+								?>
+							</select>
+							<label for="" class="error"></label>
+						</li>	
+						<li class="district-container <?php echo ((isset($action))?"shown":"");?>">
+							<label for="">District<em>*</em></label>
+							<select name="district" id="district">	
+								<?php
+								if(isset($action)){
+									$sqlisting = "SELECT * FROM district 
+									WHERE id_city='$rowprov[id_city]' 
+									ORDER BY district_name ASC ";
+									$reslist =mysql_query($sqlisting);
+									while($rowlist = mysql_fetch_array($reslist)){
+									echo "<option value='$rowlist[id_district]'";
+									if($row['id_district']==$rowlist['id_district'])echo " selected";
+									echo ">$rowlist[district_name]</option>";}
 								}
 								?>
 							</select>
@@ -209,11 +232,32 @@ function selectcity(){
 		}
 	});	
 }
-$(function(){
+function selectdistrict(){
+	var idcity = $("#city").val();	
+	$.ajax({		
+		url: "../modules/ajaxselectdistrict.php",
+		type: "post",
+		data: {idcity: idcity},
+		success: function (response){ 	
+			$("#district")
+			.empty()
+			.append(response);
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+		   console.log(textStatus, errorThrown);
+		}
+	});	
+}
+$(function(){	
 	$(".city-container").addClass("hidden");
-	$( "#province" ).change(function() {
+	$(".district-container").addClass("hidden");
+	$( "#province" ).on('click change', function(){
 	  selectcity();
 	  $(".city-container").removeClass("hidden");
 	});
+	$( "#city" ).on('click change', function(){
+	  selectdistrict();
+	  $(".district-container").removeClass("hidden");
+	});	
 });
 </script>

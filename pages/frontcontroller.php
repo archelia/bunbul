@@ -20,5 +20,18 @@ switch($pagecall){
 	case "myaddress" :
 		include ("../admin/modules/addcustomeraddress.php");
 		break;	
+	case "checkoutaddress" :
+		include ("../admin/modules/addcustomeraddress.php");
+		break;	
+	case "checkout" :
+		include ($dest."login.php");
+		include ($dest."register.php");
+		break;
+	case "checkout-final" :
+		include ($dest."order.php");
+		break;
+	case "paymentconfirm" :
+		include ($dest."paymentconfirm.php");
+		break;	
 }
 ?>

@@ -28,7 +28,7 @@ if(isset($_POST['submit']))
 		$sql .= ",address='$_POST[customeraddress1]' ";
 		$sql .= ",address2='$_POST[customeraddress2]' ";
 		$sql .= ",address_phone='$_POST[phonenumber]' ";
-		$sql .= ",id_city='$_POST[city]' ";
+		$sql .= ",id_district='$_POST[district]' ";
 		$sql .= ",postal_code='$_POST[postalcode]' ";
 		$sql .= ",shipping_address='$shipping' ";
 		$sql .= ",billing_address='$billing' ";
@@ -38,17 +38,16 @@ if(isset($_POST['submit']))
 	else{
 		// do query results
 		$sql = "INSERT INTO customeraddress ";
-		$sql .= "VALUES ('', '$_POST[idcust]', '$_POST[city]', '$_POST[customeraddress1]', '$_POST[customeraddress2]', '$_POST[postalcode]', '$_POST[addressname]', '$_POST[phonenumber]', $shipping, $billing, 
-		now(), now(), 1)";
+		$sql .= "VALUES ('', '$_POST[idcust]', '$_POST[district]', '$_POST[customeraddress1]', '$_POST[customeraddress2]', '$_POST[postalcode]', '$_POST[addressname]', '$_POST[phonenumber]', $shipping, $billing, now(), now(), 1)";
 	}
 	
 	$qr = mysql_query($sql);
 
 	if($qr)
 	{
-		$pesan = 'Customer saved succesfully. ';
-		//$pesan = $sql;
+		$pesan = 'Customer saved succesfully.';		
 		$success=1;
+		//$pesan = $sql;
 	}
 	else
 	{		

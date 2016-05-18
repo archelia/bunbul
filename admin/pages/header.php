@@ -86,9 +86,8 @@
 					<a href="">Order</a>
 					<ul class="sub-menu">
 						<li><a href="listpaymentmethod.php">Payment Method</a></li>
-						<!--
+						<li><a href="listshippingmethod.php">Shipping Method</a></li>
 						<li><a href="listorder.php">Manage Order</a></li>
-						-->
 					</ul>
 				</li>
 				<?php 

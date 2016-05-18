@@ -185,14 +185,31 @@ input[type="radio"]{
 	display: inline-block;
 	margin-right: 5px;
 	cursor: pointer;
-	background: url("../images/radio.png") no-repeat center center;
 	vertical-align: middle;
+	color: #A2CC01;
+	border: 1px solid #A2CC01;
+	text-align: center;
 }
 input[type="checkbox"]:checked + label{}
 input[type="radio"]:checked + span{
-	background: url("../images/radio-checked.png") no-repeat center center;
+	color: #ffffff;
+	background: #A2CC01;
 }
-.radiobtn span:after{}
+/*
+.radiobtn span:after{
+	opacity: 0;
+	content: '';
+	position: absolute;
+	width: 11px;
+	height: 7px;
+	background: transparent;
+	top: 2;
+	left: 1;
+	border: 3px solid #333;
+	border-top: none;
+	border-right: none;
+}
+*/
 select{
 	font-size: 12px;
 	line-height: 20px;
@@ -220,6 +237,7 @@ table tr td{
 table tr:nth-child(2n+1) td{
 	background: #ededed;
 }
+
 
 /*===== BUTTONS =====*/
 

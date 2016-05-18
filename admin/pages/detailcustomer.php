@@ -52,10 +52,13 @@
 			<h3>Customer Address</h3>			
 			<?php
 				$sqladdress = "
-					SELECT ca.*, c.city_name, p.province_name FROM customeraddress  ca, city c, province p 
-					WHERE ca.id_city = c.id_city 
+					SELECT ca.*, d.district_name, c.city_name, p.province_name 
+					FROM customeraddress  ca, district d, city c, province p 
+					WHERE ca.id_district = d.id_district 
+					AND d.id_city = c.id_city 
 					AND c.id_province = p.id_province 
 					AND id_customer=$_GET[idcust] 
+					AND ca.active=1 
 					ORDER BY shipping_address DESC, billing_address DESC";
 				$result = mysql_query($sqladdress);
 				if(($result)&&(mysql_num_rows($result)>0)){
@@ -67,9 +70,10 @@
 							<address>
 								<span>$rowa[address]</span>
 								<span>$rowa[address2]</span>
+								<span>$rowa[district_name]</span>
 								<span>$rowa[city_name]</span>
-								<span>$rowa[province_name]</span>
-								<span class='phone'>$rowa[address_phone]</span>			
+								<span>$rowa[province_name] $rowa[postal_code]</span>
+								<span class='phone'><b>T</b> : $rowa[address_phone]</span>			
 							</address>
 							";						
 						echo "
@@ -85,7 +89,7 @@
 						echo "						
 							<div class='edit-address'>
 							<a href='addcustomeraddress.php?act=chg&id=$rowa[id_customeraddress]&idcust=$rowa[id_customer]' class='small-button edit-button'>&nbsp;</a>
-							<a href='deletion.php?id=$rowa[id_customeraddress]&pageorigin=$pagecall&idcust=$rowa[id_customer]' class='small-button del-button' onclick=\"return confirm('Are you sure you want to delete this item?');\">&nbsp;</a>
+							<a href='deactive.php?id=$rowa[id_customeraddress]&pageorigin=$pagecall&idcust=$rowa[id_customer]' class='small-button del-button' onclick=\"return confirm('Are you sure you want to delete this item?');\">&nbsp;</a>
 						</div>
 						</div>";		
 					}

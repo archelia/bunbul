@@ -9,11 +9,6 @@ else {
 	$tabel = substr($pagecall, 3);
 }
 
-// for detail customer address only
-if(($pagecall=="detailcustomer") or ($pagecall=="myaddress")){
-	$tabel = "customeraddress";
-}
-
 $fieldid = "id_" . $tabel;
 $id = $_GET['id'];
 

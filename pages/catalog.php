@@ -113,7 +113,15 @@
 				if ($row['product_discount_active']=='1'){
 					echo '<div class="product-discount"><span class="prod-dc">'.$row['product_discount'].'% OFF</span></div>';
 				}
-															
+					
+				// if product items 0, show SOLD OUT
+				$sqlstock = "SELECT sum(stock) as sum FROM `item` WHERE id_product='$row[id_product]'";
+				$rowstock = mysql_fetch_array(mysql_query($sqlstock));
+				if($rowstock['sum']<1){
+					echo "<div class='sold-out'><span>Sold Out</span></div>";
+				}
+				
+				
 				// $no for pagination
 				$no++;
 				echo '</div>';

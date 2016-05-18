@@ -16,6 +16,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="../source/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../source/css/jquery.ui.css">
 	<link rel="stylesheet" type="text/css" href="../source/css/baseline.css">
 	<link rel="stylesheet" type="text/css" href="../source/css/layout.css">
 	<link rel="stylesheet" type="text/css" href="../source/css/main.css">
@@ -45,8 +46,21 @@
 							ORDER by jumlah DESC";
 					$qcat = mysql_query($sqcat." LIMIT 5");
 					while ($rowcat = mysql_fetch_array($qcat)){
-						echo '<li class="'.(($rowcat['category_name']=="T-Shirt")?'hasub':"").'"><a href="catalog.php?cat='.$rowcat['category_name'].'">'.$rowcat['category_name'].'</a>';
-						if($rowcat['category_name']=="T-Shirt"){
+						echo '<li class="'.(($rowcat['category_name']=="Shoes")?'hasub':"").(($rowcat['category_name']=="T-Shirt")?'hasub':"").'"><a href="catalog.php?cat='.$rowcat['category_name'].'">'.$rowcat['category_name'].'</a>';
+						if($rowcat['category_name']=="Shoes"){
+							echo '<ul class="submenu">';		
+							
+							// list subcategory
+							$sql = "SELECT * FROM subcategory 
+									WHERE id_category='$rowcat[id_category]' 
+									AND active=1";
+							$query = mysql_query($sql);
+							while($rowsub = mysql_fetch_array($query)){
+								echo '<li><a href="catalog.php?subcat='.$rowsub['id_subcategory'].'">'.ucwords($rowsub['subcategory_name']).'</a></li>';
+							}						
+							echo '</ul>';
+						}
+						else if($rowcat['category_name']=="T-Shirt"){
 							echo '<ul class="submenu">';						
 							echo '	<li><a href="catalog.php?cat=T-Shirt&gen=1">Men T-Shirt</a></li>';
 							echo '	<li><a href="catalog.php?cat=T-Shirt&gen=2">Women T-Shirt</a></li>';
@@ -88,7 +102,20 @@
 						<li class="hasub">
 							<a href="shoppingcart.php" class="cart">
 								<img src="../source/images/shopping-cart.png" alt="">
-								<span class="count">2</span>
+								<?php												
+								if(isset($_SESSION["iditems"])){	
+								$i=0;
+								$sum = 0;
+								while ($i<count($_SESSION["iditems"])){
+									$sum += $_SESSION['qtys'][$i];
+									$i++;
+								}
+									if($sum>0){
+									echo "<span class='count'>".$sum."</span>";
+									}
+								}									
+								?>
+								
 							</a>
 						</li>
 					</ul>
@@ -108,8 +135,21 @@
 					<?php
 					$qcat = mysql_query($sqcat);
 					while ($rowcat = mysql_fetch_array($qcat)){
-						echo '<li class="'.(($rowcat['category_name']=="T-Shirt")?'hasub':"").'"><a href="catalog.php?cat='.$rowcat['category_name'].'">'.$rowcat['category_name'].'</a>';
-						if($rowcat['category_name']=="T-Shirt"){
+						echo '<li class="'.(($rowcat['category_name']=="Shoes")?'hasub':"").(($rowcat['category_name']=="T-Shirt")?'hasub':"").'"><a href="catalog.php?cat='.$rowcat['category_name'].'">'.$rowcat['category_name'].'</a>';
+						if($rowcat['category_name']=="Shoes"){
+							echo '<ul class="submenu">';		
+							
+							// list subcategory
+							$sql = "SELECT * FROM subcategory 
+									WHERE id_category='$rowcat[id_category]' 
+									AND active=1";
+							$query = mysql_query($sql);
+							while($rowsub = mysql_fetch_array($query)){
+								echo '<li><a href="catalog.php?subcat='.$rowsub['id_subcategory'].'">'.ucwords($rowsub['subcategory_name']).'</a></li>';
+							}						
+							echo '</ul>';
+						}
+						else if($rowcat['category_name']=="T-Shirt"){
 							echo '<ul class="submenu">';						
 							echo '	<li><a href="catalog.php?cat=T-Shirt&gen=1">Men T-Shirt</a></li>';
 							echo '	<li><a href="catalog.php?cat=T-Shirt&gen=2">Women T-Shirt</a></li>';

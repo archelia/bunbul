@@ -2,11 +2,8 @@
 	include "../global/global.php";
 	if(isset($_SESSION['custmyaccount'])){header("location: homepage.php");}
 	include "header.php";	
-	$pagecall = "addcustomeraddress";
+	$pagecall = "myorder";
 	include "frontcontroller.php";	
-	
-	// sql of order-
-	// don't forget to add pagination on this page
 ?>
 <div class="container">
 	<div class="front-content myaccount">
@@ -32,51 +29,50 @@
 				<th align="center">Order Total</th>
 				<th align="center">Status</th>
 			</tr>
-			<tr>
-				<td align="right">2016-05-18</td>
-				<td align="center">123456789</td>
-				<td align="right">590000</td>
-				<td align="center">Terkirim</td>
-			</tr>
-			<tr>
-				<td align="right">2016-05-18</td>
-				<td align="center">123456789</td>
-				<td align="right">590000</td>
-				<td align="center">Terkirim</td>
-			</tr>
-			<tr>
-				<td align="right">2016-05-18</td>
-				<td align="center">123456789</td>
-				<td align="right">590000</td>
-				<td align="center">Terkirim</td>
-			</tr>
-			<tr>
-				<td align="right">2016-05-18</td>
-				<td align="center">123456789</td>
-				<td align="right">590000</td>
-				<td align="center">Terkirim</td>
-			</tr>		
+			<?php
+			// step 1 pagination
+			$batas=20;
+			if (isset($_GET['halaman']))
+				{$halaman=$_GET['halaman'];}
+			if (empty($halaman))
+			{
+				$posisi=0;
+				$halaman=1;
+			}
+			else
+			{
+				$posisi=($halaman-1)*$batas;
+			}			
+			// step 2 pagination
+			$no=$posisi+1;
+			
+			/* List Order From this customer */			
+			$sql = "SELECT * FROM purchase_order 
+					WHERE active=1 
+					AND id_customer='$_SESSION[custlogin]' ";
+			$sql .= "ORDER BY date_created DESC ";		
+			// the pagination
+			$sqlp = $sql."LIMIT $posisi,$batas";	
+			$query = mysql_query($sqlp);
+			
+			while($row = mysql_fetch_array($query)){
+				echo '<tr>';
+				echo '<td align="right">'.$row['order_date'].'</td>';
+				echo '<td align="center"><a href="orderdetail.php?idorder='.$row['id_order'].'">'.$row['id_order'].'</a></td>';
+				echo '<td align="right">'.$row['grandtotal'].'</td>';
+				echo '<td align="right">'.$row['status'].'</td>';
+				echo '</tr>';
+			}
+											   
+			?>			
 			</table>
 		</div>
-
+		<?php
+		// pagination
+		include ("../admin/modules/paging.php");	
+		?>
 	</div>	
 </div>
-<?php
-if($pesan!=""){
-	if($success!=1){
-		echo '<script>
-		$(".message").addClass("error");
-		</script>
-		';
-	}
-	else{
-		echo '<script>
-		$(".message").addClass("valid");
-		</script>
-		';
-	}
-}
-?>
 <?php
 	include "footer.php";
 ?>

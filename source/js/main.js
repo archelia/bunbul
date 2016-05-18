@@ -1,5 +1,4 @@
 $(document).ready(function($){		
-	
 	// mobile menus function
 	$('.mobile-menu-icon a').click(function(e){
 		e.preventDefault();
@@ -40,7 +39,7 @@ $(document).ready(function($){
 	var timeout = null;
 	$(window).scroll(function () {
 		if (!timeout) {
-			timeout = setTimeout(function () {          
+			timeout = setTimeout(function(){          
 				clearTimeout(timeout);
 				timeout = null;
 				if ($(window).scrollTop() >= 200) {
@@ -58,5 +57,4 @@ $(document).ready(function($){
 			}, 250);
 		}
 	});
-	
 });

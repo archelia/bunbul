@@ -58,6 +58,9 @@ switch($pagecall){
 	case "addreseller" :
 		include ($dest."addreseller.php");
 		break;	
+	case "addshippingmethod" :
+		include ($dest."addshippingmethod.php");
+		break;	
 	case "addpaymentmethod" :
 		include ($dest."addpaymentmethod.php");
 		break;	
@@ -66,6 +69,9 @@ switch($pagecall){
 		break;	
 	case "addcity" :
 		include ($dest."addcity.php");
+		break;	
+	case "adddistrict" :
+		include ($dest."adddistrict.php");
 		break;	
 		
 }

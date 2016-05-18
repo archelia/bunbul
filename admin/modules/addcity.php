@@ -22,7 +22,6 @@ if(isset($_POST['submit']))
 			$sql = "UPDATE city ";
 			$sql .= "SET city_name='$_POST[cityname]' ";
 			$sql .= ",id_province='$_POST[idprovince]' ";
-			$sql .= ",ongkir='$_POST[ongkir]' ";
 			$sql .= ", date_edited=now() ";
 			$sql .= ", user_edit='$_SESSION[viouser]' ";
 			$sql .= "WHERE id_city='$_POST[id]'";
@@ -30,7 +29,7 @@ if(isset($_POST['submit']))
 		else{
 			// posting results
 			$sql = "INSERT INTO city ";
-			$sql .= "VALUES ('', '$_POST[cityname]', '$_POST[idprovince]', '$_POST[ongkir]','$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(),  1)";
+			$sql .= "VALUES ('', '$_POST[cityname]', '$_POST[idprovince]', '$_SESSION[viouser]', '$_SESSION[viouser]', now(), now(),  1)";
 			
 		}
 		

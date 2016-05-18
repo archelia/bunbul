@@ -14,6 +14,10 @@ else {
 	// page origin are add-something
 	$tabel = substr($pagecall, 3);
 }
+// for detail customer address only
+if(($pagecall=="detailcustomer") or ($pagecall=="myaddress")){
+	$tabel = "customeraddress";
+}
 
 $fieldid = "id_" . $tabel;
 $id = $_GET['id'];
@@ -23,5 +27,12 @@ $query .= "SET active=0 ";
 $query .= "WHERE  ". $fieldid. " =' ". $id . "'";
 $result = mysql_query($query);
 
-header("Location: ".$pagecall.".php".((isset($detail))?"?id=".$id:""));
+// for detail customer address only
+if($pagecall=="detailcustomer"){
+	header("Location: ".$pagecall.".php?idcust=".$_GET['idcust']);
+}
+elseif($pagecall=="myaddress"){
+	header("Location: ../../pages/myaddress.php");
+}
+else header("Location: ".$pagecall.".php".((isset($detail))?"?id=".$id:""));
 ?>
