@@ -5,6 +5,7 @@ if($pagecall != "login"){
 	}
 }				
 $dest="../modules/";
+//include ($dest.$pagecall.".php");
 
 switch($pagecall){
 	case "login" :
@@ -72,6 +73,12 @@ switch($pagecall){
 		break;	
 	case "adddistrict" :
 		include ($dest."adddistrict.php");
+		break;	
+	case "addorder" :
+		include ($dest."addorder.php");
+		break;	
+	case "changestatusorder" :
+		include ($dest."changestatusorder.php");
 		break;	
 		
 }

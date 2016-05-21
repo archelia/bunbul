@@ -1,61 +1,67 @@
 <?php	
-include "../global/global.php";		
-$pagecall = "pdp";
-if(!isset($_GET['idorder'])){header("location: 404.php");}
+	include "../../global/global.php";
+	if(!isset($_GET['idorder'])){header("location: listorder.php");}
 
-// load order data
-$sql = "SELECT po.*, sm.method_title as spmethod, pm.method_title as pymethod ";
-$sql .= "FROM purchase_order po, shippingmethod sm, paymentmethod pm ";
-$sql .= "WHERE po.active=1 ";
-$sql .= "AND po.id_shippingmethod = sm.id_shippingmethod ";
-$sql .= "AND po.id_paymentmethod = pm.id_paymentmethod ";
-$sql .= "AND id_order='$_GET[idorder] '";
-$sql .= "AND id_customer='$_SESSION[custlogin]'";
-$result = mysql_query($sql);
-$row = mysql_fetch_array($result);
-if(mysql_num_rows($result)<1){
-	header("location: 404.php");
-}
-
-include "header.php";
-
-$status = "";
-switch ($row['status']) {
-case 0:
-   $status = "Canceled";
-	break;
-case 1:
-   $status = "Waiting For Payment";
-	break;
-case 2:
-	$status = "Being Processed";
-	break;
-case 3:
-	$status = "Delivered";
-	break;
-case 4:
-	$status = "Returned";
-	break;
-}
+	$pagecall = "changestatusorder";
+	include "controller.php";
+	
+	// load order data
+	$sql = "SELECT po.*, sm.method_title as spmethod, pm.method_title as pymethod ";
+	$sql .= "FROM purchase_order po, shippingmethod sm, paymentmethod pm ";
+	$sql .= "WHERE po.active=1 ";
+	$sql .= "AND po.id_shippingmethod = sm.id_shippingmethod ";
+	$sql .= "AND po.id_paymentmethod = pm.id_paymentmethod ";
+	$sql .= "AND id_order='$_GET[idorder] '";
+	$sql .= "AND id_customer='$_SESSION[custlogin]'";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	if(mysql_num_rows($result)<1){
+		header("location: listorder.php");
+	}
+	
+	$status = "";
+	switch ($row['status']) {
+    case 0:
+       $status = "Canceled";
+        break;
+    case 1:
+       $status = "Waiting For Payment";
+        break;
+    case 2:
+        $status = "Being Processed";
+        break;
+	case 3:
+        $status = "Delivered";
+        break;
+	case 4:
+        $status = "Returned";
+        break;
+	}
+	
+	include "header.php";		
 ?>
 <div class="container">
-	<div class="front-content order-detail">	
-		<h1>ORDER NUMBER <?php echo $row['id_order'];?></h1>
+	<div class="content detail detailorder">	
+		<h3><?php echo ucwords("Detail order")." ".$row['id_order']; ?></h3>
+		<div class="message">
+			<p><?php if($pesan!=""){ echo $pesan; }?></p>
+		</div>
 		<p>Order Date : <?php echo $row['order_date'];?></p>
-		<p>Current Status : <?php echo $status;?></p>
-		<div class="notice">
-			<p>Please make the payment within 1x24 hours.</p>
-			<p>Please include your order number in the description column.</p>
-			<p>Your confirmation will be processed in 1x24 hours.</p>
-		</div>
-		<div class="confirmation">
-			<?php
-			if($row['status']==1){
-				echo '<a href="paymentconfirm.php?id='.$row['id_order'].'">Confirm Payment</a>';
-			}
-			?>
+		<p>Current Status : <?php echo $status;?></p>			
+		
+		<form action="detailorder.php?idorder=<?php echo $row['id_order'];?>" method="POST" name="changestatusorder" id="changestatusorder">
+			<label for="statusorder">Change Status</label>
+			<select name="statusorder" id="statusorder">
+				<option value="0">Cancel</option>
+				<option value="1">Waiting for Payment</option>
+				<option value="2">Being Processed</option>
+				<option value="3">Delivered</option>
+				<option value="4">Returned</option>
+			</select>
+			<input type="hidden" name="idorder" id="idorder" value="<?php echo $_GET['idorder'];?>">
+			<input type="submit" name="submit" id="submit" value="CHANGE" class="button">
+		</form>
 			
-		</div>
 		<div class="twocols order-col">
 			<div class="">
 				<h6>Shipping Address</h6>
@@ -152,7 +158,7 @@ case 4:
 						?>
 						<tr>
 							<td align="left">
-								<img src="<?php echo "../source/placeholder/".$rowitem['id_product']."-1.jpg";?>" alt="" title="" height="60">
+								<img src="<?php echo "../../source/placeholder/".$rowitem['id_product']."-1.jpg";?>" alt="" title="" height="60">
 								<h6><?php echo $rowitem['product_name']; ?></h6>
 								<p><?php echo "sku : ".$rowitem['barcode']; ?></p>
 							</td>
@@ -176,15 +182,46 @@ case 4:
 				</table>
 			</div>	
 			<div class="total">
-				<p><span>Subtotal</span><span>Rp. <?php echo $row['subtotal']; ?> </span></p>
-				<p><span>Discount</span><span>Rp. <?php echo $row['discount']; ?></span></p>
-				<p><span>Shipping Cost</span><span>Rp. <?php echo $row['ongkir']; ?></span></p>
-				<p><span>Grandtotal</span><span>Rp. <?php echo $row['grandtotal']; ?></span></p>
+				<p>
+					<span>Subtotal</span>
+					<span>Rp. <?php echo $row['subtotal']; ?> </span>
+				</p>
+				<p>
+					<span>Discount</span>
+					<span>Rp. <?php echo $row['discount']; ?></span>
+				</p>
+				<p>
+					<span>Shipping Cost</span>
+					<span>Rp. <?php echo $row['ongkir']; ?></span>
+				</p>
+				<p>
+					<span>Grandtotal</span>
+					<span>Rp. <?php echo $row['grandtotal']; ?></span>
+				</p>
 			</div>
 		</div>	
+		<div class="clear"></div>
+		<div class="centered">
+				<a href="listorder.php" class="button">BACK</a>
+		</div>
 	</div>
-	<div class="clear"></div>
 </div>
+<?php
+if($pesan!=""){
+	if($success!=1){
+		echo '<script>
+		$(".message").addClass("error");
+		</script>
+		';
+	}
+	else{
+		echo '<script>
+		$(".message").addClass("valid");
+		</script>
+		';
+	}
+}
+?>
 <?php
 	include "footer.php";	
 ?>

@@ -67,8 +67,7 @@
 			echo "</div>";			
 		}
 		?>
-	</div>
-	
+	</div>	
 	<div class="new-arrival">
 		<?php
 		// for t-shirt
@@ -115,7 +114,24 @@
 		}
 		?>
 	</div>
+	<div class="seo twocols">
+		<div class="editor">
+			<h5>KEBUTUHAN FASHION PRIA &amp; WANITA SAAT INI</h5>
+			<article>
+				<p>Seiring dengan perkembangan jaman, <strong>fashion pria</strong> maupun <strong>fashion wanita</strong> juga ikut berkembang. <strong>Fashion wanita</strong> dan <strong>fashion pria</strong> meliputi <strong>sepatu fashion</strong> wanita, gelang, jam tangan fashion, <strong>t-shirt pria</strong>, <strong>t-shirt wanita</strong>, dan lain-lain. Vioreshop menyediakan berbagai kebutuhan <strong>fashion pria</strong> dan <strong>fashion wanita.</strong> <strong>Style</strong> masa kini menjadi <strong>fashion style</strong> Viore Shop, dengan mengikuti <strong>trend fashion</strong>, fokus kepada <strong>fashion wanita</strong>, Vioreshop memiliki produk unggulan Sinful yaitu <strong>sepatu</strong> fashion wanita contohnya wedges, high heels, sepatu flat atau flat shoes. Ada pula <strong>kaos premium</strong>, baju kasual dan sebagainya.</p>
+			</article>
+		</div>
+		<div class="editor">
+			<h5>BELANJA DI VIORESHOP</h5>
+			<strong></strong>
+			<article>
+				<p>Vioreshop.com menyediakan toko online <strong>fashion wanita</strong> maupun <strong>fashion pria</strong>. Kualitas terbaik dari kami dan juga <strong>belanja aman</strong> menjadi motto Vioreshop.com. <strong>Premium quality</strong> <strong>T-Shirt</strong> dan <strong>sepatu wanita</strong> menjadi fokus utama penjualan Vioreshop. Vioreshop merupakan toko online Jakarta yang menjual <strong>sandal wanita</strong> dan <strong>sepatu wanita</strong> serta kaos premium Jakarta. Dapatkan <strong>gaya busana</strong> yang sesuai fashion trend saat ini. Tidak hanya sepatu dan T-shirt, jam tangan kasual untuk <strong>fashion wanita</strong> dan <strong>fashion pria</strong> juga ada di toko online fashion Vioreshop.com.</p>
+			</article>
+		</div>
+		<div class="clear"></div>
+	</div>
 </div>
+
 <?php
 	include "footer.php";	
 ?>

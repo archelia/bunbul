@@ -187,8 +187,19 @@ switch($pagecall){
 		array("Disctrict Name Z-A","district_name:DESC")
 	);
 	break;	
-	
-	
+	case "listorder" :
+	// variables needed :
+	$addnewpage = "addorder.php";
+	$filteropt = array
+	(
+		array("Order No A-Z","id_order:ASC"),
+		array("Order No Z-A","id_order:DESC"),
+		array("Order Date A-Z","order_date:ASC"),
+		array("Order Date Z-A","order_date:DESC"),
+		array("Customer Name A-Z","customer_name:ASC"),
+		array("Customer Name Z-A","customer_name:DESC")
+	);
+	break;		
 }	
 ?>
 <div class="form-tools">
