@@ -6,8 +6,7 @@ header h1{
 	letter-spacing: 0.1em;
 	color: #000;
 }
-.container.main{
-}
+.container.main{}
 footer{
 	color: #fff;
 }
@@ -74,7 +73,15 @@ footer .copy{
 	display: none;
 	color: red;
 }
-
+.twocols > div:not(.clear){
+    float: left;
+    width: 50%;
+}
+.tricols > div:not(.clear){
+	float: left;
+	width: 31%;
+	margin-right: 2.33%;
+}
 /*================= JQUERY VALIDATION ===========*/
 
 input[type="text"].error,
@@ -452,3 +459,77 @@ a.link-opt{
 	line-height: 20px;
 	color: #ffffff;
 }
+
+/*==================== DETAIL ORDER ====================*/
+
+.field-info > span{
+	display: inline-block;
+	width: 150px;
+}
+.detailorder .form-container {
+    padding-left: 155px;
+    padding-top: 10px;
+}
+.detailorder .form-container .statusorder{
+	width: 250px;
+}
+.detailorder h6{
+	font-weight: normal;
+}
+.detailorder .changestatus{
+	display: block;
+}
+.detailorder address,
+.detailorder .methods p{
+	padding: 10px 20px;
+}
+.detailorder address span,
+.detailorder .methods p{
+	display: block;
+	font-size: 12px;
+	line-height: 20px;
+	font-style: italic;
+}
+.detailorder .order-col{
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #c5c5c5;
+}
+.detailorder .product-data img{
+	display: block;
+    float: left;
+    margin-right: 10px;
+}
+.detailorder .product-data h6{
+	margin-bottom: 5px;
+}
+.detailorder .product-data h6,
+.detailorder .product-data p{
+	font-size: 12px;
+	line-height: 20px;
+}
+.detailorder .total{
+	margin-bottom: 30px;
+}
+.detailorder .total p{
+	margin-bottom: 10px;
+}	
+.detailorder .total p span{
+	float: left;
+	width: 25%;
+	text-align: right;
+	padding: 0 10px;
+	display: block;
+}
+.detailorder .total p span:first-child{
+	width: 75%;
+}
+.detail-order-info{
+	margin-bottom: 50px;
+}
+.detail-order-info h5{
+	margin-bottom: 20px;
+}
+
+/*==================== NEW ORDER ====================*/
+

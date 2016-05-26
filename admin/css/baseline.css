@@ -56,6 +56,9 @@ label{
 em{
 	color: red;
 }
+strong{
+	font-weight: bold;
+}
 .editor{
 	text-align: justify;
 }

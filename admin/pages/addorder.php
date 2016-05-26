@@ -27,7 +27,7 @@
 ?>
 <div class="container">
 	<div class="content addorder">		
-		<div class="box white-box addorder-box">			
+		<div class="white-box addorder-box">			
 			<h3><?php echo ucwords((isset($action)?"Edit ":"Add ").$tabel); ?></h3>
 			<div class="message">
 				<p><?php if($pesan!=""){ echo $pesan; }?></p>
@@ -44,55 +44,77 @@
 							<label for="idcustomer">Customer<em>*</em></label>
 							<input type="hidden" name="idcustomer" id="idcustomer" value="">
 							<div class="content">
-								<input type="text" autocomplete="off" name="customername" id="searchid" class="required search" placeholder="Search Customer" value="<?php if(isset($action)) echo $row['order_name']; ?>" >
-								<div id="result"></div>
+								<input type="text" autocomplete="off" name="customername" id="searchid" class="required search" placeholder="Search Customer" data-search="customer" value="<?php if(isset($action)) echo $row['order_name']; ?>" >
+								<div class="result result-customer"></div>
 							</div>
 							<label for="idcustomer" class="error">This is a required field.</label>						
 							
 						</li>
-						<li>
+						<li class="customeraddress">
 							<label>Customer Address</label>
-							<ul>
-							<?php
-								$sql = "SELECT ca.*, d.district_name, c.city_name, p.province_name FROM customeraddress  ca, district d, city c, province p 
-								WHERE ca.id_district = d.id_district 
-								AND d.id_city = c.id_city 
-								AND c.id_province=p.id_province 
-								AND id_customer='$_SESSION[custlogin]'
-								AND ca.active=1";
-								$query = mysql_query($sql);
-								while($row=mysql_fetch_array($query)){
-									echo '
-									<li>
-										<label>
-											<input type="radio" name="address-option" value="'.$row['id_customeraddress'].'">
-											<address>
-												<span>'.$row['address_name'].'</span>
-												<span>'.$row['address'].'</span>
-												<span>'.$row['address2'].'</span>
-												<span>'.$row['district_name'].'</span>
-												<span>'.$row['city_name'].'</span>
-												<span>'.$row['province_name'].' '.$row['postal_code'].'</span>
-												<span><b>T </b>: '.$row['address_phone'].'</span>
-											</address>
-										</label>
-									</li>';
-								}
-							?>
-							</ul>
+							<ul></ul>
+						</li>
+						<form action="addorder.php" name="addproduct" id="addproduct" method="POST">
+						<li>
+							<label>Input Product</label>							
+							<input type="text" name="productname" id="productname" value="" autocomplete="off" class="search" data-search="product">
+							<input type="hidden" name="idproduct" id="idproduct" value="">
+							<div class="result result-product"></div>				
 						</li>
 						<li>
-							<label>Input Product</label>
-							<form action="">
-								<input type="text">
-								<input type="text">
-							</form>
+							<div class="tricols productvarian">
+								<div class="size">
+									<label for="productsize">Size</label>
+									<select name="productsize" id="productsize">
+										<option value="35">35</option>
+									</select>
+								</div>
+								<div class="qty">
+									<label for="productqty">Qty</label>
+									<select name="productqty" id="productqty">
+										<option value="1">1</option>
+									</select>
+								</div>								
+								<div>	
+									<label for="submitproduct">&nbsp;</label>
+									<input type="submit" name="submitproduct" id="submitproduct" value="Add Product">
+								</div>
+								<div class="clear"></div>
+							</div>
 						</li>
+						</form>
 						<li>
 							<label>Detail Order</label>
+							<div class="cart-table">
+								<table width="100%" cellpadding="0" cellspacing="0">
+									<colgroup>
+										<col width="">
+										<col width="20%">
+										<col width="15%">
+										<col width="10%">
+										<col width="20%">
+									</colgroup>
+									<thead>
+										<tr>
+											<th>Product Name</th>
+											<th>Detail Product</th>
+											<th>Price</th>
+											<th>Quantity</th>
+											<th>Subtotal</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
 						</li>
 						<li>
 							<label>Subtotal</label>
+							<div class="total">
+								<p><span>Subtotal</span><span></span></p>
+								<p><span>Discount</span><span></span></p>
+								<p><span>Shipping Cost</span><span></span></p>
+								<p><span>Grandtotal</span><span></span></p>
+							</div>
 						</li>
 						<li>
 							<label>Note</label>
@@ -137,54 +159,6 @@ if($pesan!=""){
 <?php
 	include "footer.php";
 ?>
-<script>
-$(function() {
-	// highlight
-	var elements = $("input[type!='submit'], textarea, select");
-	elements.focus(function() {
-		$(this).parents('li').addClass('highlight');
-	});
-	elements.blur(function() {
-		$(this).parents('li').removeClass('highlight');
-	});
-	$("#addorder").validate();
-	
-	
-	// search customer
-	$(".search").keyup(function() 
-	{ 
-	var searchid = $(this).val();
-	var dataString = 'search='+ searchid;
-	if(searchid!='')
-	{
-		$.ajax({
-		type: "POST",
-		url: "../modules/ajaxselectcustomer.php",
-		data: dataString,
-		cache: false,
-		success: function(html)
-		{
-		$("#result").html(html).show();
-		}
-		});
-	}return false;    
-	});
-
-	jQuery("#result").on("click",function(e){ 
-		var clicked = $(e.target);
-		var idcustomer = clicked.attr("data-idcust");
-		$('#idcustomer').val(idcustomer);
-		$('#searchid').val(clicked.attr("data-cust-name"));
-	});
-	
-	jQuery(document).on("click", function(e) { 
-		var $clicked = $(e.target);
-		if (! $clicked.hasClass("search")){
-		jQuery("#result").fadeOut(); 
-		}
-	});
-	$('#searchid').click(function(){
-		jQuery("#result").fadeIn();
-	});
-});
-</script>
+<link rel="stylesheet" type="text/css" href="../../source/css/jquery.ui.css">
+<script type="text/javascript" src="../js/jquery.ui.js"></script>
+<script type="text/javascript" src="../js/order.js"></script>

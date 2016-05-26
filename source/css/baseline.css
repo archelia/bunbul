@@ -79,6 +79,9 @@ em{
 	color: inherit;
 	font-style: italic;
 }
+strong{
+	font-weight: bold;
+}
 .editor{
 	text-align: justify;
 }
@@ -133,6 +136,9 @@ input[type="radio"],
 input[type="radio"]{
 	display: none;
 } 
+input[type="number"]{
+	text-align: center;
+}
 .radiobtn,
 .checkbox{
 	position: relative;
@@ -278,6 +284,24 @@ button:hover,
 .small-button:hover{
 	color: #6EBB86;
 }
+input[type="submit"].button-delete,
+input[type="submit"].button-edit,
+.button-delete,
+.button-edit{
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	border: 0;
+}
+input[type="submit"].button-delete,
+.button-delete{
+	background: url("../images/icon-trash.png") no-repeat center;
+}
+input[type="submit"].button-edit,
+.button-edit{
+	background: url("../images/icon-ok.png") no-repeat center;
+}
+
 /*===== DATEPICKER =====*/
 
 .ui-widget {

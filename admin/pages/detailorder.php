@@ -46,24 +46,28 @@
 		<div class="message">
 			<p><?php if($pesan!=""){ echo $pesan; }?></p>
 		</div>
-		<p>Order Date : <?php echo $row['order_date'];?></p>
-		<p>Current Status : <?php echo $status;?></p>			
+		<p class="field-info"><span>Order Date</span>: <?php echo $row['order_date'];?></p>
+		<p  class="field-info">
+			<span>Current Status</span>: 
+			<strong><?php echo $status;?></strong>
+		</p>			
 		
-		<form action="detailorder.php?idorder=<?php echo $row['id_order'];?>" method="POST" name="changestatusorder" id="changestatusorder">
-			<label for="statusorder">Change Status</label>
-			<select name="statusorder" id="statusorder">
-				<option value="0">Cancel</option>
-				<option value="1">Waiting for Payment</option>
-				<option value="2">Being Processed</option>
-				<option value="3">Delivered</option>
-				<option value="4">Returned</option>
-			</select>
-			<input type="hidden" name="idorder" id="idorder" value="<?php echo $_GET['idorder'];?>">
-			<input type="submit" name="submit" id="submit" value="CHANGE" class="button">
-		</form>
-			
+		<div class="form-container">
+			<form action="detailorder.php?idorder=<?php echo $row['id_order'];?>" method="POST" name="changestatusorder" id="changestatusorder">
+				<label for="statusorder" class="changestatus">Change Status</label>
+				<select name="statusorder" id="statusorder" class="statusorder">
+					<option value="0">Cancel</option>
+					<option value="1">Waiting for Payment</option>
+					<option value="2">Being Processed</option>
+					<option value="3">Delivered</option>
+					<option value="4">Returned</option>
+				</select>
+				<input type="hidden" name="idorder" id="idorder" value="<?php echo $_GET['idorder'];?>">
+				<input type="submit" name="submit" id="submit" value="CHANGE" class="button">
+			</form>
+		</div>			
 		<div class="twocols order-col">
-			<div class="">
+			<div class="addresses">
 				<h6>Shipping Address</h6>
 				<address>
 					<?php
@@ -86,7 +90,7 @@
 					<span><?php echo $rows['address_phone'];?></span>
 				</address>
 			</div>
-			<div class="">
+			<div class="addresses">
 				<h6>Billing Address</h6>
 				<address>
 					<?php
@@ -114,11 +118,11 @@
 			<div class="clear"></div>
 		</div>
 		<div class="twocols order-col">
-			<div class="">
+			<div class="methods">
 				<h6>Shipping Method</h6>
 				<p><?php echo $row['spmethod'];?></p>
 			</div>
-			<div class="">
+			<div class="methods">
 				<h6>Payment Method</h6>
 				<p><?php echo $row['pymethod'];?></p>
 			</div>
@@ -126,6 +130,7 @@
 		</div>
 		<div class="detail-order-info">
 			<div class="cart-table">
+				<h5>Product Detail</h5>
 				<table width="100%" cellpadding="0" cellspacing="0">
 					<colgroup>
 						<col width="">
@@ -157,22 +162,24 @@
 					while($rowitem=mysql_fetch_array($query)){
 						?>
 						<tr>
-							<td align="left">
+							<td align="left" class="product-data">
 								<img src="<?php echo "../../source/placeholder/".$rowitem['id_product']."-1.jpg";?>" alt="" title="" height="60">
 								<h6><?php echo $rowitem['product_name']; ?></h6>
 								<p><?php echo "sku : ".$rowitem['barcode']; ?></p>
 							</td>
-							<td align="center">
+							<td align="center" class="product-data">
 								<p><?php echo "Size : ".$rowitem['size_name']; ?></p>
 								<p><?php echo "Color : ".$rowitem['color_name']; ?></p>
 							</td>
 							<td align="right">
-								<?php echo "Rp. ".($rowitem['price']-$rowitem['discount']); ?>
+								<?php 
+								$harga = $rowitem['price']-$rowitem['discount'];	
+								echo "Rp. ".number_format($harga,0,',','.'); ?>
 							</td>
 							<td align="center">
 								<?php echo $rowitem['qty']; ?>
 							</td>
-							<td align="right"><?php echo "Rp. ". $rowitem['total']; ?> </td>
+							<td align="right"><?php echo "Rp. ". number_format($rowitem['total'],0,',','.'); ?> </td>
 						</tr>
 						<?php	
 						
@@ -183,21 +190,25 @@
 			</div>	
 			<div class="total">
 				<p>
-					<span>Subtotal</span>
-					<span>Rp. <?php echo $row['subtotal']; ?> </span>
+					<span>Subtotal :</span>
+					<span>Rp. <?php echo number_format($row['subtotal'],0,',','.'); ?> </span>
 				</p>
+				<div class="clear"></div>
 				<p>
-					<span>Discount</span>
-					<span>Rp. <?php echo $row['discount']; ?></span>
+					<span>Discount :</span>
+					<span>Rp. <?php echo number_format($row['discount'],0,',','.'); ?></span>
 				</p>
+				<div class="clear"></div>
 				<p>
-					<span>Shipping Cost</span>
-					<span>Rp. <?php echo $row['ongkir']; ?></span>
+					<span>Shipping Cost :</span>
+					<span>Rp. <?php echo number_format($row['ongkir'],0,',','.'); ?></span>
 				</p>
+				<div class="clear"></div>
 				<p>
-					<span>Grandtotal</span>
-					<span>Rp. <?php echo $row['grandtotal']; ?></span>
+					<span>Grandtotal :</span>
+					<span>Rp. <?php echo number_format($row['grandtotal'],0,',','.'); ?></span>
 				</p>
+				<div class="clear"></div>
 			</div>
 		</div>	
 		<div class="clear"></div>

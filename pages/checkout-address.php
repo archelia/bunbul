@@ -60,7 +60,7 @@
 					<h3>Your Adrress List</h3>
 					<p>Please choose the shipping address.</p>
 					<form action="checkout-address.php" method="POST" name="formchooseaddress" id="formchooseaddress">
-						<ul>
+						<ul class="listing list-address">
 							<?php
 								$sql = "SELECT ca.*, d.district_name, c.city_name, p.province_name FROM customeraddress  ca, district d, city c, province p 
 								WHERE ca.id_district = d.id_district 

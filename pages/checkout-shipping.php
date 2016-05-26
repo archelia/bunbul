@@ -36,7 +36,7 @@
 			<form action="checkout-shipping.php" method="POST" name="formchooseshipping" id="formchooseshipping">
 			<div class="twocols">
 				<div class="form-container">				
-					<ul>
+					<ul class="listing list-shipping">
 						<?php
 						// list of shipping method
 						$sql = "SELECT * FROM shippingmethod WHERE active=1";
@@ -85,7 +85,7 @@
 			</div>	
 			<div class="button-collection">
 				<div class="left">
-					<button type="button" id="button-back" class="button button-back">BACK</button>
+					<button type="button" id="button-back" class="button button-back" onclick="newDoc()">BACK</button>
 				</div>
 				<div class="right">
 					<input type="submit" name="submit" id="submit" value="NEXT">
@@ -101,6 +101,9 @@
 	include "footer.php";	
 ?>
 <script>
+function newDoc() {
+    window.location.assign("checkout-address.php")
+}
 $(document).ready(function($){
 	$("input:radio[name='shippingmethod']:first").attr('checked', true);
 	$("#submit").click(function(){

@@ -118,7 +118,7 @@
 				$sqlstock = "SELECT sum(stock) as sum FROM `item` WHERE id_product='$row[id_product]'";
 				$rowstock = mysql_fetch_array(mysql_query($sqlstock));
 				if($rowstock['sum']<1){
-					echo "<div class='sold-out'><span>Sold Out</span></div>";
+					echo "<div class='sold-out'><span>SOLD OUT</span></div>";
 				}
 				
 				

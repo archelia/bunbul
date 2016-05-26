@@ -108,7 +108,9 @@
 				<li>
 					<a href="">Account</a>
 					<ul class="sub-menu">
-						<!-- <li><a href="myaccount.php">My Account</a></li> -->
+						<!-- 
+							<li><a href="myaccount.php">My Account</a></li> 
+						-->
 						<li><a href="../pages/logout.php">Log Out</a></li>
 					</ul>
 				</li>

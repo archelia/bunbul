@@ -1,6 +1,17 @@
 *, *:before, *:after {
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
- }
+}
+body{
+	background: RGBA(255, 255, 255, 1);
+}
+html.scrol-disabled, body.scrol-disabled {
+	margin: 0; height: 100%; overflow: hidden;
+}
+.wrapper{
+	padding-top: 100px;
+	position: relative;
+	min-height: 100%;
+}
 .fr{
 	float: right;
  }
@@ -31,17 +42,6 @@
 }
 .shown{
 	display: block;
-}
-body{
-	background: RGBA(255, 255, 255, 1);
-}
-html.scrol-disabled, body.scrol-disabled {
-	margin: 0; height: 100%; overflow: hidden;
-}
-.wrapper{
-	padding-top: 100px;
-	position: relative;
-	min-height: 100%;
 }
 header{	
 	background: rgba(255,255,255,0.95);

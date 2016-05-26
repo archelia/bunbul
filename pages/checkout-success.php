@@ -12,7 +12,7 @@
 	<div class="front-content checkout">
 		<div class="checkoutstep checkout-success">
 			<div class="image">
-				<img src="../source/images/checkout-thankyou.jpg" alt="Thank You" title="Thank You">
+				<img src="../source/images/checkout-thanks.jpg" alt="Thank You" title="Thank You">
 			</div>
 			<div class="editor">
 				<article>

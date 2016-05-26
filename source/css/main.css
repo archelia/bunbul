@@ -262,6 +262,11 @@ footer .socmed ul li a span.insta{
 .scrol-top a:hover{
 	opacity: .75;
 }
+.image img{
+	display: block;
+	margin: auto;
+}
+
 /*===================== FRONT PAGE =======================*/
 
 .container h2{
@@ -343,7 +348,26 @@ footer .socmed ul li a span.insta{
 .new-arrival{
 	margin-bottom: 40px;
 }
-
+.seo{
+	margin-bottom: 30px;
+}
+.seo .editor{
+	padding-left: 10px;
+	padding-right: 0;
+}
+.seo .editor:first-child{
+	padding-left: 0;
+	padding-right: 10px;
+}
+.seo .editor h5{
+	font-size: 12px;
+	line-height: 20px;
+	margin-bottom: 5px;
+}
+.seo .editor article p{
+	font-size: 11px;
+	line-height: 20px;
+}
 /*=================== CATALOG PAGE =======================*/
 
 .front-content h1{
@@ -507,32 +531,58 @@ footer .socmed ul li a span.insta{
 	text-decoration: line-through;	
     opacity: 0.5;
 }
+.sold-out {
+    position: absolute;
+    z-index: 3;
+	top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(200,200,200,0.4);   
+}
+.sold-out span{
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+    line-height: 25px;
+    color: #fff;
+	width: 100%;
+	position: absolute;
+	bottom: 25%;
+	letter-spacing: 0.3em;
+}  
 
 /*=================== PRODUCT DETAIL PAGE =======================*/
 
-.breadcrumb{
+.breadcrumb,
+.ck-breadcrumb{
 	margin-bottom: 30px;
 }
-.breadcrumb ul li{
+.breadcrumb ul li,
+.ck-breadcrumb ul li{
 	margin: 0;
 	margin-right: 10px;
 	display: inline-block;
 }
-.breadcrumb ul li a, b{
+.breadcrumb ul li a, b,
+.ck-breadcrumb ul li a, b{
 	font-size: 14px;
 	line-height: 20px;
 	color: #A2CC01;
 	font-weight: normal;
 }
-.breadcrumb ul li a:after{
+.breadcrumb ul li a:after,
+.ck-breadcrumb ul li a:after{
 	content: ">";
 	margin-left: 10px;
 	color: #A2CC01;
 }
-.breadcrumb ul li a:hover{
+.breadcrumb ul li a:hover,
+.ck-breadcrumb ul li a:hover{
 	color: inherit;
 }
-.breadcrumb ul li b{
+.breadcrumb ul li b,
+.ck-breadcrumb ul li b{
 	color: inherit;
 }
 .pdp .col2{
@@ -905,8 +955,133 @@ footer .socmed ul li a span.insta{
     position: relative;
     padding-right: 20px;
 }
+/*================== SHOPPING CART =================*/
+
+.cart-table table tr td img{
+	display: block;
+    float: left;
+    margin-right: 10px;
+}
+.cart-table{
+	margin-bottom: 10px;
+}
+.cart-table table tr td p,
+.cart-table table tr td h6{
+	font-size: 13px;
+    line-height: 20px;
+	font-weight: normal;
+	margin: 0;
+}
+.shoppingcart .editqty{
+	position: relative;
+}
+.shoppingcart .editqty .button-edit{
+	position: absolute;
+	right: -18px;
+	top: 19px;
+}
+.cart-total {
+    margin-bottom: 50px;
+}
+.cart-total p {
+    margin-bottom: 10px;
+}
+.cart-total p span {
+    float: left;
+    width: 25%;
+    text-align: right;
+    padding: 0 10px;
+    display: block;
+}
+.cart-total p span:first-child {
+    width: 75%;
+}
+.cart-checkout{
+	text-align: center;
+}
+
 /*==================== CHECKOUT ====================*/
 
+.checkout  input[type="radio"],
+.checkout .listing .info,
+.checkout .listing address{
+	display: inline-block;
+	vertical-align: top;
+}
 .checkout  input[type="radio"]{
-	display: block;
+	margin-top: 5px;
+}
+.checkout .listing address,
+.checkout .listing .info{
+	margin-left: 10px;
+}
+.checkout .list-payment{
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ededed;
+}
+.checkout .address-detail h6,
+.checkout .detail-order-info h5{
+	margin-bottom: 10px;
+}
+.checkout .button-collection{
+	margin-top: 30px;
+}
+.checkout .button-collection .left{
+	float: left;
+}
+.checkout .button-collection .right{
+	float: right;	
+}
+.checkout-payment .detail-order-info{
+	margin-top: 10px;
+}
+.checkout-success .image{
+	margin-bottom: 20px;
+}
+.checkout-success .editor{
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+/*================= DETAIL ORDER =================*/
+
+.order-info p .ptitle{
+	display: inline-block;
+	width: 120px;
+}
+.order-notice{
+	border: 1px solid #A2CC01;
+	background: #F3FFEB;
+	padding: 20px;
+	margin-bottom: 10px;
+}
+.order-notice p{
+	margin-bottom: 0;
+	font-size: 11px;
+	line-height: 20px;
+	color: red;
+}
+.confirmation{
+	margin-bottom: 30px;
+	text-align: center;
+}
+.confirmation p,
+.confirmation a{
+	font-size: 14px;
+	line-height: 20px;
+}
+.confirmation a{
+	color: #A2CC01;
+} 
+
+.order-detail .order-col{
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #A2CC01;
+}
+.order-detail .order-col h6{
+	margin-bottom: 10px;
+}
+.order-detail .detail-order-info h5{
+	margin-bottom: 20px;
 }

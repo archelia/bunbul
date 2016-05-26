@@ -31,7 +31,7 @@
 			
 			<div class="form-container">
 				<form action="checkout-payment.php" method="POST" name="formchoosepayment" id="formchoosepayment">
-				<ul>
+				<ul class="listing list-payment">
 				<?php
 				// list of the payment method listed
 					$sql = "SELECT * FROM paymentmethod WHERE active=1";
@@ -53,7 +53,7 @@
 				<input type="submit" name="submit" id="submit" value="SUBMIT">
 				</form>
 			</div>
-			<div class="detail-order">
+			<div class="detail-order-info">
 				<h5>Detail Order</h5>
 				<div class="cart-table">
 					<table width="100%" cellpadding="0" cellspacing="0">
@@ -129,7 +129,7 @@
 										<td align="center">
 											<?php echo $_SESSION['qtys'][$i]; ?>
 										</td>
-										<td align="right"><?php echo "Rp. ". $_SESSION['qtys'][$i] * $rowitem['product_price']; ?> </td>
+										<td align="right"><?php echo "Rp. ". number_format(($_SESSION['qtys'][$i] * $rowitem['product_price']),0,",","."); ?> </td>
 									</tr>
 									<?php	
 									$subtotal += $_SESSION['qtys'][$i] * $rowitem['product_price'];
@@ -145,7 +145,8 @@
 				<?php
 				echo '<div class="cart-total">';			
 					if((isset($_SESSION['iditems'])) AND ($sum > 0)){
-						echo '<p>Subtotal : Rp. '.$subtotal.'</p>';
+						echo '<p><span>Subtotal : </span><span>Rp. '.number_format($subtotal,0,",",".").'</span></p>';
+						echo '<div class="clear"></div>';
 						$discount=0;
 						//if reseller give extra discount 5%
 						if(isset($_SESSION['reseller'])){
@@ -155,13 +156,13 @@
 								$rowres = mysql_fetch_array($result);
 								$_SESSION['idreseller'] = $rowres['id_reseller'];
 								$discount = $subtotal*(5/100);
-								echo '<p>Discount : Rp. '.$discount.'</p>';
+								echo '<p><span>Discount : </span><span>Rp. '.number_format($discount,0,",",".").'</span></p>';
 							}				
 						}
 						else{
-							echo '<p>Discount : Rp. 0</p>';
+							echo '<p><span>Discount : </span><span>Rp. 0</span></p>';
 						}
-						
+						echo '<div class="clear"></div>';
 						// calculating grandtotal						
 						$sqlkota = "SELECT ca.*, d.postal_fee as ongkir 
 									FROM customeraddress ca, district d 
@@ -182,15 +183,17 @@
 						}
 						
 						// hitung ongkir dari harga jne * berat total barang
-						echo '<p>Shipping Cost : Rp. '.$ongkos.'</p>';
-						echo '<p>Grandtotal : Rp. '.($subtotal-$discount+$ongkos).'</p>';						
+						echo '<p><span>Shipping Cost : </span><span>Rp. '.number_format($ongkos,0,",",".").'</span></p>';
+						echo '<div class="clear"></div>';
+						echo '<p><span>Grandtotal : </span><span>Rp. '.number_format(($subtotal-$discount+$ongkos),0,",",".").'</span></p>';
+						echo '<div class="clear"></div>';
 					}
 				echo "</div>";	
 				?>		
 			</div>
 			<div class="button-collection">
 				<div class="left">
-					<button type="button" id="button-back" class="button button-back">BACK</button>
+					<button type="button" id="button-back" class="button button-back" onclick="newDoc()">BACK</button>
 				</div>
 				<div class="right">
 					<button type="button" name="buttonnext" id="buttonnext" class="button">NEXT</button>
@@ -220,6 +223,9 @@ if($pesan!=""){
 	include "footer.php";	
 ?>
 <script>
+function newDoc() {
+    window.location.assign("checkout-shipping.php")
+}
 $(document).ready(function($){
 	//$("input:radio[name='shippingmethod']:first").attr('checked', true);
 	$("input[type='submit']").hide();

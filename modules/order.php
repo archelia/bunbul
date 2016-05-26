@@ -71,26 +71,26 @@
 				$query = mysql_query($sql);
 			}
 			
-			// if success delete cart and checkout session_cache_expire	
-			unset($_SESSION['total-item']);
-			unset($_SESSION['ongkir']);
-			unset($_SESSION['subtotal']);
-			unset($_SESSION['discount']);
-			unset($_SESSION['grandtotal']);
-			unset($_SESSION['idreseller']);
-			
-			unset($_SESSION["iditems"]);
-			unset($_SESSION["qtys"]);
-			unset($_SESSION["weight"]);
-			
-			// if success redirect to thank you page
-			$sukses = 1;	
-			header("location: checkout-success.php");				
-			
-			}
-						
-		}
-		
+				// if success delete cart and checkout session_cache_expire	
+				unset($_SESSION['total-item']);
+				unset($_SESSION['ongkir']);
+				unset($_SESSION['subtotal']);
+				unset($_SESSION['discount']);
+				unset($_SESSION['grandtotal']);
+				unset($_SESSION['idreseller']);
+				
+				unset($_SESSION["iditems"]);
+				unset($_SESSION["qtys"]);
+				unset($_SESSION["weight"]);
+				
+				// if success redirect to thank you page
+				$sukses = 1;	
+				header("location: checkout-success.php");				
+				// send email 
+				//sendemailordertocustomer($row['id_order']);				
+				//sendemailordertoadmin($row['id_order']);				
+			}						
+		}		
 		else{
 			$pesan = "An error occured. Please Call Your Administrator.";
 		}

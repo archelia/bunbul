@@ -64,7 +64,7 @@
 				// if cart empty or total qty = 0
 				if((!isset($_SESSION['iditems'])) OR ($sum < 1)){
 					echo "<tr>
-						<td colspan='6'>Shopping cart is empty</td>
+						<td colspan='6' align='center'>Shopping cart is empty</td>
 					</tr>";
 				}
 				else
@@ -105,22 +105,24 @@
 										
 										$price = $price - ($price * $rowitem['product_discount']/100);
 									}
-									echo "Rp. ".$price; ?>
+									echo "Rp. ".number_format($price,0,',','.'); ?>
 								</td>
-								<td align="center">
+								<td align="center" class="editqty">
 									<form action="shoppingcart.php" name="editquantity" id="editquantity" method="POST">
 										<input type="number" value="<?php echo $_SESSION['qtys'][$i]; ?>" name="quantity" id="quantity">
 										<input type="hidden" name="rownumber" id="rownumber" value="<?php echo $i;?>">
-										<input type="submit" name="editcart" id="editcart" value="EDIT">
+										<input type="submit" name="editcart" id="editcart" value="" class="button-edit">
 									</form>
 								</td>
 								<td align="right">
-								<?php echo "Rp. ". $_SESSION['qtys'][$i] * $price; ?> </td>
+								<?php 
+								$harga =  $_SESSION['qtys'][$i] * $price;
+								echo "Rp. ".number_format($harga,0,',','.'); ?> </td>
 								<td align="center">
 									<form action="shoppingcart.php" name="deleteitem" id="deleteitem" method="POST">	
 										<label>
 											<input type="hidden" name="rownumber" id="rownumber" value="<?php echo $i;?>">
-											<input type="submit" name="deletefromcart" id="deletefromcart" value="DELETE">
+											<input type="submit" name="deletefromcart" id="deletefromcart" value="" class="button-delete">
 										</label>
 									</form>
 								</td>
@@ -139,7 +141,8 @@
 		<?php
 		echo '<div class="cart-total">';			
 			if((isset($_SESSION['iditems'])) AND ($sum > 0)){
-				echo '<p>Subtotal : Rp. '.$subtotal.'</p>';
+				echo '<p><span>Subtotal : </span><span>Rp. '.number_format($subtotal,0,',','.').'</span></p>';
+				echo '<div class="clear"></div>';	
 				$discount=0;
 				//if reseller give extra discount 5%
 				if(isset($_SESSION['reseller'])){
@@ -149,15 +152,18 @@
 						$rowres = mysql_fetch_array($result);
 						$_SESSION['idreseller'] = $rowres['id_reseller'];
 						$discount = $subtotal*(5/100);
-						echo '<p>Discount : Rp. '.$discount.'</p>';
+						echo '<p><span>Discount : </span><span>Rp. '.number_format($discount,0,',','.').'</span></p>';
 					}				
 				}
 				else{
-					echo '<p>Discount : Rp. 0</p>';
+					echo '<p><span>Discount : </span><span>Rp. 0</span></p>';
 				}
-				echo '<p>Grandtotal : Rp. '.($subtotal-$discount).'</p>';	
+				echo '<div class="clear"></div>';	
+				echo '<p><span>Grandtotal : </span><span>Rp. '.number_format(($subtotal-$discount),0,',','.').'</span></p>';	
+				echo '<div class="clear"></div>';
 			}
 		echo "</div>";	
+		
 		?>			
 		
 		<div class="cart-checkout">

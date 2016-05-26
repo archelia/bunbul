@@ -1,3 +1,12 @@
+/*===  LAYOUT ===*/
+
+.twocols > div:not(.clear){
+	float: none;
+	width: 100%;
+}
+
+/*===  HOMEPAGE ===*/
+
 .mainslide {
     height: 200px;
 }
@@ -10,6 +19,7 @@
 .footer-links{
 	display: none;
 }
+
 
 /*===  PAGES ===*/
 

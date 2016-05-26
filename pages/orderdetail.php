@@ -41,17 +41,18 @@ case 4:
 <div class="container">
 	<div class="front-content order-detail">	
 		<h1>ORDER NUMBER <?php echo $row['id_order'];?></h1>
-		<p>Order Date : <?php echo $row['order_date'];?></p>
-		<p>Current Status : <?php echo $status;?></p>
-		<div class="notice">
-			<p>Please make the payment within 1x24 hours.</p>
-			<p>Please include your order number in the description column.</p>
+		<div class="order-info">
+			<p><span class="ptitle">Order Date : </span><?php echo $row['order_date'];?></p>
+			<p><span class="ptitle">Current Status :  </span><strong><?php echo $status;?></strong></p>
+		</div>
+		<div class="order-notice">
+			<p>Please make the payment within 1x24 hours and include your order number in the description column.</p>
 			<p>Your confirmation will be processed in 1x24 hours.</p>
 		</div>
 		<div class="confirmation">
 			<?php
 			if($row['status']==1){
-				echo '<a href="paymentconfirm.php?id='.$row['id_order'].'">Confirm Payment</a>';
+				echo '<p>If you have made your payment please do <a href="paymentconfirm.php?id='.$row['id_order'].'">Confirm Payment</a></p>';
 			}
 			?>
 			
@@ -119,6 +120,7 @@ case 4:
 			<div class="clear"></div>
 		</div>
 		<div class="detail-order-info">
+			<h5>Order Detail</h5>
 			<div class="cart-table">
 				<table width="100%" cellpadding="0" cellspacing="0">
 					<colgroup>
@@ -161,12 +163,12 @@ case 4:
 								<p><?php echo "Color : ".$rowitem['color_name']; ?></p>
 							</td>
 							<td align="right">
-								<?php echo "Rp. ".($rowitem['price']-$rowitem['discount']); ?>
+								<?php echo "Rp. ".number_format(($rowitem['price']-$rowitem['discount']),0,",","."); ?>
 							</td>
 							<td align="center">
 								<?php echo $rowitem['qty']; ?>
 							</td>
-							<td align="right"><?php echo "Rp. ". $rowitem['total']; ?> </td>
+							<td align="right"><?php echo "Rp. ".number_format($rowitem['total'],0,",","."); ?> </td>
 						</tr>
 						<?php	
 						
@@ -175,11 +177,15 @@ case 4:
 				</tbody>
 				</table>
 			</div>	
-			<div class="total">
-				<p><span>Subtotal</span><span>Rp. <?php echo $row['subtotal']; ?> </span></p>
-				<p><span>Discount</span><span>Rp. <?php echo $row['discount']; ?></span></p>
-				<p><span>Shipping Cost</span><span>Rp. <?php echo $row['ongkir']; ?></span></p>
-				<p><span>Grandtotal</span><span>Rp. <?php echo $row['grandtotal']; ?></span></p>
+			<div class="cart-total">
+				<p><span>Subtotal</span><span>Rp. <?php echo number_format($row['subtotal'],0,",","."); ?> </span></p>
+				<div class="clear"></div>
+				<p><span>Discount</span><span>Rp. <?php echo number_format($row['discount'],0,",","."); ?></span></p>
+				<div class="clear"></div>
+				<p><span>Shipping Cost</span><span>Rp. <?php echo number_format($row['ongkir'],0,",","."); ?></span></p>
+				<div class="clear"></div>
+				<p><span>Grandtotal</span><span>Rp. <?php echo number_format($row['grandtotal'],0,",","."); ?></span></p>
+				<div class="clear"></div>
 			</div>
 		</div>	
 	</div>
