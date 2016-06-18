@@ -64,7 +64,7 @@
 }
 .header-content li a.active,
 .header-content li a:hover{
-	border-bottom: 2px solid #FFCA00;
+	border-bottom: 2px solid #B9FFFC;
 }
 .desktop ul li.hasub a:hover{
 	border-bottom: 2px solid #FFFFFF;
@@ -81,7 +81,7 @@
 	background: #fff;
 	top: 30px;
 	left: -50px;
-	border: 1px solid #FFCA00;
+	border: 1px solid #B9FFFC;
 	width: 150px;
 }
 .desktop ul.submenu li{
@@ -90,11 +90,11 @@
 	padding: 0 10px;
 }
 .desktop ul.submenu li:hover{
-	background: #FFCA00;
+	background: #B9FFFC;
 }
 .desktop ul.submenu li:hover a{
 	color: #fff;
-	border-bottom: 2px solid #FFCA00;
+	border-bottom: 2px solid #B9FFFC;
 }
 .mobile ul.submenu li{
 	border-bottom: 0;
@@ -316,7 +316,10 @@ footer .socmed ul li a span.insta{
 	margin: auto;
 }
 .mainslide{
-	height: 370px;	
+	height: 368px;	
+	-webkit-box-shadow: 0px 3px 5px 1px rgba(71,71,71,1);
+	-moz-box-shadow: 0px 3px 5px 1px rgba(71,71,71,1);
+	box-shadow: 0px 3px 5px 1px rgba(71,71,71,1);
 }
 .mainslide.slick-slider{
 	margin-bottom: 80px;
@@ -327,7 +330,7 @@ footer .socmed ul li a span.insta{
 .slider h2{
 	margin-bottom: 20px;
 	text-align: left;
-	color: #A2CC01;
+	color: #0E97CD;
     letter-spacing: 0.1em;
     font-family: 'myfont2', sans-serif;
 	font-size: 20px;
@@ -336,10 +339,6 @@ footer .socmed ul li a span.insta{
 	margin: auto;	
 	padding: 0 15px;
 	height: 375px;
-}
-.slider .product-block .product-pic img{
-	border: 1px solid #ededed;
-	
 }
 .slider .product-block .product-name h3,
 .slider .product-block .product-price{
@@ -372,7 +371,7 @@ footer .socmed ul li a span.insta{
 
 .front-content h1{
 	margin-bottom: 30px;
-	color: #A2CC01;
+	color: #0E97CD;
     font-weight: normal;
     letter-spacing: 0.1em;
 	font-family: 'myfont2', sans-serif;
@@ -391,8 +390,8 @@ footer .socmed ul li a span.insta{
 .pagination nav ul li a,
 .pagination nav ul li b{ 
 	display: block;
-	padding: 5px 10px;	
-	background: #A2CC01;
+	padding: 5px 10px;		
+	background: #70DDFA;
 	color: #FFF;
 	font-size: 14px;
 	font-weight: bold;
@@ -413,7 +412,7 @@ footer .socmed ul li a span.insta{
 	padding-right: 0;
 }
 .filter-box select{
-	border: 1px solid #A2CC01;
+	border: 1px solid #B9FFFC;
 }
 .filter-box.search{
 	position: relative;
@@ -422,7 +421,7 @@ footer .socmed ul li a span.insta{
 }
 .filter-box.search input[type="text"]{
 	padding-right: 50px;
-	border: 1px solid #A2CC01;
+	border: 1px solid #B9FFFC;
 }
 .filter-box.search input[type="submit"]{
 	position: absolute;
@@ -431,8 +430,8 @@ footer .socmed ul li a span.insta{
 	width: 40px;
 	height: 40px;
 	padding: 0;
-	background: #A2CC01 url("../../admin/images/zoom-icon.png") no-repeat 3px center;
-	border: 1px solid #A2CC01;
+	background: #70DDFA url("../../admin/images/zoom-icon.png") no-repeat 3px center;
+    border: 1px solid #B9FFFC;
 }
 .product-container{
 	margin-bottom: 30px;
@@ -503,6 +502,7 @@ footer .socmed ul li a span.insta{
 	display: block;
 	width: 100%;
 	max-height: 100%;
+	border: 1px solid #ededed;
 }
 .product-name h3{
 	font-family: 'myfont', sans-serif;
@@ -513,17 +513,19 @@ footer .socmed ul li a span.insta{
 	height: 48px;
 }
 .product-block .product-name a {
-    border-bottom: 1px solid #A2CC01;
     display: block;
 }
 .product-price{
-	color: #B3ADA9;
 	font-size: 13px;
 	line-height: 24px;
+	color: #fff;
+    background: #70DDFA;
+    border: 1px solid #B9FFFC;
+    text-align: center;
 }
 .product-price span{
 	display: inline-block;
-	color: #888785;
+	color: #ffffff;
 	font-family: myfont;
 }
 .product-price span.before{
@@ -568,14 +570,14 @@ footer .socmed ul li a span.insta{
 .ck-breadcrumb ul li a, b{
 	font-size: 14px;
 	line-height: 20px;
-	color: #A2CC01;
+	color: #0E97CD;
 	font-weight: normal;
 }
 .breadcrumb ul li a:after,
 .ck-breadcrumb ul li a:after{
 	content: ">";
 	margin-left: 10px;
-	color: #A2CC01;
+	color: #0E97CD;
 }
 .breadcrumb ul li a:hover,
 .ck-breadcrumb ul li a:hover{
@@ -595,6 +597,7 @@ footer .socmed ul li a span.insta{
 	border: 1px solid #ededed;
 	margin-bottom: 10px;
 	position: relative;
+	background: #ffffff;
 }
 .picture-box .picture img{
 	width: 100%;
@@ -642,6 +645,9 @@ footer .socmed ul li a span.insta{
 }
 .detail-box .product-price{	
 	margin-bottom: 30px;
+	background: none;
+    border: 0;
+    text-align: left;
 }
 .detail-box .product-price span{	
 	display: inline-block;
@@ -658,6 +664,9 @@ footer .socmed ul li a span.insta{
 	text-decoration: line-through; 
 	margin-right: 15px;
 }
+.product-small-block .form-container ul li{
+	margin-bottom: 15px;
+}
 .product-images {
 	margin-bottom: 20px;
 }
@@ -673,6 +682,7 @@ footer .socmed ul li a span.insta{
 	width: 92.5px;
 	height: 92px;
 	padding: 0 15px;
+	background: #ffffff;
 }
 .product-images ul li a img{
 	display: block;
@@ -843,10 +853,11 @@ footer .socmed ul li a span.insta{
 .form-container input[type="password"],
 .form-container input[type="number"],
 .form-container textarea {
-	background: #FCFFF6;
+	background: #70DDFA;
 }
 .form-container select{
-	background: #FCFFF6;
+	background: #ffffff;
+	
 }
 .message {
     display: none;

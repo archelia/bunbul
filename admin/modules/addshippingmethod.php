@@ -1,6 +1,5 @@
 <?php
 if(isset($_POST["submit"])){
-	echo "alegra";
 	$description = htmlspecialchars($_POST['shipdescription']);	
 	$howtopay = htmlspecialchars($_POST['howto']);	
 	

@@ -65,6 +65,7 @@
 					<ul class="sub-menu">
 						<li><a href="../pages/addproduct.php">Add Product</a></li>
 						<li><a href="../pages/listproduct.php">Manage Product</a></li>
+						<li><a href="../pages/updatestock.php">Update Stock</a></li>					
 					</ul>
 				</li>
 				<li>

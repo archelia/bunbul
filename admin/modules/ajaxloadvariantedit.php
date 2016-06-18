@@ -63,12 +63,12 @@ if($resload){
 				<input type="text" name="location" id="location" maxlength="256" placeholder="Location/Rack No"  value="'.$rowx['location'].'">
 				<label for="location" class="error">This is a required field.</label>
 			</li>';			
-	echo '<li class="centered">
-				<input type="hidden" name="id_item_saved" id="id_item_saved" value="'.$iditem.'">			
-				<input type="hidden" name="id_product" id="id_product2" value="'.$iditem.'">			
+	echo '<li class="centered">	
+				<input type="hidden" name="id_product" id="id_product2" value="'.$rowx['id_product'].'">
+				<input type="hidden" name="iditem" id="iditem" value="'.$iditem.'">				
 				<button type="button" name="button-cancel" id="button-cancel-edit" class="button" onclick="canceledit();" style="margin-right: 30px;">CANCEL</button>
 				<input type="submit" name="submit" id="submit" value="EDIT" class="button-edit-variant">
-				<button type="button" name="button-next" id="button-next" class="button button-next" >NEXT</button>
+				<button type="button" name="button-next" id="button-next" class="button button-next" onclick="gototab3();">NEXT</button>
 			</li>';					
 	echo '</ul>';
 }

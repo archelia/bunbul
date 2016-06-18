@@ -66,6 +66,9 @@ nav.desktop{
     height: 332px;
     margin-bottom: 20px;
 }
+.sold-out span{
+	bottom: 47%;
+}
 
 /*=== PRODUCT DETAIL PAGE ===*/
 
@@ -103,5 +106,3 @@ nav.desktop{
 .page-detail .left{
 	margin-right: 43%;
 }
-
-

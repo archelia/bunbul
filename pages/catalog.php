@@ -154,7 +154,6 @@
 		{
 			$filewithcat .= "&gen=$_GET[gen]";						
 		}
-		
 		?>
 		<div class="pagination">
 			<nav>
@@ -165,7 +164,7 @@
 				{
 					$previous=$halaman-1;
 					echo "<li><a href='$file?halaman=1".((isset($filewithcat))?$filewithcat:"")."'>&lt;&lt;</a></li>";
-					echo "<li><a href='$file?halaman=$previous'".((isset($filewithcat))?$filewithcat:"").">&lt;</a></li>";
+					echo "<li><a href='$file?halaman=$previous".((isset($filewithcat))?$filewithcat:"")."'>&lt;</a></li>";
 				}
 				else
 				{

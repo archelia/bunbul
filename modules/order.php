@@ -70,6 +70,8 @@
 				$sql = "UPDATE reseller SET last_purchase=now()";
 				$query = mysql_query($sql);
 			}
+				//sendemailordertocustomer($row['id_order']);				
+				//sendemailordertoadmin($row['id_order']);	
 			
 				// if success delete cart and checkout session_cache_expire	
 				unset($_SESSION['total-item']);
@@ -87,8 +89,7 @@
 				$sukses = 1;	
 				header("location: checkout-success.php");				
 				// send email 
-				//sendemailordertocustomer($row['id_order']);				
-				//sendemailordertoadmin($row['id_order']);				
+							
 			}						
 		}		
 		else{

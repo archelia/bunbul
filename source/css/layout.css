@@ -8,9 +8,11 @@ html.scrol-disabled, body.scrol-disabled {
 	margin: 0; height: 100%; overflow: hidden;
 }
 .wrapper{
-	padding-top: 100px;
+	padding-top: 120px;
 	position: relative;
 	min-height: 100%;
+	background: url("../images/background.jpg") no-repeat center 40px;
+    /* background-size: 100%; */
 }
 .fr{
 	float: right;
@@ -19,7 +21,7 @@ html.scrol-disabled, body.scrol-disabled {
 	float: left;
  }
 .clear{
-		clear: both;
+	clear: both;
 }
 .centered{
 	text-align: center;
@@ -44,7 +46,7 @@ html.scrol-disabled, body.scrol-disabled {
 	display: block;
 }
 header{	
-	background: rgba(255,255,255,0.95);
+	background: rgba(255,255,255,0.7);
 	height: auto;
 	position: fixed;
 	top: 0;

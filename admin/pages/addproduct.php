@@ -397,6 +397,7 @@ function closealltabs(){
 	$(".addvariant-box").hide();
 	$(".addpicture-box").hide();
 	$(".message").removeClass("error");
+	$(".message").removeClass("valid");
 	$("html, body").animate({ scrollTop: 0 }, "fast");
 }
 function gototab1(){
@@ -509,6 +510,12 @@ function editvariant(iditem){
 				.append(response);	
 			$(".form-add-variant").hide();
 			$(".form-edit-variant").show();
+			$("html, body").animate(
+			{scrollTop: 0},
+			{
+				duration: 1200,
+				easing: 'linear'
+			});
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
 		   console.log(textStatus, errorThrown);
@@ -590,6 +597,7 @@ $(function(){
 	$(".form-edit-variant").hide();	
 	$("#addvariant").submit(function(e){
 		$("#message2").removeClass("error");
+		$("#message2").removeClass("valid");
 		e.preventDefault();
 		if($("#productsku").val() == ""){
 			$("#productsku").removeClass("valid");
@@ -605,13 +613,14 @@ $(function(){
 	});
 	$("#edit-variant").submit(function(e){
 		e.preventDefault();
-		var values = $("#edit-variant").serialize();	
+		var values = $("#edit-variant").serialize();		
 		$.ajax({
 			url: "../modules/ajaxeditvariant.php",
 			type: "post",
 			data: values,
 			dataType: "json",
-			success: function (response){  		
+			success: function (response){  	
+				$("#message2").addClass("valid");
 				if(response[0]==0){				
 					$("#message2").addClass("error");
 					$("#message2 p").text(response[1]);
@@ -619,6 +628,7 @@ $(function(){
 						scrollTop: ($(".addproduct").offset()).top
 					}, 500);
 				}	
+				$("#message2 p").text(response[1]);
 				loaddatavariant();			
 			},
 			error: function(jqXHR, textStatus, errorThrown) {

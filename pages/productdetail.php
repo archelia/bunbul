@@ -115,28 +115,33 @@
 				if(mysql_num_rows($queryload)>0){				
 				?>						
 			<div class='product-small-block form-container'>
-				<form action="shoppingcart.php" name="addtocart" id="addtocart" method="POST">
 				<h6>AVAILABLE SIZE</h6>
-				<div class='size-list'>
-				<?php
-				while($rowld=mysql_fetch_array($queryload)){					
-					echo "
-						<div class='radiobtn'>				
-						<label>					
-							<input type='radio' name='iditem' id='iditem' value='$rowld[id_item]'>
-							<span>$rowld[size_name]</span>								
-						</label>								
-					</div>";
-				}				
-				?>
-				<label for='size' class='error'>Please choose the product size.</label>	
-				</div>
-				<label for="quantity">Quantity</label>
-					<select name="quantity" id="quantity">
-						<option value="">1</option>
-					</select>
-				<input type="submit" value="ADD TO CART" name="submitcart" id="submitcart">	
-				
+				<form action="shoppingcart.php" name="addtocart" id="addtocart" method="POST">
+				<ul>
+					<li class='size-list'>
+						<?php
+						while($rowld=mysql_fetch_array($queryload)){					
+							echo "
+								<div class='radiobtn'>				
+								<label>					
+									<input type='radio' name='iditem' id='iditem' value='$rowld[id_item]'>
+									<span>$rowld[size_name]</span>								
+								</label>								
+							</div>";
+						}				
+						?>
+						<label for='size' class='error'>Please choose the product size.</label>	
+					</li>
+					<li>
+						<label for="quantity">Quantity</label>
+						<select name="quantity" id="quantity">
+							<option value="">1</option>
+						</select>
+					</li>
+					<li>
+						<input type="submit" value="ADD TO CART" name="submitcart" id="submitcart">	
+					</li>
+				</ul>
 				</form>
 			</div>
 				<?php									

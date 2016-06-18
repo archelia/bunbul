@@ -186,20 +186,21 @@ input[type="number"]{
 	vertical-align: middle;
 }
 .radiobtn span{
-	width: 20px;
+	min-width: 20px;
+	padding: 0 5px;
 	height: 20px;
 	display: inline-block;
 	margin-right: 5px;
 	cursor: pointer;
 	vertical-align: middle;
-	color: #A2CC01;
-	border: 1px solid #A2CC01;
+	color: #0CA8E5;
+	border: 1px solid #0CA8E5;
 	text-align: center;
 }
 input[type="checkbox"]:checked + label{}
 input[type="radio"]:checked + span{
 	color: #ffffff;
-	background: #A2CC01;
+	background: #70DDFA;
 }
 /*
 .radiobtn span:after{
@@ -220,8 +221,8 @@ select{
 	font-size: 12px;
 	line-height: 20px;
 	padding: 10px;
-	border: 1px solid #A2CC01;
 	background: #FFFFFF;
+    border: 1px solid #0CA8E5;
 	width: 100%;
 }
 table{
@@ -253,14 +254,14 @@ button,
 	padding: 12px 30px;
 	display: inline-block;
 	color: #ffffff;
-	border: 1px solid #A2CC01;
 	cursor: pointer;
 	font-size: 14px;
 	line-height: 14px;
 	text-transform: uppercase;
 	text-align: center;
-	background: #A2CC01;
-	letter-spacing: 0.1em;
+	letter-spacing: 0.1em;	
+	background: #70DDFA;
+    border: 1px solid #B9FFFC;
 }
 .small-button{
 	display: inline-block;
