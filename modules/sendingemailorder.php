@@ -1,5 +1,4 @@
 <?php
-
 // dummy
 include "../global/global.php";
 $_SESSION['custlogin'] = 11;
@@ -9,7 +8,7 @@ $idorder = 31;
 $customer = $_SESSION['custlogin'];
 
 // load order data
-$sql = "SELECT po.*, sm.method_title as spmethod, pm.method_title as pymethod ";
+$sql = "SELECT po.*, sm.method_title as spmethod, sm.howto as sphow, pm.method_title as pymethod, pm.howto as pyhow ";
 $sql .= "FROM purchase_order po, shippingmethod sm, paymentmethod pm ";
 $sql .= "WHERE po.active=1 ";
 $sql .= "AND po.id_shippingmethod = sm.id_shippingmethod ";
@@ -18,7 +17,52 @@ $sql .= "AND id_order = '$idorder '";
 $result = mysql_query($sql);
 $row = mysql_fetch_array($result);
 
-
+// load order detail				
+$sql = "SELECT pod.*, s.size_name, c.color_name, p.product_name, p.id_product, i.barcode 
+	FROM purchase_order_detail pod, item i, size s, color c, product p
+	WHERE pod.id_item=i.id_item 
+	AND i.id_product=p.id_product 
+	AND i.id_size=s.id_size 
+	AND i.id_color=c.id_color 
+	AND pod.id_order='$idorder'";
+$qdetail = mysql_query($sql);
+$orderdetail ='<tr>
+				<td style="background-color: #FFFFFF; padding: 20px; 0">
+					<table style="border-spacing: 0; font-family: Helvetica, Arial, Sans-Serif; font-size: 14px; color: #777777; width: 100%;">
+						<colgroup>
+							<col width="">
+								<col width="20%">
+								<col width="15%">
+								<col width="10%">
+								<col width="20%">
+						</colgroup>
+						<thead>
+							<tr>
+								<th style="padding: 10px 0; border-bottom: 1px solid #ededed; border-top: 1px solid #ededed;" align="center">Product Name</th>
+								<th style="padding: 10px 0; border-bottom: 1px solid #ededed; border-top: 1px solid #ededed;" align="center">Detail Product</th>
+								<th style="padding: 10px 0; border-bottom: 1px solid #ededed; border-top: 1px solid #ededed;" align="center">Price</th>
+								<th style="padding: 10px 0; border-bottom: 1px solid #ededed; border-top: 1px solid #ededed;" align="center">Quantity</th>
+								<th style="padding: 10px 0; border-bottom: 1px solid #ededed; border-top: 1px solid #ededed;" align="center">Subtotal</th>
+							</tr>
+						</thead>
+						<tbody>';
+				while($rowdet = mysql_fetch_array($qdetail)){
+					$orderdetail .=	'<tr>
+						<td style="border-bottom: 1px solid #ededed;">'.$rowdet["product_name"].'</td>
+						<td style="border-bottom: 1px solid #ededed; align="center"">
+							<p>Size : '.$rowdet["size_name"].'</p>
+							<p>Color : '.$rowdet["color_name"].'</p>
+						</td>
+						<td style="border-bottom: 1px solid #ededed;" align="right">Rp. '.$rowdet['price'].'</td>
+						<td style="border-bottom: 1px solid #ededed;" align="center">'.$rowdet['qty'].'</td>
+						<td style="border-bottom: 1px solid #ededed;" align="right">'.$rowdet['total'].'</td>
+					</tr>';			
+				}	
+$orderdetail .= '</tbody>
+					</table>
+				</td>
+				</tr>';
+				
 // load data customer, order, payment method, shipping method
 $messageheader = '<html>
 			<head>
@@ -58,13 +102,9 @@ $messagecontent = '<tr>
 										<span style="display: inline-block;  width: 150px; margin-right: 10px;">Metode Pembayaran </span>
 										<span>: '.$row['pymethod'].'</span></li>
 									<li>
-										<span style="display: inline-block;  width: 150px; margin-right: 10px;">No Rek </span>
-										<span> : 123456789</span>
+										<span style="display: inline-block;  width: 150px; margin-right: 10px;">Cara Bayar </span>
+										<span> : '.htmlspecialchars_decode($row['pyhow']).'</span>
 									</li>	
-									<li>
-										<span style="display: inline-block; width: 150px; margin-right: 10px;">Atas Nama </span>
-										<span>: Alexander</span>
-									</li>
 								</ul>
 								<p>Selambat-lambatnya 2x24 jam setelah email ini diterima.</p>
 								<p>Apabila telah melakukan pembayaran silakan lakukan konfirmasi pembayaran di kolom order anda di :</p>
@@ -79,6 +119,7 @@ $messagecontent = '<tr>
 								Jika anda mengalami kesulitan dengan link di atas, silakan copy dan paste url di atas pada browser url anda.									
 							</td>
 						</tr>
+						'.$orderdetail.'
 						<tr>
 							<td style="line-height: 20px; padding-bottom: 20px;">
 								Hormat Kami,
@@ -104,23 +145,6 @@ $messagecontent = '<tr>
 			</td>
 		</tr>';
 		
-		
-// load order detail				
-$sql = "SELECT pod.*, s.size_name, c.color_name, p.product_name, p.id_product, i.barcode 
-	FROM purchase_order_detail pod, item i, size s, color c, product p
-	WHERE pod.id_item=i.id_item 
-	AND i.id_product=p.id_product 
-	AND i.id_size=s.id_size 
-	AND i.id_color=c.id_color 
-	AND pod.id_order='$idorder'";
-$qdetail = mysql_query($sql);
-
-$orderdetail ='<tr>
-				<td style="background-color: #ABA58E; padding: 20px;">
-					<table style="border-spacing: 0; font-family: Helvetica, Arial, Sans-Serif; font-size: 14px; color: #777777; width: 100%;">
-					</table>
-				</td>
-				</tr>';
 
 $messagefooter = '</table>
 			</body>
